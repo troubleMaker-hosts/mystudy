@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.SysScheduleTaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.SysScheduleTaskInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="schedule_task_name" jdbcType="VARCHAR" property="scheduleTaskName" />
+    <result column="schedule_task_description" jdbcType="VARCHAR" property="scheduleTaskDescription" />
+    <result column="schedule_task_classname" jdbcType="VARCHAR" property="scheduleTaskClassname" />
+    <result column="schedule_task_package_name" jdbcType="VARCHAR" property="scheduleTaskPackageName" />
+    <result column="schedule_task_method_name" jdbcType="VARCHAR" property="scheduleTaskMethodName" />
+    <result column="schedule_task_cron" jdbcType="VARCHAR" property="scheduleTaskCron" />
+    <result column="schedule_task_switch" jdbcType="INTEGER" property="scheduleTaskSwitch" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="validFlag" jdbcType="INTEGER" property="validflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, schedule_task_name, schedule_task_description, schedule_task_classname, schedule_task_package_name, 
+    schedule_task_method_name, schedule_task_cron, schedule_task_switch, remarks, create_user, 
+    create_date, update_user, update_date, validFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_schedule_task_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="listAllScheduleTaskInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_schedule_task_info
+    where validFlag = #{validFlag,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_schedule_task_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.example.demo.model.SysScheduleTaskInfo">
+    insert into sys_schedule_task_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="scheduleTaskName != null">
+        schedule_task_name,
+      </if>
+      <if test="scheduleTaskDescription != null">
+        schedule_task_description,
+      </if>
+      <if test="scheduleTaskClassname != null">
+        schedule_task_classname,
+      </if>
+      <if test="scheduleTaskPackageName != null">
+        schedule_task_package_name,
+      </if>
+      <if test="scheduleTaskMethodName != null">
+        schedule_task_method_name,
+      </if>
+      <if test="scheduleTaskCron != null">
+        schedule_task_cron,
+      </if>
+      <if test="scheduleTaskSwitch != null">
+        schedule_task_switch,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="validflag != null">
+        validFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="scheduleTaskName != null">
+        #{scheduleTaskName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskDescription != null">
+        #{scheduleTaskDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskClassname != null">
+        #{scheduleTaskClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskPackageName != null">
+        #{scheduleTaskPackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskMethodName != null">
+        #{scheduleTaskMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskCron != null">
+        #{scheduleTaskCron,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskSwitch != null">
+        #{scheduleTaskSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validflag != null">
+        #{validflag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.SysScheduleTaskInfo">
+    update sys_schedule_task_info
+    <set>
+      <if test="scheduleTaskName != null">
+        schedule_task_name = #{scheduleTaskName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskDescription != null">
+        schedule_task_description = #{scheduleTaskDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskClassname != null">
+        schedule_task_classname = #{scheduleTaskClassname,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskPackageName != null">
+        schedule_task_package_name = #{scheduleTaskPackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskMethodName != null">
+        schedule_task_method_name = #{scheduleTaskMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskCron != null">
+        schedule_task_cron = #{scheduleTaskCron,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTaskSwitch != null">
+        schedule_task_switch = #{scheduleTaskSwitch,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validflag != null">
+        validFlag = #{validflag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

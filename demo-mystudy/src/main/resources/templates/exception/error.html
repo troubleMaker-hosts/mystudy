@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>errorHtml</title>
+		<!--iview-->
+		 <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+	   <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+	    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+		<!--axios-->
+	    <script type="text/javascript" src="../js/axios.min.js"></script>
+	    <!--layer-->
+	    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	    <script type="text/javascript" src="../js/layer/layer.js"></script>
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body>
+		<div id="app">
+			errorhtml
+		</div>
+	</body>
+	<script>
+		var vue = new Vue({
+			el: '#app',
+			data: {
+				ip:'localhost:8022',
+			},
+			methods: {
+
+				showHintSuccess:function( msg){
+					this.$Notice.success({
+	                    title: '提示消息',
+	                    desc:msg,
+	                });
+				},
+				showHintError:function(msg){
+					this.$Notice.error({
+	                    title: '提示消息',
+	                    desc:msg,
+	                });
+				},
+			}
+		});
+	</script>
+
+</html>

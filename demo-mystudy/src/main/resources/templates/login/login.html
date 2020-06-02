@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>登陆</title>
+		<!--iview-->
+		 <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+	   <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+	    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+		<!--axios-->
+	    <script type="text/javascript" src="../js/axios.min.js"></script>
+	    <!--layer-->
+	    <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	    <script type="text/javascript" src="../js/layer/layer.js"></script>
+	    <link rel="stylesheet" type="text/css" href="../js/layer/mobile/need/layer.css">
+	</head>
+	<style type="text/css">
+		body {
+			/*springboot中 路径 中 static 文件夹 不需要 写入 */
+			background-image: url(../img/login.jpg);
+			background-size: 100%;
+		}
+		
+		.login {
+			margin: 15% 5% 10% 70%;
+		}
+		
+		.login-tip {
+			font-size: 10px;
+			text-align: center;
+			color: #c3c3c3;
+		}
+	</style>
+
+	<body>
+		<div id="login">
+			<div class="login">
+				<Card style="width:300px">
+					<p slot="title">
+							<Icon type="log-in"></Icon>
+							欢迎登陆
+					</p>
+					<div>
+						<i-Input placeholder="请输入用户名..." v-model="userName"><span slot="prepend"><Icon type="person"></Icon></span></i-Input>
+					</div>
+					<br />
+					<div>
+						<i-Input placeholder="请输入密码..." type="password" v-model="userPsw" ><span slot="prepend"><Icon type="locked"></Icon></span></i-Input>
+					</div>
+					<br />
+					<div>
+						<i-Button type="primary" size="large" long :loading="login_loading" @click="login">登陆</i-Button>
+					</div>
+					<br />
+					<div>
+						<p>
+							<center class="login-tip">请输入正确账号和密码...</center>
+						</p>
+					</div>
+				</Card>
+			</div>
+		</div>
+	</body>
+	<script>
+		var vue = new Vue({
+			el: '#login', 
+			data: {
+				ip:'localhost:8022',
+				login_loading: false,
+				userName:'',
+				userPsw:'',
+			},
+			methods: {
+				login: function() {
+					this.login_loading = true;
+					var self = this ; 
+					console.log(this.userName +":::::"+ this.userPsw);
+
+					axios.post('http://'+self.ip+'/userlogin',
+					{
+						"userName":self.userName ,
+						"userPsw" : self.userPsw ,
+					})
+					.then(function (response) {
+						console.log("登陆-----");
+						console.log(response.data);
+						window.location.href= '../' + response.data;
+					});
+
+				},
+
+
+				showHintSuccess:function( msg){
+					this.$Notice.success({
+	                    title: '提示消息',
+	                    desc:msg,
+	                });
+				},
+				showHintError:function(msg){
+					this.$Notice.error({
+	                    title: '提示消息',
+	                    desc:msg,
+	                });
+				},
+			}
+		});
+	</script>
+
+</html>

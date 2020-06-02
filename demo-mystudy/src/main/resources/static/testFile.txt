@@ -1,0 +1,396 @@
++---------+---------------------+---------------+------------------------------+
+|MKR670   | PNH/VDPP - BKK/VTBS | ALTN:DMK/VTBD | A320/2764 - KGS - PF/ 4.0%   |
++---------+---------------------+---------------+------------------------------+
+|CORTE/ R1| FMGS RTE/VDPPVTBS01 | CRZ/CI010     | DISPATCHER JIANG YUN         |
++---------+---------------------+---------------+------------------------------+
+REF 21533 - COMPUTED AT 15.13Z FOR ETD 02.05Z 02/12/19
+          - PLAN VALID UNTIL 02/12/19 08.05Z
+
+VDPP RWY-05 DORAT1 BISOR A340 RYN DOLNI3D RWY-01R VTBS
+
+VDPP/FL050[CAP] PP344/FL060[CAP] DORAT/FL240[CAP] BEATS/FL140[OPT]
+LATIN/FL080[OPT]
+
+    ESAD : 0319     W/C : P009         TTL DIST : 0322       EET : 00:58
++------------------------------------+-----------------------------------------+
+|               PLAN      MAX        |                      TIME    FUEL       |
+|PAX 170       14450      180        | AB                  00:58    2545 ..... |
+|CARGO WT          0                 | CONST RES           00.05     200       |
+|PAYLOAD       14450                 | HOLD RES            00:30    1081       |
+|Z F WT        57732    61000        | BC                  00:34    1501       |
+|NET FUEL       5927                 | ADDITIONAL          00:14     600       |
+|T O WT        63659    77000        | MANDATORY TANKERING 00.00       0       |
+|BURN OFF       2545                 |                                         |
+|LDG WT        61114    64500        | MIN. SECTOR FUEL    02:21    5927       |
+|ARR FUEL       3382                 |                                         |
+|                                    | FUEL PADDING        00:00       0       |
+|                                    | ECONOMIC TANKERING  00.00       0       |
++------------------------------------+                                         |
+|FUEL PRICE RATIO   :  1.22          | TAXI                          300 ..... |
+|TANKERING          :   NO           |                                         |
+|ZFW CHG M1000 KGS BURN LESS  32 KGS | BLOCK FUEL          02:21    6227       |
+|ZFW CHG P1000 KGS BURN MORE  32 KGS |                                         |
++------------------------------------+ EXTRA               .....  ......       |
+|     FL   DIST   W/C   TIME    FUEL |                                         |
+|2ND 220   0322   P008  00:58   2573 | ADJUSTED BLOCK FUEL .....  ......       |
+|3RD 200   0322   P007  00:59   2607 |                                         |
+|                                    | DIVN                         2582 ..... |
+|                                    |                                         |
+|                                    | DIVN RDG                   ......       |
++------------------------------------+-----------------------------------------+
+|TAKEOFF ALTN  : NOT REQD                                                      |
+|FEA           : NOT APPLICABLE                                                |
+|ETOPS ALTN    : NON ETOPS                                                     |
+|                                                                              |
+|ALTN   W/C    DIST  FL     TIME    FUEL    MDF                                |
+|VTBD   P000   0152  F160   00.34   01501   02582                              |
++------------------------------------------------------------------------------+
+
+(FPL-MKR670-IS
+-A320/M-SDE3FGHIRWY/LB1
+-VDPP0205
+-N0400F240 BISOR A340 RYN DOLNI3D
+-VTBS0058 VTBD
+-PBN/A1B1C1D1O1 DOF/191202 REG/XU903
+ EET/VTBB0024
+ SEL/MRBL OPR/LANMEI PER/C RMK/TCAS II EQUIPPED
+ E/0221 P/TBN A/GREEN AND WHITE C/TBN)
+
++------------------------------------------------------------------------------
+ DISPATCH REMARKS:
+
+WHEN TAKEOFF DELAY ON VTBS, ATC MAY ASK PILOT TO APPLY A NEW
+CTOT, THEN, PLEASE CONTACT 131.025 TO APPLY NEW CTOT.
+
+***********
+THE ADDITIONAL FUEL IN THIS CFP INCLUDES ECONOMIC TANKERING DUE
+TO LOW FUEL PRICE IN BKK,PLEASE PAY CLOSE ATTENTION TO TOW AND
+LDW,DO NOT LET THEM EXCEED THE MTOW AND MLDW WHEN REFUELING.
+
+*************
+RAIMPREDICTION
+AIRPORT:VTBS
+MASKANGLE(DEGREE):5.000000
+RNP0.30:AVAILABLEFROM1911290000ZTO1912020000Z
+RNP1.00:AVAILABLEFROM1911290000ZTO1912020000Z
+***************************
+RVSM ALT CHECK EVERY 1 HOUR
+
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
++-------------------------------------------------------------------------------
+   I HEREBY ACCEPT THIS FLIGHT RELEASE WITH FULL ACKNOWLEDGEMENT AND CERTIFY
+             THAT WE HAVE CHECKED EACH OTHER'S LICENSE FOR VALIDITY
++-------------+------------------------------+---------------------------------+
+|CAPTAIN NAME:|                              |                                 |
++-------------+------------------------------+SIGNATURE :                      |
+| LIC NO      |                              |                                 |
++-------------+------------------------------+---------------------------------+
++---------+---------------------+---------------+------------------------------+
+|MKR670   | PNH/VDPP - BKK/VTBS | ALTN:DMK/VTBD | A320/2764 - KGS  - PF/ 4.0%   |
++---------+---------------------+---------------+------------------------------+
+|CORTE/ R1| FMGS RTE/VDPPVTBS01 | CRZ/CI010     | DISPATCHER JIANG YUN         |
++---------+---------------------+---------------+------------------------------+
+REF 21533 - COMPUTED AT 15.13Z FOR ETD 02.05Z 02/12/19
+          - PLAN VALID UNTIL 02/12/19 08.05Z
+
+VDPP RWY-05 DORAT1 BISOR A340 RYN DOLNI3D RWY-01R VTBS
+
+VDPP/FL050[CAP] PP344/FL060[CAP] DORAT/FL240[CAP] BEATS/FL140[OPT]
+LATIN/FL080[OPT]
+
+    ESAD : 0319     W/C : P009         TTL DIST : 0322       EET : 00:58
++------------------------------------+-----------------------------------------+
+|               PLAN      MAX        |                      TIME    FUEL       |
+|PAX 170       14450      180        | AB                  00:58    2545 ..... |
+|CARGO WT          0                 | CONST RES           00.05     200       |
+|PAYLOAD       14450                 | HOLD RES            00:30    1081       |
+|Z F WT        57732    61000        | BC                  00:34    1501       |
+|NET FUEL       5927                 | ADDITIONAL          00:14     600       |
+|T O WT        63659    77000        | MANDATORY TANKERING 00.00       0       |
+|BURN OFF       2545                 |                                         |
+|LDG WT        61114    64500        | MIN. SECTOR FUEL    02:21    5927       |
+|ARR FUEL       3382                 |                                         |
+|                                    | FUEL PADDING        00:00       0       |
+|                                    | ECONOMIC TANKERING  00.00       0       |
++------------------------------------+                                         |
+|FUEL PRICE RATIO   :  1.22          | TAXI                          300 ..... |
+|TANKERING          :   NO           |                                         |
+|ZFW CHG M1000 KGS BURN LESS  32 KGS | BLOCK FUEL          02:21    6227       |
+|ZFW CHG P1000 KGS BURN MORE  32 KGS |                                         |
++------------------------------------+ EXTRA               .....  ......       |
+|     FL   DIST   W/C   TIME    FUEL |                                         |
+|2ND 220   0322   P008  00:58   2573 | ADJUSTED BLOCK FUEL .....  ......       |
+|3RD 200   0322   P007  00:59   2607 |                                         |
+|                                    | DIVN                         2582 ..... |
+|                                    |                                         |
+|                                    | DIVN RDG                   ......       |
++------------------------------------+-----------------------------------------+
+|TAKEOFF ALTN  : NOT REQD                                                      |
+|FEA           : NOT APPLICABLE                                                |
+|ETOPS ALTN    : NON ETOPS                                                     |
+|                                                                              |
+|ALTN   W/C    DIST  FL     TIME    FUEL    MDF                                |
+|VTBD   P000   0152  F160   00.34   01501   02582                              |
++------------------------------------------------------------------------------+
+
+(FPL-MKR670-IS
+-A320/M-SDE3FGHIRWY/LB1
+-VDPP0205
+-N0400F240 BISOR A340 RYN DOLNI3D
+-VTBS0058 VTBD
+-PBN/A1B1C1D1O1 DOF/191202 REG/XU903
+ EET/VTBB0024
+ SEL/MRBL OPR/LANMEI PER/C RMK/TCAS II EQUIPPED
+ E/0221 P/TBN A/GREEN AND WHITE C/TBN)
+
++------------------------------------------------------------------------------
+ DISPATCH REMARKS:
+
+WHEN TAKEOFF DELAY ON VTBS, ATC MAY ASK PILOT TO APPLY A NEW
+CTOT, THEN, PLEASE CONTACT 131.025 TO APPLY NEW CTOT.
+
+***********
+THE ADDITIONAL FUEL IN THIS CFP INCLUDES ECONOMIC TANKERING DUE
+TO LOW FUEL PRICE IN BKK,PLEASE PAY CLOSE ATTENTION TO TOW AND
+LDW,DO NOT LET THEM EXCEED THE MTOW AND MLDW WHEN REFUELING.
+
+*************
+RAIMPREDICTION
+AIRPORT:VTBS
+MASKANGLE(DEGREE):5.000000
+RNP0.30:AVAILABLEFROM1911290000ZTO1912020000Z
+RNP1.00:AVAILABLEFROM1911290000ZTO1912020000Z
+***************************
+RVSM ALT CHECK EVERY 1 HOUR
+
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
++-------------------------------------------------------------------------------
+   I HEREBY ACCEPT THIS FLIGHT RELEASE WITH FULL ACKNOWLEDGEMENT AND CERTIFY
+             THAT WE HAVE CHECKED EACH OTHER'S LICENSE FOR VALIDITY
++-------------+------------------------------+---------------------------------+
+|CAPTAIN NAME:|                              |                                 |
++-------------+------------------------------+SIGNATURE :                      |
+| LIC NO      |                              |                                 |
++-------------+------------------------------+---------------------------------+
+
++-------------+---------+------+-----+-------+-------+-------+---------+-------+
+| STD | 02:05 | OFF CHK |      |T/OFF|       |  LDG  |       |         |       |
++-----+-------+---------+------+-----+-------+-------+-------+---------+-------+
+| STA | 03:20 | ON CHK  |      | EET | 00:58 |  END  |       |         |       |
++-----+-------+---------+------+-----+-------+-------+-------+---------+-------+
+| BLK | 01:15 | ACT BLK |      | ETA |       |  POB  |       |         |       |
++-----+-------+---------+------+-----+-------+-------+-------+---------+-------+
+
++---------+------+----------+------+----------+------+-----+------+------+-----+
+|  ZFW    |ZFW CG|   TOW    |TOW CG|RWY|  V1  | VR   |  V2 | FLAP |  THS | FLEX|
++---------+------+----------+------+---+------+------+-----+------+------+-----+
+|         |      |          |      |   |      |      |     |      |      |     |
++---------+------+----------+------+---+------+------+-----+------+------+-----+
+|         |      |          |      |   |      |      |     |      |      |     |
++---------+------+----------+------+---+------+------+-----+------+------+-----+
+|         |      |          |      |   |      |      |     |      |      |     |
++---------+------+----------+------+---+------+------+-----+------+------+-----+
+|         |      |          |      |   |      |      |     |      |      |     |
++---------+------+----------+------+---+------+------+-----+------+------+-----+
+|             DEPARTURE ATIS           |              ATC CLEARANCE            |
++--------------------------------------+---------------------------------------+
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
++--------------------------------------+---------------------------------------+
+VDPP DORAT1 BISOR A340 RYN DOLNI3D VTBS
++------------------------------------------------------------------------------+
+
++-------------------------+--------------------------+-------------------------+
+|       ARRIVAL ATIS      |  DESTINATION ALTN ATIS   |     ATC CLEARANCE       |
++-------------------------+--------------------------+-------------------------+
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
+|                         |                          |                         |
++-------------------------+--------------------------+-------------------------+
+
+WHEN TAKEOFF DELAY ON VTBS, ATC MAY ASK PILOT TO APPLY A NEW
+CTOT, THEN, PLEASE CONTACT 131.025 TO APPLY NEW CTOT.
+
+***********
+THE ADDITIONAL FUEL IN THIS CFP INCLUDES ECONOMIC TANKERING DUE
+TO LOW FUEL PRICE IN BKK,PLEASE PAY CLOSE ATTENTION TO TOW AND
+LDW,DO NOT LET THEM EXCEED THE MTOW AND MLDW WHEN REFUELING.
+
+*************
+RAIMPREDICTION
+AIRPORT:VTBS
+MASKANGLE(DEGREE):5.000000
+RNP0.30:AVAILABLEFROM1911290000ZTO1912020000Z
+RNP1.00:AVAILABLEFROM1911290000ZTO1912020000Z
+***************************
+RVSM ALT CHECK EVERY 1 HOUR
+
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+TIME......  CAPT ALT.......   FO/ ALT.......  STBY ALT .......
+
+WPT     PFL   AFL  TAS  DV  W/C    AWY     TTRK  ZDST  ZTME ETA/ATA   AFUEL   FDIFF
+FREQ    MORA  OAT  G/S  WS  DDVVV  ADDVVV  MTRK  DREM  CTME           FUELRM  TREND
+
+VDPP    DEPARTURE FUEL 000 MINUTES OF FUEL INCLUDED IN CLIMB       5.9
+
+12N105E CLB   ...  259  CLB M038   DORAT1  044   001    000 ..../.... ......  .....
+        012   ...  221  03  04038  ......  045  0321  00.00            5.9    .....
+
+12N105E CLB   ...  259  CLB M038   DORAT1  047   001    002 ..../.... ......  .....
+        012   ...  221  03  04038  ......  048  0320  00.02            5.8    .....
+
+12N105E CLB   ...  264  CLB M023   DORAT1  350   004    001 ..../.... ......  .....
+        012   ...  241  03  04033  ......  351  0316  00.03            5.7    .....
+
+PP344   050   ...  299  P13 P007   DORAT1  296   018    003 ..../.... ......  .....
+        027   ...  306  03  04024  ......  297  0298  00.06            5.5    .....
+
+PP345   060   ...  300  P12 P011   DORAT1  274   011    002 ..../.... ......  .....
+        027   ...  312  02  05016  ......  275  0287  00.08            5.3    .....
+
+DORAT   CLB   ...  301  CLB P007   DORAT1  275   011    002 ..../.... ......  .....
+        027   ...  307  01  06008  ......  276  0276  00.10            5.1    .....
+
+TOC     CLB   ...  386  CLB P008   DORAT1  292   051    008 ..../.... ......  .....
+        073   ...  393  01  12007  ......  293  0225  00.18            4.5    .....
+
+BISOR   240   ...  400  P18 P010   DORAT1  292   039    006 ..../.... ......  .....
+        073   ...  410  01  12010  ......  293  0186  00.24            4.3    .....
+
+FIR VTBB - BANGKOK
+-VTBB   240   ...  400  P18 P008   A340    292   001    000 ..../.... ......  .....
+------- 052   ...  408  01  14009  ......  293  0185  00.24            4.3    .....
+
+RYN     240   ...  400  P18 P008   A340    292   069    010 ..../.... ......  .....
+112.50  052   ...  408  01  14009  ......  293  0116  00.34            3.9    .....
+
+TOD     240   ...  398  P18 P009   DOLN3D  317   015    002 ..../.... ......  .....
+        035   ...  406  01  15009  ......  318  0101  00.36            3.8    .....
+
+DOLNI   DSC   ...  379  DSC P006   DOLN3D  317   027    005 ..../.... ......  .....
+        035   ...  385  01  16007  ......  318  0074  00.41            3.7    .....
+
+BEATS   140   ...  352  P17 P002   DOLN3D  294   011    001 ..../.... ......  .....
+        035   ...  354  01  15003  ......  295  0063  00.42            3.7    .....
+
+BS405   DSC   ...  345  DSC P002   DOLN3D  294   008    002 ..../.... ......  .....
+        035   ...  347  01  10002  ......  295  0055  00.44            3.6    .....
+
+BS403   DSC   ...  335  DSC M001   DOLN3D  015   007    001 ..../.... ......  .....
+        012   ...  334  01  09003  ......  016  0048  00.45            3.6    .....
+
+SANJO   DSC   ...  326  DSC M001   DOLN3D  015   006    001 ..../.... ......  .....
+        012   ...  325  02  08003  ......  016  0042  00.46            3.6    .....
+WPT     PFL   AFL  TAS  DV  W/C    AWY     TTRK  ZDST  ZTME ETA/ATA   AFUEL   FDIFF
+FREQ    MORA  OAT  G/S  WS  DDVVV  ADDVVV  MTRK  DREM  CTME           FUELRM  TREND
+
+LATIN   080   ...  306  P14 P005   DOLN3D  285   007    002 ..../.... ......  .....
+        011   ...  311  03  07006  ......  286  0035  00.48            3.6    .....
+
+BS401   DSC   ...  306  DSC P007   DOLN3D  195   006    001 ..../.... ......  .....
+        012   ...  313  05  07013  ......  196  0029  00.49            3.5    .....
+
+SALSA   DSC   ...  285  DSC P009   DOLN3D  196   006    001 ..../.... ......  .....
+        011   ...  294  05  07018  ......  197  0023  00.50            3.5    .....
+
+ENKAA   DSC   ...  277  DSC P010   DOLN3D  194   005    001 ..../.... ......  .....
+        011   ...  287  03  07018  ......  195  0018  00.51            3.5    .....
+
+VTBS    DSC   ...  263  DSC M011   DOLN3D  357   018    007 ..../.... ......  .....
+        011   ...  252  03  07025  ......  358  0000  00.58            3.4    .....
+
+VTBS   APPROACH AND LANDING FUEL 000 KGS & 00 MINS OF FUEL INCL IN DESCENT
+WIND & TEMPERATURE INFORMATION
+
+WAYPOINT  CRUISE WINDS
+BISOR      F390/125/007 M53      F370/129/007 M48     F350/130/006 M43
+           F330/122/007 M37      F310/112/010 M32     F290/113/012 M27
+
+RYN        F390/170/005 M53      F370/164/004 M48     F350/147/004 M43
+           F330/132/005 M37      F310/125/008 M32     F290/128/009 M27
+
+WAYPOINT  DESCENT WINDS
+DOLNI      F250/143/008 M17      F200/169/007 M07     F150/132/002 P02
+           F100/087/007 P08      F050/070/019 P18
+
+BEATS      F250/143/008 M17      F200/169/007 M07     F150/132/002 P02
+           F100/087/007 P08      F050/070/019 P18
+
+BS405      F250/143/008 M17      F200/169/007 M07     F150/132/002 P02
+           F100/087/007 P08      F050/070/019 P18
+
+BS403      F250/147/011 M17      F200/159/007 M07     F150/167/002 P02
+           F100/075/004 P09      F050/071/028 P18
+
+SANJO      F250/147/011 M17      F200/159/007 M07     F150/167/002 P02
+           F100/075/004 P09      F050/071/028 P18
+
+LATIN      F250/147/011 M17      F200/159/007 M07     F150/167/002 P02
+           F100/075/004 P09      F050/071/028 P18
+
+BS401      F250/147/011 M17      F200/159/007 M07     F150/167/002 P02
+           F100/075/004 P09      F050/071/028 P18
+
+SALSA      F250/143/008 M17      F200/169/007 M07     F150/132/002 P02
+           F100/087/007 P08      F050/070/019 P18
+
+ENKAA      F250/143/008 M17      F200/169/007 M07     F150/132/002 P02
+           F100/087/007 P08      F050/070/019 P18
+
+VTBS       F250/147/011 M17      F200/159/007 M07     F150/167/002 P02
+           F100/075/004 P09      F050/071/028 P18
+
+
+LATITUDE & LONGITUDE
+
+VDPP     N 11 32.8  E 104 50.7      BEATS    N 13 21.9  E 101 01.2
+11N104E  N 11 33.3  E 104 51.2      BS405    N 13 25.1  E 100 53.8
+11N104E  N 11 34.4  E 104 52.4      BS403    N 13 32.0  E 100 55.7
+11N104E  N 11 37.8  E 104 51.8      SANJO    N 13 37.9  E 100 57.3
+PP344    N 11 45.9  E 104 34.6      LATIN    N 13 39.7  E 100 50.4
+PP345    N 11 46.7  E 104 23.6      BS401    N 13 33.9  E 100 48.8
+DORAT    N 11 47.6  E 104 12.8      SALSA    N 13 28.0  E 100 47.1
+BISOR    N 12 21.1  E 102 46.8      ENKAA    N 13 23.1  E 100 45.8
+RYN      N 12 46.8  E 101 40.7      VTBS     N 13 41.2  E 100 44.9
+DOLNI    N 13 17.7  E 101 10.8
+
+
+ADDITIONAL INFORMATION
+
+ROUTE TO DESTINATION ALTERNATE
+
+VTBD / DMK - VTBS KASNI3K KASNI DCT SABAI SABAI1B VTBD
+
+TANKERING ANALYSIS
+AMOUNT      : 0 KGS     SAVINGS   :      USD
+
+COMPANY NOTAMS
+
+
+
+
+END OF PLAN 21533

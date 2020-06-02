@@ -1,0 +1,19 @@
+.idea
+.git
+.svn
+.settings
+out
+log
+test
+target
+*.iml
+*.class
+*.log
+
+
+# eclipse
+.project
+.classpath
+
+
+
