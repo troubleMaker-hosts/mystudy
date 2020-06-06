@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.HashMap;
 
@@ -26,6 +27,7 @@ import java.util.HashMap;
  * @Date: 2019/11/18 04:06
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
+@ApiIgnore
 @Controller
 @RequestMapping("shceduleTask")
 public class SysScheduleTaskInfoController {

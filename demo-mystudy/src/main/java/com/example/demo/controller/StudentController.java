@@ -5,6 +5,7 @@ import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @Date: 2020/04/06 06:01
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
+@ApiIgnore
 @Controller
 @RequestMapping("student")
 public class StudentController {

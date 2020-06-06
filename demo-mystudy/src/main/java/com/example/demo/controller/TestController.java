@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -33,6 +34,7 @@ import java.util.concurrent.TimeoutException;
  * @Date: 2018/11/18 04:06
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
+@ApiIgnore
 @Controller
 public class TestController {
     private Logger logger = LogManager.getLogger();

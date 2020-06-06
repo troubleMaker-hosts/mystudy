@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * @ClassName: ShiroTestController
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Date: 2020/05/19 02:25
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
+@ApiIgnore
 @Controller
 public class ShiroTestController {
     private Logger logger = LogManager.getLogger();
