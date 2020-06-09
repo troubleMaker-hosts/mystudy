@@ -10,31 +10,58 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         #druid相关配置
         druid:
-          #监控统计拦截的filters
-          filters: stat
-          driver-class-name: com.mysql.jdbc.Driver
-          #基本属性
-#          此处应设置useSSL=false， 否则会有警告（MySQL 5.5.45+ 需要设置）
-          url: jdbc:mysql://127.0.0.1:3306/my_study?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
-          username: root
-          password: 111
-          #配置初始化大小/最小/最大
-          initial-size: 1
-          min-idle: 1
-          max-active: 20
-          #获取连接等待超时时间
-          max-wait: 60000
-          #间隔多久进行一次检测，检测需要关闭的空闲连接
-          time-between-eviction-runs-millis: 60000
-          #一个连接在池中最小生存的时间
-          min-evictable-idle-time-millis: 300000
-          validation-query: SELECT 'x'
-          test-while-idle: true
-          test-on-borrow: false
-          test-on-return: false
-          #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
-          pool-prepared-statements: false
-          max-pool-prepared-statement-per-connection-size: 20
+          primary:
+            #监控统计拦截的filters
+            filters: stat
+            driver-class-name: com.mysql.jdbc.Driver
+            #基本属性
+  #          此处应设置useSSL=false， 否则会有警告（MySQL 5.5.45+ 需要设置）
+            jdbc-url: jdbc:mysql://127.0.0.1:3306/my_study?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+            username: root
+            password: 111
+            #配置初始化大小/最小/最大
+            initial-size: 1
+            min-idle: 1
+            max-active: 20
+            #获取连接等待超时时间
+            max-wait: 60000
+            #间隔多久进行一次检测，检测需要关闭的空闲连接
+            time-between-eviction-runs-millis: 60000
+            #一个连接在池中最小生存的时间
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 'x'
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+            pool-prepared-statements: false
+            max-pool-prepared-statement-per-connection-size: 20
+          secondary:
+            #监控统计拦截的filters
+            filters: stat
+            driver-class-name: oracle.jdbc.OracleDriver
+            #基本属性
+            #          此处应设置useSSL=false， 否则会有警告（MySQL 5.5.45+ 需要设置）
+            jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+            username: hr
+            password: 111
+            #配置初始化大小/最小/最大
+            initial-size: 1
+            min-idle: 1
+            max-active: 20
+            #获取连接等待超时时间
+            max-wait: 60000
+            #间隔多久进行一次检测，检测需要关闭的空闲连接
+            time-between-eviction-runs-millis: 60000
+            #一个连接在池中最小生存的时间
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+            pool-prepared-statements: false
+            max-pool-prepared-statement-per-connection-size: 20
 
 #    REDIS (RedisProperties)
     redis:
@@ -52,9 +79,9 @@ spring:
                 max-idle: 8
                 min-idle: 0
 
-mybatis:
-  mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.example.demo.model
+#mybatis:
+#  mapper-locations: classpath:mapping/**/*.xml
+#  type-aliases-package: com.example.demo.model
 
 #pagehelper
 pagehelper:

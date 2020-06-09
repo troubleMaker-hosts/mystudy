@@ -1,6 +1,6 @@
 package com.example.demo.scheduletask.scheduletest;
 
-import com.example.demo.dao.StudentMapper;
+import com.example.demo.dao.primary.StudentMapper;
 import com.example.demo.model.Student;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;

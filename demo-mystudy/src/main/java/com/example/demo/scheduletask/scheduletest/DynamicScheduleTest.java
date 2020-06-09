@@ -1,6 +1,6 @@
 package com.example.demo.scheduletask.scheduletest;
 
-import com.example.demo.dao.StudentMapper;
+import com.example.demo.dao.primary.StudentMapper;
 import com.example.demo.scheduletask.ScheduleTaskUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,9 +1,10 @@
-package com.example.demo.dao;
+package com.example.demo.dao.primary;
 
 import com.example.demo.model.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**

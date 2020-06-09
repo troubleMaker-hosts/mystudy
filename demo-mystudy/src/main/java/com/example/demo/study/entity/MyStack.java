@@ -1,6 +1,5 @@
 package com.example.demo.study.entity;
 
-import antlr.collections.Stack;
 import org.springframework.util.Assert;
 
 import java.util.NoSuchElementException;
@@ -8,7 +7,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by dell on 2018/7/3.
  */
-public class MyStack<T> implements Stack {
+public class MyStack<T> {
     private  static  final int defaultSize = 10 ;
     private  int size  ;
     private  int top ;
@@ -28,24 +27,20 @@ public class MyStack<T> implements Stack {
         this.top = 0 ;
         this.listArray = new Object[sz] ;
     }
-    @Override
     public int height() {
         return size;
     }
 
-    @Override
     public Object pop() throws NoSuchElementException {
         Assert.isTrue(!isEmpty() , "empty stack");
         return listArray[-- top];
     }
 
-    @Override
     public void push(Object o) {
         Assert.isTrue(top < size , "stack overoverflow");
         listArray[top ++ ] = o ;
     }
 
-    @Override
     public Object top() throws NoSuchElementException {
         Assert.isTrue(!isEmpty() , "empty stack");
         return listArray[top - 1 ];

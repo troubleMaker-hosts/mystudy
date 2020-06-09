@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.dao.primary;
 
 import com.example.demo.model.FileStorage;
 import org.apache.ibatis.annotations.Mapper;

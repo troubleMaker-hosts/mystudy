@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.config.ThreadPoolConfig;
-import com.example.demo.dao.StudentMapper;
-import com.example.demo.dao.StudyUserMapper;
+import com.example.demo.dao.primary.StudentMapper;
+import com.example.demo.dao.primary.StudyUserMapper;
+import com.example.demo.dao.secondary.EmployeesMapper;
 import com.example.demo.model.RespEntity;
 import com.example.demo.model.Student;
 import com.example.demo.model.StudyUser;
@@ -17,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +48,9 @@ public class TestController {
 
     @Resource
     private StudentMapper studentMapper;
+
+    @Resource
+    private EmployeesMapper employeesMapper;
 
     /**
      * 添加用户 测试接口
@@ -113,6 +114,23 @@ public class TestController {
     }
 
     /**
+     * post 多数据源测试
+     * @param studentId 学生id(mysql 中 student 表)
+     * @param employeeId  员工id(orcal中 employees 表)
+     * @return 传入参数字符串
+     */
+    @ResponseBody
+    @PostMapping("multiDataSource")
+    public RespEntity multiDataSource(@RequestParam("studentId") Integer studentId,
+                           @RequestParam("employeeId") Integer employeeId) {
+        System.out.println("studentId : " + studentId + "  ; employeeId : " + employeeId);
+        Map<String, String> resultMap = new HashMap<>(16);
+        resultMap.put("student", studentMapper.selectByPrimaryKey(studentId).toString());
+        resultMap.put("employee", employeesMapper.selectByPrimaryKey(employeeId).toString());
+        return RespEntityUtils.buildSuccResp(resultMap);
+    }
+
+    /**
      * 多线程测试
      * @return  测试标志
      */
@@ -153,6 +171,9 @@ public class TestController {
      * @param parmerterOne 参数一
      * @param parmerterTwo  参数二
      * @return 传入参数字符串
+     *
+     * 注意 : 此种 方式 实际上 接收的 多参数 是 get (不能就收 post 方法请求的参数) 方法的 多参数,
+     *        如果前端 只能 使用 post 方法请求, 可以用 map 或实体类接收
      */
     @ResponseBody
     @PostMapping("testpost")
@@ -163,13 +184,16 @@ public class TestController {
         if (integerClass.equals(parmerterTwo.getClass().getName())) {
             System.out.println(parmerterTwo + "的类型是" + parmerterTwo.getClass().getName());
         }
-        return "test--post----parameterTrue" + parmerterOne + parmerterTwo;
+        return "test--post----parameterTrue  parameterOne : " + parmerterOne + " ; parameterTwo : " + parmerterTwo;
     }
 
     /**
      * 传入多个参数时 用 map 接收
      * @param paramMap  map类型的参数
      * @return  多参数 map 接收 测试结果
+     *
+     * 注意 : 此种 方式 实际上 接收的 多参数 是 get (不能就收 post 方法请求的参数) 方法的 多参数,
+     *        如果前端 只能 使用 post 方法请求, 可以用 map 或实体类接收
      */
     @ResponseBody
     @PostMapping("mapPost")

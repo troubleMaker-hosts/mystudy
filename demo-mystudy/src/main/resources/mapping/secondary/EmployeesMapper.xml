@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.secondary.EmployeesMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Employees">
+    <id column="EMPLOYEE_ID" jdbcType="NUMERIC" property="employeeId" />
+    <result column="FIRST_NAME" jdbcType="VARCHAR" property="firstName" />
+    <result column="LAST_NAME" jdbcType="VARCHAR" property="lastName" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="HIRE_DATE" jdbcType="TIMESTAMP" property="hireDate" />
+    <result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="SALARY" jdbcType="NUMERIC" property="salary" />
+    <result column="COMMISSION_PCT" jdbcType="NUMERIC" property="commissionPct" />
+    <result column="MANAGER_ID" jdbcType="NUMERIC" property="managerId" />
+    <result column="DEPARTMENT_ID" jdbcType="NUMERIC" property="departmentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, 
+    COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EMPLOYEES
+    where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from EMPLOYEES
+    where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Employees">
+    insert into EMPLOYEES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        EMPLOYEE_ID,
+      </if>
+      <if test="firstName != null">
+        FIRST_NAME,
+      </if>
+      <if test="lastName != null">
+        LAST_NAME,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER,
+      </if>
+      <if test="hireDate != null">
+        HIRE_DATE,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="salary != null">
+        SALARY,
+      </if>
+      <if test="commissionPct != null">
+        COMMISSION_PCT,
+      </if>
+      <if test="managerId != null">
+        MANAGER_ID,
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=NUMERIC},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="hireDate != null">
+        #{hireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=NUMERIC},
+      </if>
+      <if test="commissionPct != null">
+        #{commissionPct,jdbcType=NUMERIC},
+      </if>
+      <if test="managerId != null">
+        #{managerId,jdbcType=NUMERIC},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Employees">
+    update EMPLOYEES
+    <set>
+      <if test="firstName != null">
+        FIRST_NAME = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        LAST_NAME = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="hireDate != null">
+        HIRE_DATE = #{hireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null">
+        JOB_ID = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        SALARY = #{salary,jdbcType=NUMERIC},
+      </if>
+      <if test="commissionPct != null">
+        COMMISSION_PCT = #{commissionPct,jdbcType=NUMERIC},
+      </if>
+      <if test="managerId != null">
+        MANAGER_ID = #{managerId,jdbcType=NUMERIC},
+      </if>
+      <if test="departmentId != null">
+        DEPARTMENT_ID = #{departmentId,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
+  </update>
+</mapper>

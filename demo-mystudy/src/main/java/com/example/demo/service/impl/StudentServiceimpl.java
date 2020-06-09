@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.StudentMapper;
+import com.example.demo.dao.primary.StudentMapper;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

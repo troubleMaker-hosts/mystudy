@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.StudentMapper;
-import com.example.demo.dao.StudyUserMapper;
+import com.example.demo.dao.primary.StudentMapper;
+import com.example.demo.dao.primary.StudyUserMapper;
 import com.example.demo.model.RespEntity;
 import com.example.demo.model.StudyUser;
 import com.example.demo.model.SysScheduleTaskInfo;

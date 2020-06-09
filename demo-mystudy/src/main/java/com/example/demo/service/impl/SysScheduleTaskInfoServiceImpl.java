@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dao.SysScheduleTaskInfoMapper;
+import com.example.demo.dao.primary.SysScheduleTaskInfoMapper;
 import com.example.demo.model.SysScheduleTaskInfo;
 import com.example.demo.scheduletask.ScheduleTaskUtils;
 import com.example.demo.service.SysScheduleTaskInfoService;
