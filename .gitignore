@@ -2,13 +2,13 @@
 .git
 .svn
 .settings
-out
-log
-test
-target
 *.iml
 *.class
 *.log
+out
+log
+target
+test
 
 
 # eclipse
