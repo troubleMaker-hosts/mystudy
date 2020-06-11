@@ -8,12 +8,17 @@
 out
 log
 target
-test
+# test
 
 
 # eclipse
 .project
 .classpath
+
+#individual 个人的一些隐私数据
+individual*.*
+Individual*.*
+individual*
 
 
 
