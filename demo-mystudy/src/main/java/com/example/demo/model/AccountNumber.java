@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @ClassName: AccountNumber
