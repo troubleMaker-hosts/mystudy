@@ -1,5 +1,6 @@
 -- 此脚本 为 增量脚本
-
+DROP SCHEMA IF EXISTS MY_STUDY;
+CREATE SCHEMA MY_STUDY;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -7,175 +8,175 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for account_number
 -- ----------------------------
-DROP TABLE IF EXISTS `account_number`;
-CREATE TABLE `account_number`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键id',
-  `systematic_name` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统名',
-  `account_number` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账号',
-  `user_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户名',
-  `user_pwd` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户密码',
-  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电子邮箱',
-  `phone_number` varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电话号码',
-  `create_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `update_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
-  `is_valid` int(1) NOT NULL DEFAULT 0 COMMENT '是否有效(1:有效, 0 : 无效)',
-  `remarks` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`id`) USING BTREE
+DROP TABLE IF EXISTS my_study.account_number;
+CREATE TABLE my_study.account_number  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键id',
+  systematic_name varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统名',
+  account_number varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '账号',
+  user_name varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户名',
+  user_pwd varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '用户密码',
+  email varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电子邮箱',
+  phone_number varchar(15) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电话号码',
+  create_user varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  create_time datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  update_user varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  update_time datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  is_valid int(1) NOT NULL DEFAULT 0 COMMENT '是否有效(1:有效, 0 : 无效)',
+  remarks varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (id) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '账号表' ROW_FORMAT = Dynamic;
 
 
 
-DROP TABLE IF EXISTS `file_storage`;
-CREATE TABLE `file_storage`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键id',
-  `file_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件名',
-  `file_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件类型',
-  `file_suffix_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件后缀名',
-  `file_context` longblob NULL COMMENT '文件类容(longBlob:最大4G)',
-  `file_path` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件路径',
-  `network_url` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '网址',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `create_user` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改人',
-  `update_user` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `is_valid` int(1) NULL DEFAULT 0 COMMENT '是否有效(1: 有效, 0 : 无效)',
-  PRIMARY KEY (`id`) USING BTREE
+DROP TABLE IF EXISTS my_study.file_storage;
+CREATE TABLE my_study.file_storage  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键id',
+  file_name varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件名',
+  file_type varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件类型',
+  file_suffix_name varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件后缀名',
+  file_context longblob NULL COMMENT '文件类容(longBlob:最大4G)',
+  file_path varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文件路径',
+  network_url varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '网址',
+  create_time datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  create_user varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  update_time datetime(0) NULL DEFAULT NULL COMMENT '修改人',
+  update_user varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  is_valid int(1) NULL DEFAULT 0 COMMENT '是否有效(1: 有效, 0 : 无效)',
+  PRIMARY KEY (id) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '文件存储表(此表数据量很大, 用来做测试)' ROW_FORMAT = Dynamic;
 
 
 
 
-DROP TABLE IF EXISTS `shiro_role`;
-CREATE TABLE `shiro_role`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `role_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色名称',
-  `role_code` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色码',
-  `seq_number` int(11) NULL DEFAULT NULL COMMENT '序号',
-  `role_type` tinyint(1) NULL DEFAULT NULL COMMENT '角色类型',
-  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色描述',
-  `create_time` timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
-  `create_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
-  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `status` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
-  PRIMARY KEY (`id`) USING BTREE
+DROP TABLE IF EXISTS my_study.shiro_role;
+CREATE TABLE my_study.shiro_role  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  role_name varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色名称',
+  role_code varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色码',
+  seq_number int(11) NULL DEFAULT NULL COMMENT '序号',
+  role_type tinyint(1) NULL DEFAULT NULL COMMENT '角色类型',
+  description varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '角色描述',
+  create_time timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
+  create_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  update_time timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
+  update_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  status varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
+  PRIMARY KEY (id) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '角色表--shiro--测试' ROW_FORMAT = Dynamic;
 
 
 
-DROP TABLE IF EXISTS `shiro_user`;
-CREATE TABLE `shiro_user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `user_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户姓名',
-  `pwd` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '密码',
-  `create_time` timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
-  `create_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
-  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `status` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `idx_username_pwd`(`user_name`, `pwd`) USING BTREE
+DROP TABLE IF EXISTS my_study.shiro_user;
+CREATE TABLE my_study.shiro_user  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  user_name varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户姓名',
+  pwd varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '密码',
+  create_time timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
+  create_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  update_time timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
+  update_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  status varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
+  PRIMARY KEY (id) USING BTREE,
+  INDEX idx_username_pwd(user_name, pwd) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '用户表--shiro--测试' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of shiro_user
 -- ----------------------------
-INSERT INTO `shiro_user` VALUES (1, 'user1', '111', NULL, NULL, NULL, NULL, '1');
-INSERT INTO `shiro_user` VALUES (2, 'admin1', '111', NULL, NULL, NULL, NULL, '1');
-INSERT INTO `shiro_user` VALUES (3, 'sys1', '111', NULL, NULL, NULL, NULL, '1');
+INSERT INTO my_study.shiro_user VALUES (1, 'user1', '111', NULL, NULL, NULL, NULL, '1');
+INSERT INTO my_study.shiro_user VALUES (2, 'admin1', '111', NULL, NULL, NULL, NULL, '1');
+INSERT INTO my_study.shiro_user VALUES (3, 'sys1', '111', NULL, NULL, NULL, NULL, '1');
 
 
 
 
 
-DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '姓名',
-  `age` int(11) NULL DEFAULT NULL COMMENT '年龄',
-  `sex` varchar(3) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '性别',
-  `create_time` timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
-  `create_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
-  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `status` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `idx_name_age`(`name`, `age`) USING BTREE
+DROP TABLE IF EXISTS my_study.student;
+CREATE TABLE my_study.student  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  name varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '姓名',
+  age int(11) NULL DEFAULT NULL COMMENT '年龄',
+  sex varchar(3) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '性别',
+  create_time timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
+  create_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  update_time timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
+  update_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  status varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
+  PRIMARY KEY (id) USING BTREE,
+  INDEX idx_name_age(name, age) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '学生表---测试' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, 'test12', 12, '男', '2019-08-14 01:46:09', 'system', NULL, '修改者测试', 'Y');
-INSERT INTO `student` VALUES (2, 'test1', 11, '男', '2019-08-14 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (3, 'test2', 11, '男', '2019-08-21 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (4, 'test3', 11, '女', '2019-08-16 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (5, 'test4', 11, '女', '2019-08-14 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (6, 'test5', 11, '女', '2019-08-11 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (7, 'test6', 11, '女', '2019-08-24 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (8, 'test7', 11, '女', '2019-08-14 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (9, 'test8', 11, '女', '2019-08-17 01:45:09', 'system', NULL, '测试', 'Y');
-INSERT INTO `student` VALUES (10, 'test9', 11, '男', '2019-08-21 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (1, 'test12', 12, '男', '2019-08-14 01:46:09', 'system', NULL, '修改者测试', 'Y');
+INSERT INTO my_study.student VALUES (2, 'test1', 11, '男', '2019-08-14 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (3, 'test2', 11, '男', '2019-08-21 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (4, 'test3', 11, '女', '2019-08-16 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (5, 'test4', 11, '女', '2019-08-14 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (6, 'test5', 11, '女', '2019-08-11 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (7, 'test6', 11, '女', '2019-08-24 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (8, 'test7', 11, '女', '2019-08-14 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (9, 'test8', 11, '女', '2019-08-17 01:45:09', 'system', NULL, '测试', 'Y');
+INSERT INTO my_study.student VALUES (10, 'test9', 11, '男', '2019-08-21 01:45:09', 'system', NULL, '测试', 'Y');
 
 
 
-DROP TABLE IF EXISTS `study_user`;
-CREATE TABLE `study_user`  (
-  `user_id` int(9) NOT NULL AUTO_INCREMENT COMMENT '主键userid',
-  `user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户姓名',
-  `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '密码',
-  `phone` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电话号码',
-  PRIMARY KEY (`user_id`) USING BTREE,
-  INDEX `idx_name`(`user_name`) USING BTREE
+DROP TABLE IF EXISTS my_study.study_user;
+CREATE TABLE my_study.study_user  (
+  user_id int(9) NOT NULL AUTO_INCREMENT COMMENT '主键userid',
+  user_name varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户姓名',
+  password varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '密码',
+  phone varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '电话号码',
+  PRIMARY KEY (user_id) USING BTREE,
+  INDEX idx_name(user_name) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of study_user
 -- ----------------------------
-INSERT INTO `study_user` VALUES (1, 'username_test', 'pwd_test1', '12345678901');
-INSERT INTO `study_user` VALUES (2, 'test2', 'pwd_test2', '12345678902');
+INSERT INTO my_study.study_user VALUES (1, 'username_test', 'pwd_test1', '12345678901');
+INSERT INTO my_study.study_user VALUES (2, 'test2', 'pwd_test2', '12345678902');
 
 
 
-DROP TABLE IF EXISTS `sys_schedule_task_info`;
-CREATE TABLE `sys_schedule_task_info`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `schedule_task_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '' COMMENT '定时任务名称',
-  `schedule_task_description` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '' COMMENT '定时任务描述',
-  `schedule_task_classname` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务类名',
-  `schedule_task_package_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务包名(用于反射)',
-  `schedule_task_method_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务方法名',
-  `schedule_task_cron` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务cron表达式',
-  `schedule_task_switch` int(2) NOT NULL DEFAULT 1 COMMENT '定时任务开关(1:开; 0:关),默认是1',
-  `remarks` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注',
-  `create_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `create_date` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间(此处用dataTime便于查看),数据量大时可用timestamp(timestamp只用4字节储存,所以只能储存\'1970-01-01 00:00:01.000000\' to \'2038-01-19 03:14:07.999999\'的时间);\ntimestamp 只占 4 个字节，而且是以utc的格式储存， 它会自动检索当前时区并进行转换。\n\ndatetime以 8 个字节储存，不会进行时区的检索.\n\n也就是说，对于timestamp来说，如果储存时的时区和检索时的时区不一样，那么拿出来的数据也不一样。对于datetime来说，存什么拿到的就是什么。\n\n还有一个区别就是如果存进去的是NULL，timestamp会自动储存当前时间，而 datetime会储存 NULL。',
-  `update_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `update_date` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '修改时间,用dateTime理由如createTime字段',
-  `validFlag` int(2) NULL DEFAULT 1 COMMENT '是否有效(1:有效; 0:无效)',
-  PRIMARY KEY (`id`) USING BTREE
+DROP TABLE IF EXISTS my_study.sys_schedule_task_info;
+CREATE TABLE my_study.sys_schedule_task_info  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  schedule_task_name varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '' COMMENT '定时任务名称',
+  schedule_task_description varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '' COMMENT '定时任务描述',
+  schedule_task_classname varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务类名',
+  schedule_task_package_name varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务包名(用于反射)',
+  schedule_task_method_name varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务方法名',
+  schedule_task_cron varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '定时任务cron表达式',
+  schedule_task_switch int(2) NOT NULL DEFAULT 1 COMMENT '定时任务开关(1:开; 0:关),默认是1',
+  remarks varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注',
+  create_user varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  create_date datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间(此处用dataTime便于查看),数据量大时可用timestamp(timestamp只用4字节储存,所以只能储存\'1970-01-01 00:00:01.000000\' to \'2038-01-19 03:14:07.999999\'的时间);\ntimestamp 只占 4 个字节，而且是以utc的格式储存， 它会自动检索当前时区并进行转换。\n\ndatetime以 8 个字节储存，不会进行时区的检索.\n\n也就是说，对于timestamp来说，如果储存时的时区和检索时的时区不一样，那么拿出来的数据也不一样。对于datetime来说，存什么拿到的就是什么。\n\n还有一个区别就是如果存进去的是NULL，timestamp会自动储存当前时间，而 datetime会储存 NULL。',
+  update_user varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  update_date datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '修改时间,用dateTime理由如createTime字段',
+  validFlag int(2) NULL DEFAULT 1 COMMENT '是否有效(1:有效; 0:无效)',
+  PRIMARY KEY (id) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '定时器信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_schedule_task_info
 -- ----------------------------
-INSERT INTO `sys_schedule_task_info` VALUES (1, 'dynamicScheduleTest1', 'schedule动态配置test1', 'DynamicScheduleTest', 'com.example.demo.scheduletask.scheduletest', 'scheduleTest1', '0/3 * * * * ?', 1, 'schedule动态配置test1', NULL, '2019-11-18 04:04:22', NULL, '2019-11-18 04:04:22', 1);
-INSERT INTO `sys_schedule_task_info` VALUES (2, 'dynamicScheduleTest2', 'schedule动态配置test2', 'DynamicScheduleTest', 'com.example.demo.scheduletask.scheduletest', 'scheduleTest2', '0/5 * * * * ?', 1, 'schedule动态配置test2', NULL, NULL, NULL, NULL, 1);
-INSERT INTO `sys_schedule_task_info` VALUES (3, 'dynamicScheduleTest3', 'schedule动态配置test3', 'DynamicScheduleTest', 'com.example.demo.scheduletask.scheduletest', 'scheduleTest3', '0/8 * * * * ?', 1, 'schedule动态配置test3', NULL, NULL, NULL, NULL, 1);
+INSERT INTO my_study.sys_schedule_task_info VALUES (1, 'dynamicScheduleTest1', 'schedule动态配置test1', 'DynamicScheduleTest', 'com.example.demo.scheduletask.scheduletest', 'scheduleTest1', '0/3 * * * * ?', 1, 'schedule动态配置test1', NULL, '2019-11-18 04:04:22', NULL, '2019-11-18 04:04:22', 1);
+INSERT INTO my_study.sys_schedule_task_info VALUES (2, 'dynamicScheduleTest2', 'schedule动态配置test2', 'DynamicScheduleTest', 'com.example.demo.scheduletask.scheduletest', 'scheduleTest2', '0/5 * * * * ?', 1, 'schedule动态配置test2', NULL, NULL, NULL, NULL, 1);
+INSERT INTO my_study.sys_schedule_task_info VALUES (3, 'dynamicScheduleTest3', 'schedule动态配置test3', 'DynamicScheduleTest', 'com.example.demo.scheduletask.scheduletest', 'scheduleTest3', '0/8 * * * * ?', 1, 'schedule动态配置test3', NULL, NULL, NULL, NULL, 1);
 
 
 
-DROP TABLE IF EXISTS `user_role`;
-CREATE TABLE `user_role`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `user_id` int(11) NOT NULL COMMENT '用户id',
-  `role_id` int(11) NOT NULL COMMENT '角色id',
-  `create_time` timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
-  `create_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
-  `update_user` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
-  `status` varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
-  PRIMARY KEY (`id`) USING BTREE
+DROP TABLE IF EXISTS my_study.user_role;
+CREATE TABLE my_study.user_role  (
+  id int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  user_id int(11) NOT NULL COMMENT '用户id',
+  role_id int(11) NOT NULL COMMENT '角色id',
+  create_time timestamp(0) NULL DEFAULT NULL COMMENT '创建日期',
+  create_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建人',
+  update_time timestamp(0) NULL DEFAULT NULL COMMENT '修改日期',
+  update_user varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '修改人',
+  status varchar(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否有效,Y:有效；N:无效',
+  PRIMARY KEY (id) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = '用户-角色表--shiro--测试' ROW_FORMAT = Dynamic;

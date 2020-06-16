@@ -1,18 +1,12 @@
 package com.example.demo.mytest;
 
 import com.example.demo.DemoMystudyApplication;
-import com.example.demo.dao.primary.AccountNumberMapper;
 import com.example.demo.dao.primary.StudentMapper;
-import com.example.demo.model.AccountNumber;
-import com.example.demo.utils.EncryptUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @ClassName: MyUnitTest
