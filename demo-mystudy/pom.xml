@@ -191,6 +191,14 @@
 			<version>2.9.2</version>
 		</dependency>
 
+		<!-- alibaba-easyexcel -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+
 		<!-- shiro -->
 <!--	    <dependency>-->
 <!--            <groupId>org.apache.shiro</groupId>-->
