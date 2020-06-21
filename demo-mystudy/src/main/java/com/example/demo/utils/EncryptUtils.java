@@ -101,7 +101,7 @@ public class EncryptUtils {
     /**
      * 默认 密钥(对称加密密钥, 非对称加密密钥种子)
      */
-    private static final String DEFAULT_KEY = "ZRGW8VZASSCFSO1DYS44W172N2PB5HLG";
+    private static final String DEFAULT_KEY = "20CFCD9050D052C2B008206D244BE2C5";
 
     /**
      * 默认 创建SecureRandom的 算法名称

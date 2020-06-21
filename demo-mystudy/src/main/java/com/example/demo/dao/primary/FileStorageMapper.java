@@ -1,5 +1,6 @@
 package com.example.demo.dao.primary;
 
+import com.example.demo.dao.BaseMapper;
 import com.example.demo.model.FileStorage;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
 @Mapper
-public interface FileStorageMapper {
+public interface FileStorageMapper extends BaseMapper<FileStorage> {
     /**
      *  根据主键删除 记录
      * @param id 主键id
@@ -42,5 +43,10 @@ public interface FileStorageMapper {
     int updateByPrimaryKeySelective(FileStorage record);
 
 
+    /**
+     * 根据主键 修改 记录(有BLOB)
+     * @param record    实体类
+     * @return  更新是否成功
+     */
     int updateByPrimaryKeyWithBLOBs(FileStorage record);
 }
