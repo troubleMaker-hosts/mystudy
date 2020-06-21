@@ -1,6 +1,5 @@
 package com.example.demo.dao.primary;
 
-import com.example.demo.dao.BaseMapper;
 import com.example.demo.model.SysScheduleTaskInfo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,7 +14,7 @@ import java.util.List;
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
 @Mapper
-public interface SysScheduleTaskInfoMapper extends BaseMapper<SysScheduleTaskInfo> {
+public interface SysScheduleTaskInfoMapper {
     /**
      * 跟据 主键 删除记录
      * @param id 主键id

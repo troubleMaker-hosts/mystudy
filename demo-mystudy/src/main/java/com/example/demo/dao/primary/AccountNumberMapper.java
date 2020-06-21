@@ -1,6 +1,5 @@
 package com.example.demo.dao.primary;
 
-import com.example.demo.dao.BaseMapper;
 import com.example.demo.model.AccountNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +15,7 @@ import java.util.List;
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
 @Mapper
-public interface AccountNumberMapper extends BaseMapper<AccountNumber> {
+public interface AccountNumberMapper {
     /**
      *  根据主键删除 记录
      * @param id 主键id

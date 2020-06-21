@@ -1,6 +1,5 @@
 package com.example.demo.dao.primary;
 
-import com.example.demo.dao.BaseMapper;
 import com.example.demo.model.StudyUser;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
 @Mapper
-public interface StudyUserMapper extends BaseMapper<StudyUser> {
+public interface StudyUserMapper {
     /**
      *  根据主键删除
      * @param userId 主键id

@@ -35,7 +35,7 @@ import java.util.concurrent.TimeoutException;
 @ApiIgnore
 @Controller
 public class TestController {
-    private static final Logger logger = LogManager.getLogger(TestController.class);
+    private Logger logger = LogManager.getLogger();
 
     /**
      * 使用 @Autowired 会有警告, 此处暂时 使用 @Resource

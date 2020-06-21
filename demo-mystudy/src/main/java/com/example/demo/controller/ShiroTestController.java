@@ -21,7 +21,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 @Controller
 public class ShiroTestController {
-    private static final Logger logger = LogManager.getLogger(ShiroTestController.class);
+    private Logger logger = LogManager.getLogger();
 
     @GetMapping("login")
     public String login() {

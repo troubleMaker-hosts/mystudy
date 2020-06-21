@@ -1,10 +1,7 @@
 package com.example.demo.dao.secondary;
 
-import com.example.demo.dao.BaseMapper;
 import com.example.demo.model.Employees;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * @ClassName: AccountNumberMapper
@@ -15,7 +12,7 @@ import java.util.List;
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
 @Mapper
-public interface EmployeesMapper extends BaseMapper<Employees> {
+public interface EmployeesMapper {
     /**
      *  根据主键删除 记录
      * @param employeeId 主键id
@@ -38,24 +35,9 @@ public interface EmployeesMapper extends BaseMapper<Employees> {
     Employees selectByPrimaryKey(Integer employeeId);
 
     /**
-     * 根据 条件查询
-     * @param employees 条件
-     * @return  符合条件的Employees
-     */
-    List<Employees> selectByCondition(Employees employees);
-
-    /**
      * 根据主键 修改 记录
      * @param record    实体类
      * @return  更新是否成功
      */
     int updateByPrimaryKeySelective(Employees record);
-
-    /**
-     * 批量插入
-     * @param dataList  数据集
-     * @return  成功数量 (dataList.size())
-     */
-    //@Override
-    //Integer batchInsert(List<Employees> dataList);
 }

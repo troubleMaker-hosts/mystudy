@@ -24,8 +24,15 @@
     delete from shiro_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-
   <insert id="insert" parameterType="com.example.demo.model.ShiroUser">
+    insert into shiro_user (id, user_name, pwd, 
+      create_time, create_user, update_time, 
+      update_user, status)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ShiroUser">
     insert into shiro_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,8 +87,7 @@
       </if>
     </trim>
   </insert>
-
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ShiroUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ShiroUser">
     update shiro_user
     <set>
       <if test="userName != null">
@@ -106,6 +112,17 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ShiroUser">
+    update shiro_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

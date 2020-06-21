@@ -18,59 +18,12 @@
     EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, 
     COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID
   </sql>
-
-  <sql id="search">
-    <if test="employeeId != null">
-      and EMPLOYEE_ID = #{employeeId},
-    </if>
-    <if test="email != null and email != ''">
-      and EMAIL = #{email},
-    </if>
-    <if test="phoneNumber != null and phoneNumber != ''">
-      and PHONE_NUMBER = #{phoneNumber},
-    </if>
-    <if test="hireDate != null">
-      and HIRE_DATE = #{hireDate},
-    </if>
-    <if test="jobId != null and jobId != ''">
-      and JOB_ID = #{jobId},
-    </if>
-    <if test="salary != null">
-      and SALARY = #{salary},
-    </if>
-    <if test="commissionPct != null">
-      and COMMISSION_PCT = #{commissionPct},
-    </if>
-    <if test="managerId != null">
-      and MANAGER_ID = #{managerId},
-    </if>
-    <if test="departmentId != null">
-      and DEPARTMENT_ID = #{departmentId},
-    </if>
-    <if test="firstName != null and firstName != ''">
-      and FIRST_NAME like concat('%', #{firstName}, '%'),
-    </if>
-    <if test="lastName != null and lastName != ''">
-      and LAST_NAME like concat('%', #{lastName}, '%'),
-    </if>
-  </sql>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from EMPLOYEES
     where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
   </select>
-
-  <select id="selectByCondition" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from EMPLOYEES
-    <where>
-        <include refid="search"/>
-    </where>
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from EMPLOYEES
     where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
@@ -148,21 +101,6 @@
       </if>
     </trim>
   </insert>
-
-  <insert id="batchInsert">
-    INSERT INTO EMPLOYEES(
-        EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY,
-        COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID)
-        <foreach collection="list" item="item" separator="union all" >
-            SELECT
-            #{item.employeeId}, #{item.firstName}, #{item.lastName},
-            #{item.email}, #{item.phoneNumber}, #{item.hireDate},
-            #{item.jobId}, #{item.salary}, #{item.commissionPct},
-            #{item.managerId}
-            FROM dual
-        </foreach>
-  </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Employees">
     update EMPLOYEES
     <set>
