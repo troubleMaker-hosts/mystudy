@@ -28,7 +28,7 @@ public interface EmployeesMapper extends BaseMapper<Employees> {
      * @param record 实体类
      * @return  插入是否成功
      */
-    int insertSelective(Employees record);
+    int insert(Employees record);
 
     /**
      * 根据主键查询 记录
@@ -50,12 +50,4 @@ public interface EmployeesMapper extends BaseMapper<Employees> {
      * @return  更新是否成功
      */
     int updateByPrimaryKeySelective(Employees record);
-
-    /**
-     * 批量插入
-     * @param dataList  数据集
-     * @return  成功数量 (dataList.size())
-     */
-    //@Override
-    //Integer batchInsert(List<Employees> dataList);
 }

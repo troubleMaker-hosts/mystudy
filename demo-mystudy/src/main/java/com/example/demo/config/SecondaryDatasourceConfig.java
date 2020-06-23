@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -72,7 +73,9 @@ public class SecondaryDatasourceConfig {
     @Qualifier(DATA_SOURCE_NAME + "DataSource")
     @ConfigurationProperties(prefix = PROPERTIES_PATH)
     public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
+        //应该用DruidDataSourceBuilder而不是DataSourceBuilder
+        //使用 DataSourceBuilder, 系统还是 会用 com.zaxxer.hikari.pool.HikariPool 做连接池
+        return DruidDataSourceBuilder.create().build();
     }
     /**
       * 创建sqlSessionFactory

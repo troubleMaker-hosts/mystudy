@@ -70,19 +70,20 @@ public class EasyexcelTest {
      * easyExcel 导入 test (单 和 多 sheet)
      */
     @Test
-    public void eastExcelImportTest() {
+    public void easytExcelImportTest() {
         String pathName = getDefaultPath("employees", 1);
         ExcelReader excelReader = null;
-        //try {
-            excelReader = EasyExcel.read(pathName, new EasyExcelListener(employeesMapper)).build();
+        try {
+            excelReader = EasyExcel.read(pathName,Employees.class, new EasyExcelListener(employeesMapper)).build();
+            //不会读 excel 的 第一行
             excelReader.read(EasyExcel.readSheet(1).build());
-        //} catch (Exception e) {
-        //    throw new RuntimeException("easyExcel 导入数据失败 : " + Employees.class + ", pathName : " + pathName);
-        //} finally {
+        } catch (Exception e) {
+            throw new RuntimeException("easyExcel 导入数据失败 : " + Employees.class + ", pathName : " + pathName);
+        } finally {
             if (excelReader != null) {
                 excelReader.finish();
             }
-        //}
+        }
     }
 
 

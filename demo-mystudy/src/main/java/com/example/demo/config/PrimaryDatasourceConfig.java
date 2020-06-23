@@ -76,6 +76,8 @@ public class PrimaryDatasourceConfig {
     @Primary
     public DataSource dataSource() {
         //dataSourceProperties().initializeDataSourceBuilder().build();
+        //应该用DruidDataSourceBuilder而不是DataSourceBuilder
+        //使用 DataSourceBuilder, 系统还是 会用 com.zaxxer.hikari.pool.HikariPool 做连接池
         return DataSourceBuilder.create().build();
     }
     /**

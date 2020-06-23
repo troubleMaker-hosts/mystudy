@@ -17,4 +17,6 @@ public interface BaseMapper<T> {
      * @return  成功数量 (dataList.size())
      */
     Integer batchInsert(List<T> dataList);
+
+    int insert(T data);
 }

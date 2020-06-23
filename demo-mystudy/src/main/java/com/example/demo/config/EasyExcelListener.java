@@ -3,10 +3,8 @@ package com.example.demo.config;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.example.demo.dao.BaseMapper;
-import com.example.demo.dao.secondary.EmployeesMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.List;
  * @Date: 2020/06/21 03:31
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
-public class EasyExcelListener extends AnalysisEventListener<T> {
+public class EasyExcelListener<T> extends AnalysisEventListener<T> {
     private static final Logger LOGGER = LogManager.getLogger(EasyExcelListener.class);
 
     /**
@@ -37,7 +35,7 @@ public class EasyExcelListener extends AnalysisEventListener<T> {
      */
     private List<T> dataList = new ArrayList<>();
 
-    public EasyExcelListener(EmployeesMapper dataDao) {
+    public EasyExcelListener(BaseMapper dataDao) {
         this.baseMapper = dataDao;
     }
 
@@ -69,8 +67,14 @@ public class EasyExcelListener extends AnalysisEventListener<T> {
      * @return  插入数据记录 数(BATCH_COUNT)
      */
     private int batchInsertData() {
-        Integer i = baseMapper.batchInsert(dataList);
-        LOGGER.info("批量插入 {}, 数量 : {}", T.class, i);
+        for (T t : dataList) {
+            System.out.println(t.toString());
+        }
+        int i = 0;
+        if (!dataList.isEmpty()) {
+            i = baseMapper.batchInsert(dataList);
+            LOGGER.info("批量插入 {}, 数量 : {}", dataList.get(0).getClass(), i);
+        }
         return i;
     }
 }

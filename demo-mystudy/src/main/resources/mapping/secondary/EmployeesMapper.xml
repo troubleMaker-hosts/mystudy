@@ -75,7 +75,8 @@
     delete from EMPLOYEES
     where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
   </delete>
-  <insert id="insertSelective" parameterType="com.example.demo.model.Employees">
+
+  <insert id="insert" parameterType="com.example.demo.model.Employees">
     insert into EMPLOYEES
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="employeeId != null">
@@ -149,17 +150,27 @@
     </trim>
   </insert>
 
+<!--  批量插入 orcal 写法-->
   <insert id="batchInsert">
     INSERT INTO EMPLOYEES(
         EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY,
         COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID)
-        <foreach collection="list" item="item" separator="union all" >
-            SELECT
-            #{item.employeeId}, #{item.firstName}, #{item.lastName},
-            #{item.email}, #{item.phoneNumber}, #{item.hireDate},
-            #{item.jobId}, #{item.salary}, #{item.commissionPct},
-            #{item.managerId}
-            FROM dual
+        <foreach collection="list" item="item" index="index" separator="union all" >
+          (
+            select
+              #{item.employeeId,jdbcType=NUMERIC},
+              #{item.firstName,jdbcType=VARCHAR},
+              #{item.lastName,jdbcType=VARCHAR},
+              #{item.email,jdbcType=VARCHAR},
+              #{item.phoneNumber,jdbcType=VARCHAR},
+              #{item.hireDate,jdbcType=TIMESTAMP},
+              #{item.jobId,jdbcType=VARCHAR},
+              #{item.salary,jdbcType=NUMERIC},
+              #{item.commissionPct,jdbcType=NUMERIC},
+              #{item.managerId,jdbcType=NUMERIC},
+              #{item.departmentId,jdbcType=NUMERIC}
+            from dual
+          )
         </foreach>
   </insert>
 
