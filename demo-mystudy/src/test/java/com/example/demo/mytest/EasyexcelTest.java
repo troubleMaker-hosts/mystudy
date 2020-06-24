@@ -78,7 +78,7 @@ public class EasyexcelTest {
             //不会读 excel 的 第一行
             excelReader.read(EasyExcel.readSheet(1).build());
         } catch (Exception e) {
-            throw new RuntimeException("easyExcel 导入数据失败 : " + Employees.class + ", pathName : " + pathName);
+            throw new RuntimeException("easyExcel 导入数据失败 : " + Employees.class + ", pathName : " + pathName + " exceptionInfo : " + e.getMessage());
         } finally {
             if (excelReader != null) {
                 excelReader.finish();
