@@ -67,9 +67,6 @@ public class EasyExcelListener<T> extends AnalysisEventListener<T> {
      * @return  插入数据记录 数(BATCH_COUNT)
      */
     private int batchInsertData() {
-        for (T t : dataList) {
-            System.out.println(t.toString());
-        }
         int i = 0;
         if (!dataList.isEmpty()) {
             i = baseMapper.batchInsert(dataList);
