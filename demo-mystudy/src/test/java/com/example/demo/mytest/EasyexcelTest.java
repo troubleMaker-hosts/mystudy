@@ -57,7 +57,7 @@ public class EasyexcelTest {
             excelWriter.write(employeesList, EasyExcel.write(pathName, Employees.class).sheet(0,"员工列表").build());
             excelWriter.write(employeesList.subList(0, 10), EasyExcel.write(pathName, Employees.class).sheet(1,"员工列表2").build());
         } catch (Exception e) {
-            throw new RuntimeException("easyExcel 导出数据失败 : " + Employees.class + ", pathName : " + pathName);
+            throw new RuntimeException("easyExcel 导出数据失败 : " + Employees.class + ", pathName : " + pathName + " exceptionInfo : " + e.getMessage());
         } finally {
             if (excelWriter != null) {
                 excelWriter.finish();
