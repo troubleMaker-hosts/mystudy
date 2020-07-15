@@ -38,6 +38,11 @@ public class ThreadPoolConfig {
 
     /**
      * 等待队列，存储还未执行的任务
+     * 阻塞队列，超过corePoolSize部分的请求放入这个阻塞队列中等待执行。
+     * 阻塞队列分为有界阻塞队列和无界阻塞队列。
+     * 在创建阻塞队列时如果我们指定了这个队列的“capacity”则这个队列就是有界的，否则是无界的。
+     * 这里有一点需要注意：使用线程池之前请明确是否真的需要无界阻塞队列，
+     * 如果阻塞队列是无界的，会导致大量的请求堆积，进而造成内存溢出系统崩溃。
      */
     private static final ArrayBlockingQueue<Runnable> ARRAY_BLOCKING_QUEUE = new ArrayBlockingQueue<>(20);
 
@@ -51,7 +56,7 @@ public class ThreadPoolConfig {
      * ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。
      * ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。
      * ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
-     * ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+     * ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务(请求脱离线程池运行（调用者caller线程来运行这个任务）)
      */
     private static final RejectedExecutionHandler REJECTED_EXECUTION_HANDLER = new ThreadPoolExecutor.AbortPolicy();
 
