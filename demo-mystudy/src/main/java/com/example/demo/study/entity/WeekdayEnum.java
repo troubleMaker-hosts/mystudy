@@ -10,7 +10,13 @@ package com.example.demo.study.entity;
 public enum WeekdayEnum {
     //自定义变量与默认的ordinal属性并不冲突，ordinal还是按照它的规则给每个枚举变量按顺序赋值。
     //一定要把枚举变量的定义放在第一行，并且以分号结尾。
-    MON(1,"mon"),TUS(2,"tus"),WED(3,"wed"),THU(4,"thu"),FRI(5,"fri"),SAT(6,"sat"),SUN(0,"sun");
+    MON(1,"mon"),
+    TUS(2,"tus"),
+    WED(3,"wed"),
+    THU(4,"thu"),
+    FRI(5,"fri"),
+    SAT(6,"sat"),
+    SUN(0,"sun");
 
     private int key;
 
