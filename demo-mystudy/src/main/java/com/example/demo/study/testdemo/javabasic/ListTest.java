@@ -20,6 +20,7 @@ public class ListTest {
             System.out.println(i + " : " + integer);
         }
         arrayList.remove(0);
+        arrayList.removeIf(integer -> integer > 30);
         System.out.println("list remove 之后");
         for (int i = 0; i < arrayList.size(); i++) {
             Integer integer =  arrayList.get(i);

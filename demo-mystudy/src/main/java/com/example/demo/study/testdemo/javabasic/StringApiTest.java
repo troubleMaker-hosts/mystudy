@@ -25,6 +25,7 @@ public class StringApiTest {
         System.out.println(str + ".indexOf(q) : " + i);
         i = test.lastIndexOfTest(str, "q");
         System.out.println("subStringTest : " + test.subStringTest(str, i, null));
+        System.out.println("subStringTest : " + test.subStringTest("CRZ/CI010", 0, "CRZ/CI010".indexOf("/")));
         System.out.println("subStringTest : " + test.subStringTest("CRZ/CI010", "CRZ/CI010".indexOf("/"), null));
         System.out.println(str + ".lastIndexOfTest(q) : " + i);
 
