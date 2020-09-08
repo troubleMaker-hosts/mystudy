@@ -1,13 +1,12 @@
 package com.example.demo.config;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -78,7 +77,7 @@ public class PrimaryDatasourceConfig {
         //dataSourceProperties().initializeDataSourceBuilder().build();
         //应该用DruidDataSourceBuilder而不是DataSourceBuilder
         //使用 DataSourceBuilder, 系统还是 会用 com.zaxxer.hikari.pool.HikariPool 做连接池
-        return DataSourceBuilder.create().build();
+        return DruidDataSourceBuilder.create().build();
     }
     /**
       * 创建sqlSessionFactory

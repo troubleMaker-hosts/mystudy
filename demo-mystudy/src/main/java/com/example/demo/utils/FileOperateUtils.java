@@ -20,7 +20,7 @@ public class FileOperateUtils extends FileUtils {
     /**
      * 日志(log4j)
      */
-    private static Logger logger = LogManager.getLogger(EncryptUtils.class);
+    private static Logger LOGGER = LogManager.getLogger(FileOperateUtils.class);
 
     /**
      * 判断 文件 或 文件夹 是否存在
@@ -40,20 +40,20 @@ public class FileOperateUtils extends FileUtils {
     public static boolean createFile(String path) {
         File file = new File(path);
         if (file.exists()) {
-            logger.info("文件已经存在 : " + path);
+            LOGGER.info("文件已经存在 : " + path);
             return false;
         }
         try {
             //为给定的文件创建任何必要但不存在的父目录。
             FileUtils.forceMkdirParent(file);
             if (file.createNewFile()) {
-                logger.info("创建文件成功 : " + path);
+                LOGGER.info("创建文件成功 : " + path);
                 return true;
             } else {
-                logger.error("创建文件失败 : " + path);
+                LOGGER.error("创建文件失败 : " + path);
             }
         } catch (IOException e) {
-            logger.error("创建文件失败 : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("创建文件失败 : " + ExceptionUtils.getMessage(e));
         }
         return false;
     }
@@ -68,7 +68,7 @@ public class FileOperateUtils extends FileUtils {
         try {
             return FileOperateUtils.class.getClassLoader().getResource(relativePath).getPath();
         } catch (Exception e) {
-            logger.error("获取绝对路径失败 : relativePath : " + relativePath + " : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("获取绝对路径失败 : relativePath : " + relativePath + " : " + ExceptionUtils.getMessage(e));
         }
         return null;
     }
