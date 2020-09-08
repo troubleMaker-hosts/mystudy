@@ -7,6 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName: ReflectTest
@@ -61,10 +62,11 @@ public class ReflectTest {
             System.out.println("私有构造器：" + studyUserPrivate.toString());
 
             //反射私有 属性
-            ArrayList<Field> list = test.reflectPrivateField(classUrl, "serialVersionUID", "userId");
+            List<Field> list = test.reflectPrivateField(classUrl, "serialVersionUID", "userId");
             for (Field field : list) {
                 //拿到属性对应值
                 System.out.println("拿到属性对应值 : " + field.getName() + " : " + field.get(studyUser));
+                System.out.println("拿到属对应的类型 : " + field.getType());
                 if ("userId".equals(field.getName())) {
                     field.set(studyUser, 888);
                     System.out.println("拿到属性(userId) set 之后 的 对应值 : " + field.getName() + " : " + field.get(studyUser));
