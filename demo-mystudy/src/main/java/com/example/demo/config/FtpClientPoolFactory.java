@@ -71,7 +71,7 @@ public class FtpClientPoolFactory extends BasePooledObjectFactory<FtpUtil> {
     /**
      * 使用单例 创建 ftpClientPoolConfig
      */
-    private static FtpClientPoolConfig ftpClientPoolConfig;
+    private volatile static FtpClientPoolConfig ftpClientPoolConfig;
 
     @Autowired
     private FtpClientPoolFactory ftpClientPoolFactory;
@@ -124,10 +124,12 @@ public class FtpClientPoolFactory extends BasePooledObjectFactory<FtpUtil> {
     private FtpClientPoolConfig getFtpClientPoolConfig(BasePooledObjectFactory factory) {
         if (ftpClientPoolConfig == null) {
             synchronized (FtpClientPoolFactory.class) {
-                GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
-                //获取连接超时时间
-                genericObjectPoolConfig.setMaxWaitMillis(1000);
-                ftpClientPoolConfig = new FtpClientPoolConfig(factory, genericObjectPoolConfig);
+                if (ftpClientPoolConfig == null) {
+                    GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
+                    //获取连接超时时间
+                    genericObjectPoolConfig.setMaxWaitMillis(1000);
+                    ftpClientPoolConfig = new FtpClientPoolConfig(factory, genericObjectPoolConfig);
+                }
             }
         }
         return ftpClientPoolConfig;
