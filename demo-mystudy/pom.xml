@@ -206,6 +206,15 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+		<!--ftpClient-->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.7</version>
+		</dependency>
+
+
 
 
 		<!-- shiro -->

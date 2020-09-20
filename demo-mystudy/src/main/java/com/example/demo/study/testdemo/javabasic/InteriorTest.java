@@ -10,6 +10,10 @@ package com.example.demo.study.testdemo.javabasic;
  */
 public class InteriorTest {
     int p = 2;
+
+    /**
+     * 普通内部类
+     */
     public class InnerClass {
         int p = 3;
         void inCall () {
@@ -18,10 +22,17 @@ public class InteriorTest {
         }
     }
 
-    private static class AnotherInnerClass {
+    /**
+     * 静态内部类
+     */
+    private static class StaticInnerClass {
         int p = 5;
     }
 
+    /**
+     * 测试
+     * @param args  args
+     */
     public static void main(String[] args) {
         InteriorTest interiorTest = new InteriorTest();
         //InnerClass innerClass = new InnerClass();
@@ -30,10 +41,14 @@ public class InteriorTest {
         //静态内部类是不需要依赖于外部类的，这点和类的静态成员属性有点类似，
         // 并且它不能使用外部类的非static成员变量或者方法，这点很好理解，因为在没有外部类的对象的情况下，
         // 可以创建静态内部类的对象，如果允许访问外部类的非static成员就会产生矛盾，因为外部类的非static成员必须依附于具体的对象。
-        AnotherInnerClass anotherInnerClass1 = new AnotherInnerClass();
-        AnotherInnerClass anotherInnerClass2 = new InteriorTest.AnotherInnerClass();
+        StaticInnerClass staticInnerClass1 = new StaticInnerClass();
+        StaticInnerClass staticInnerClass2 = new InteriorTest.StaticInnerClass();
 
+
+        System.out.println("innerClass.inCall() before :  interiorTest.p : " + interiorTest.p);
         innerClass.inCall();
-        System.out.println("interiorTest.p : " + interiorTest.p);
+        System.out.println("innerClass.inCall() after : interiorTest.p : " + interiorTest.p);
+        System.out.println("staticInnerClass1.p : " + staticInnerClass1.p);
+        System.out.println("staticInnerClass2.p : " + staticInnerClass2.p);
     }
 }
