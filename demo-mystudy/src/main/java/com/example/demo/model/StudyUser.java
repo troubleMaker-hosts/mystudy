@@ -10,8 +10,8 @@ import java.io.Serializable;
  * @Date: 2019/11/18 04:06
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
-public class StudyUser implements Serializable {
-    private static final long serialVersionUID = -620628356705937439L;
+public class StudyUser extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**
      * 测试属性 (有默认值)

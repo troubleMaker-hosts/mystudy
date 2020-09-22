@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
 public class RespEntity<T> implements Serializable {
-    private static final long serialVersionUID = -5000452450309299229L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 成功状态码

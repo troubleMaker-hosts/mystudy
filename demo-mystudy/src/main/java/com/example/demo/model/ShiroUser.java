@@ -12,7 +12,7 @@ import java.util.Date;
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
 public class ShiroUser implements Serializable {
-    private static final long serialVersionUID = -6401178671289078055L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 主键id

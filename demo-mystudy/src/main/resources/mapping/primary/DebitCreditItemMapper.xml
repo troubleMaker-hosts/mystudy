@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.primary.DebitCreditItemMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.DebitCreditItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loaner" jdbcType="INTEGER" property="loaner" />
+    <result column="borrower" jdbcType="INTEGER" property="borrower" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="currency_code" jdbcType="VARCHAR" property="currencyCode" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="picture_id" jdbcType="INTEGER" property="pictureId" />
+    <result column="is_repay" jdbcType="INTEGER" property="isRepay" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loaner, borrower, currency, currency_code, payment_type, amount, picture_id, 
+    is_repay, create_time, create_user, update_user, update_time, is_valid, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from debit_credit_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from debit_credit_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.DebitCreditItem">
+    insert into debit_credit_item (id, loaner, borrower, 
+      currency, currency_code, payment_type, 
+      amount, picture_id, is_repay, 
+      create_time, create_user, update_user, 
+      update_time, is_valid, remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{loaner,jdbcType=INTEGER}, #{borrower,jdbcType=INTEGER}, 
+      #{currency,jdbcType=VARCHAR}, #{currencyCode,jdbcType=VARCHAR}, #{paymentType,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{pictureId,jdbcType=INTEGER}, #{isRepay,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.DebitCreditItem">
+    insert into debit_credit_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loaner != null">
+        loaner,
+      </if>
+      <if test="borrower != null">
+        borrower,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="currencyCode != null">
+        currency_code,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="pictureId != null">
+        picture_id,
+      </if>
+      <if test="isRepay != null">
+        is_repay,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isValid != null">
+        is_valid,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loaner != null">
+        #{loaner,jdbcType=INTEGER},
+      </if>
+      <if test="borrower != null">
+        #{borrower,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCode != null">
+        #{currencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="pictureId != null">
+        #{pictureId,jdbcType=INTEGER},
+      </if>
+      <if test="isRepay != null">
+        #{isRepay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null">
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.DebitCreditItem">
+    update debit_credit_item
+    <set>
+      <if test="loaner != null">
+        loaner = #{loaner,jdbcType=INTEGER},
+      </if>
+      <if test="borrower != null">
+        borrower = #{borrower,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCode != null">
+        currency_code = #{currencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="pictureId != null">
+        picture_id = #{pictureId,jdbcType=INTEGER},
+      </if>
+      <if test="isRepay != null">
+        is_repay = #{isRepay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null">
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.DebitCreditItem">
+    update debit_credit_item
+    set loaner = #{loaner,jdbcType=INTEGER},
+      borrower = #{borrower,jdbcType=INTEGER},
+      currency = #{currency,jdbcType=VARCHAR},
+      currency_code = #{currencyCode,jdbcType=VARCHAR},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      picture_id = #{pictureId,jdbcType=INTEGER},
+      is_repay = #{isRepay,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
