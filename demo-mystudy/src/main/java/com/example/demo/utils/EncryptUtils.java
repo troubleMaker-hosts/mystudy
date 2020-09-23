@@ -111,7 +111,7 @@ public class EncryptUtils {
     /**
      * 日志(log4j)
      */
-    private static Logger logger = LogManager.getLogger(EncryptUtils.class);
+    private static final Logger LOGGER = LogManager.getLogger(EncryptUtils.class);
 
 
     /**
@@ -141,7 +141,7 @@ public class EncryptUtils {
             return executeCipher(content, DES, Cipher.ENCRYPT_MODE, secretKey, sr);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(DES + "加密失败 : " + content);
+            LOGGER.error(DES + "加密失败 : " + content);
         }
         return null;
     }
@@ -173,7 +173,7 @@ public class EncryptUtils {
             return executeCipher(content, DES, Cipher.DECRYPT_MODE, secretKey, sr);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(DES + "解密失败 : " + content);
+            LOGGER.error(DES + "解密失败 : " + content);
         }
         return null;
     }
@@ -203,7 +203,7 @@ public class EncryptUtils {
             return executeCipher(content, DESEDE, Cipher.ENCRYPT_MODE, secretKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(DESEDE + "加密失败 : " + content);
+            LOGGER.error(DESEDE + "加密失败 : " + content);
         }
         return null;
     }
@@ -233,7 +233,7 @@ public class EncryptUtils {
             return executeCipher(content, DESEDE, Cipher.DECRYPT_MODE, secretKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(DESEDE + "解密失败 : " + content);
+            LOGGER.error(DESEDE + "解密失败 : " + content);
         }
         return null;
     }
@@ -269,7 +269,7 @@ public class EncryptUtils {
             return executeCipher(content, AES, Cipher.ENCRYPT_MODE, secretKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(AES + "加密失败 : " + content);
+            LOGGER.error(AES + "加密失败 : " + content);
         }
         return null;
     }
@@ -305,7 +305,7 @@ public class EncryptUtils {
             return executeCipher(content, AES, Cipher.DECRYPT_MODE, secretKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(AES + "解密失败 : " + content);
+            LOGGER.error(AES + "解密失败 : " + content);
         }
         return null;
     }
@@ -324,7 +324,7 @@ public class EncryptUtils {
             return executeCipher(content, RSA, Cipher.ENCRYPT_MODE, pubKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("RSA 公钥 加密 失败 : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("RSA 公钥 加密 失败 : " + ExceptionUtils.getMessage(e));
         }
         return null;
     }
@@ -343,7 +343,7 @@ public class EncryptUtils {
             return executeCipher(content, RSA, Cipher.DECRYPT_MODE, priKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("RSA 私钥 解密 失败 : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("RSA 私钥 解密 失败 : " + ExceptionUtils.getMessage(e));
         }
 		return null;
     }
@@ -362,7 +362,7 @@ public class EncryptUtils {
             return executeCipher(content, RSA, Cipher.ENCRYPT_MODE, priKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("RSA 私钥 加密 失败 : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("RSA 私钥 加密 失败 : " + ExceptionUtils.getMessage(e));
         }
         return null;
     }
@@ -381,7 +381,7 @@ public class EncryptUtils {
             return executeCipher(content, RSA, Cipher.DECRYPT_MODE, pubKey);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("RSA 公钥 解密 失败 : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("RSA 公钥 解密 失败 : " + ExceptionUtils.getMessage(e));
         }
 		return null;
     }
@@ -611,7 +611,7 @@ public class EncryptUtils {
             keyMap.put(PRIVATE_KEY, binaryToHex(privateKey.getEncoded()));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            logger.error("非对称加密获取指定长度的公钥和私钥失败 : algorithm : " + algorithm + " : " + ExceptionUtils.getMessage(e));
+            LOGGER.error("非对称加密获取指定长度的公钥和私钥失败 : algorithm : " + algorithm + " : " + ExceptionUtils.getMessage(e));
         }
         return keyMap;
     }
@@ -666,7 +666,7 @@ public class EncryptUtils {
             return keyFactory.generateSecret(keySpec);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("密钥生成失败 : algorithm : " + algorithm + " , key : " + key);
+            LOGGER.error("密钥生成失败 : algorithm : " + algorithm + " , key : " + key);
         }
         return null;
     }
@@ -760,7 +760,7 @@ public class EncryptUtils {
                 return new String(cipher.doFinal(Objects.requireNonNull(hexToBinary(content))), UTF_8);
             } catch (BadPaddingException e) {
                 e.printStackTrace();
-                logger.error("加密或解密错误 : 请输入正确的信息 : content : " + content + " : " + ExceptionUtils.getMessage(e));
+                LOGGER.error("加密或解密错误 : 请输入正确的信息 : content : " + content + " : " + ExceptionUtils.getMessage(e));
                 throw new RuntimeException("加密或解密错误 : 请输入正确的信息 : content : " + content + " : " + ExceptionUtils.getMessage(e));
             }
         }

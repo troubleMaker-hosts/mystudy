@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import org.springframework.data.annotation.Transient;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -23,9 +21,10 @@ public class BaseEntity implements Serializable {
 
     /**
      * 创建时间
+     * 此处用 transient 关键字修饰, 不会对该字段序列化和反序列化,
+     * 注意 不能用 @Transient(org.springframework.data.annotation)
      */
-    @Transient
-    private LocalDateTime createTime;
+    private transient LocalDateTime createTime;
 
     /**
      * 修改人

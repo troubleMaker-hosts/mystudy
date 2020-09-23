@@ -10,17 +10,18 @@ import java.io.IOException;
 
 /**
  * @ClassName: FileUtils
- * @Description:    文件 操作 工具类
+ * @Description:    文件 操作 工具类 (推荐直接使用 org.apache.commons.io.FileUtils)
  * @Author: kk
  * @version: 1.0.0
  * @Date: 2020/01/02 01:25
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
+@Deprecated
 public class FileOperateUtils extends FileUtils {
     /**
      * 日志(log4j)
      */
-    private static Logger LOGGER = LogManager.getLogger(FileOperateUtils.class);
+    private static final Logger LOGGER = LogManager.getLogger(FileOperateUtils.class);
 
     /**
      * 判断 文件 或 文件夹 是否存在
