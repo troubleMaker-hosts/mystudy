@@ -108,7 +108,6 @@ public class FtpClientPoolFactory extends BasePooledObjectFactory<FtpUtil> {
      * @throws Exception    GenericObjectPool.borrowObject()方法的异常
      */
     public FtpUtil createByGenericObjectPool(GenericObjectPool<FtpUtil> genericObjectPool) throws Exception {
-        System.out.println(genericObjectPool.getNumActive());
         if (genericObjectPool.getNumActive() >= genericObjectPool.getMaxTotal()) {
             LOGGER.error("此FtpPool 没有空闲 ftpClient, 不能再创建FtpClient. NumActive : " + genericObjectPool.getNumActive());
             throw new RuntimeException("此FtpPool 没有空闲 ftpClient, 不能再创建FtpClient. NumActive : " + genericObjectPool.getNumActive());

@@ -80,7 +80,10 @@ public class FileOperateUtils extends FileUtils {
         System.out.println(FileOperateUtils.class.getResource(""));
         //当前的classpath的绝对URI路径
         System.out.println(FileOperateUtils.class.getResource("/"));
+        //绝对路径 从 项目所在盘符开始(windows) (linux : /)
         System.out.println(isExist("/static/testFile.txt"));
+        System.out.println(new File("/static/testFile.txt").getAbsoluteFile());
+        //相对路径 从 项目 所在 文件夹 下面开始
         System.out.println(new File("static/testFile.txt").getAbsoluteFile());
         System.out.println(new File("").getAbsoluteFile());
         System.out.println(FileOperateUtils.class.getClassLoader().getResource("static").getPath());

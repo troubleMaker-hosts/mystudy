@@ -4,11 +4,14 @@ import com.example.demo.DemoMystudyApplication;
 import com.example.demo.annotation.ResourceAnnotation;
 import com.example.demo.config.FtpClientPoolFactory;
 import com.example.demo.config.FtpUtil;
+import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.File;
 
 /**
  * @ClassName: FtpTest
@@ -54,5 +57,19 @@ public class FtpTest {
         //System.out.println("ftpUtil11 : " + ftpUtil11);
         //System.out.println("ftpUtil12 : " + ftpUtil12);
         ftpUtil8.connect();
+        ftpUtil8.upload("testFileUpload.txt", new File(this.getClass().getClassLoader().getResource("static/testFile.txt").getPath()));
+        ftpUtil8.disconnect();
+    }
+
+    @Test
+    public void ftpConnectTest() throws Exception {
+        //创建一个FtpClient对象
+        FTPClient ftpClient = new  FTPClient();
+        //创建ftp连接
+        ftpClient.connect("192.168.1.107",21);
+        ftpClient.login("kaifatest","777777");
+        ftpClient.logout();
+
+
     }
 }
