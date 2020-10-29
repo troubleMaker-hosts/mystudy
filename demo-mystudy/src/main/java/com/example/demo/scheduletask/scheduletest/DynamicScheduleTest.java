@@ -1,7 +1,7 @@
 package com.example.demo.scheduletask.scheduletest;
 
 import com.example.demo.dao.primary.StudentMapper;
-import com.example.demo.scheduletask.ScheduleTaskUtils;
+import com.example.demo.utils.ScheduleTaskUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.dao.primary.SysScheduleTaskInfoMapper;
 import com.example.demo.model.SysScheduleTaskInfo;
-import com.example.demo.scheduletask.ScheduleTaskUtils;
+import com.example.demo.utils.ScheduleTaskUtils;
 import com.example.demo.service.SysScheduleTaskInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

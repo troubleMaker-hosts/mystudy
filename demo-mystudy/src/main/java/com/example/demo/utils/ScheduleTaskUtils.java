@@ -1,8 +1,7 @@
-package com.example.demo.scheduletask;
+package com.example.demo.utils;
 
 import com.example.demo.config.ThreadPoolConfig;
 import com.example.demo.model.SysScheduleTaskInfo;
-import com.example.demo.utils.SpringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
