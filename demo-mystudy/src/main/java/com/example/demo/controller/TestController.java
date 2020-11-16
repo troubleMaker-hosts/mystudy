@@ -26,7 +26,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * @ClassName: TestController
- * @Description:    controller测试类
+ * @Description: controller测试类
  * @Author: kk
  * @version: 1.0.0
  * @Date: 2018/11/18 04:06
@@ -54,7 +54,8 @@ public class TestController {
 
     /**
      * 添加用户 测试接口
-     * @return  reids 中所有的 user信息
+     *
+     * @return reids 中所有的 user信息
      */
     @ResponseBody
     @GetMapping("addusertest")
@@ -75,12 +76,18 @@ public class TestController {
         System.out.println("查询key=user01是否存在：" + redisOperationUtil.isKeyExists("user01"));
         System.out.println("查询缓存数量：" + redisOperationUtil.count());
         System.out.println(redisOperationUtil.getAll());
+        redisOperationUtil.setRedisKey("addRedisKeyTest");
+        redisOperationUtil.put("user01_addRedisKeyTest", user, -1);
+        System.out.println("查询key为  user01：" + redisOperationUtil.get("user01"));
+        System.out.println("查询key为  user01_addRedisKeyTest：" + redisOperationUtil.get("user01_addRedisKeyTest"));
+        System.out.println(redisOperationUtil.getAll());
         return redisOperationUtil.getAll();
     }
 
     /**
      * 删除redis缓存 测试接口
-     * @return  reids 中所有的 user信息
+     *
+     * @return reids 中所有的 user信息
      */
     @ResponseBody
     @GetMapping("deleteredisdata")
@@ -100,39 +107,43 @@ public class TestController {
 
     /**
      * 数据库 日志测试 接口
-     * @return  user信息
+     *
+     * @return user信息
      */
     @ResponseBody
     @GetMapping("dblogtest")
-    public Object dbLogTest() {
+    public RespEntity dbLogTest() {
         logger.error("error日志测试");
         logger.info("info日志测试");
         System.out.println("jinlail");
         StudyUser user = studyUserMapper.selectByPrimaryKey(1);
         System.out.println(user.toString());
-        return user.toString();
+        return RespEntityUtils.buildSuccResp(user);
     }
 
     /**
      * post 多数据源测试
-     * @param studentId 学生id(mysql 中 student 表)
-     * @param employeeId  员工id(orcal中 employees 表)
+     *
+     * @param studentId  学生id(mysql 中 student 表)
+     * @param employeeId 员工id(orcal中 employees 表)
      * @return 传入参数字符串
      */
     @ResponseBody
     @PostMapping("multiDataSource")
     public RespEntity multiDataSource(@RequestParam("studentId") Integer studentId,
-                           @RequestParam("employeeId") Integer employeeId) {
+                                      @RequestParam("employeeId") Integer employeeId, @RequestParam("language") String language) {
         System.out.println("studentId : " + studentId + "  ; employeeId : " + employeeId);
         Map<String, String> resultMap = new HashMap<>(16);
         resultMap.put("student", studentMapper.selectByPrimaryKey(studentId).toString());
         resultMap.put("employee", employeesMapper.selectByPrimaryKey(employeeId).toString());
+        resultMap.put("language", language);
         return RespEntityUtils.buildSuccResp(resultMap);
     }
 
     /**
      * 多线程测试
-     * @return  测试标志
+     *
+     * @return 测试标志
      */
     @ResponseBody
     @GetMapping("test")
@@ -168,12 +179,13 @@ public class TestController {
 
     /**
      * post 传入参数测试
-     * @param parmerterOne 参数一
-     * @param parmerterTwo  参数二
-     * @return 传入参数字符串
      *
+     * @param parmerterOne 参数一
+     * @param parmerterTwo 参数二
+     * @return 传入参数字符串
+     * <p>
      * 注意 : 此种 方式 实际上 接收的 多参数 是 get (不能就收 post 方法请求的参数) 方法的 多参数,
-     *        如果前端 只能 使用 post 方法请求, 可以用 map 或实体类接收
+     * 如果前端 只能 使用 post 方法请求, 可以用 map 或实体类接收
      */
     @ResponseBody
     @PostMapping("testpost")
@@ -182,18 +194,19 @@ public class TestController {
         System.out.println(parmerterTwo.getClass().getName());
         String integerClass = "java.lang.Integer";
         if (integerClass.equals(parmerterTwo.getClass().getName())) {
-            System.out.println(parmerterTwo + "的类型是" + parmerterTwo.getClass().getName());
+            System.out.println(parmerterTwo + " : 的类型是 : " + parmerterTwo.getClass().getName());
         }
         return "test--post----parameterTrue  parameterOne : " + parmerterOne + " ; parameterTwo : " + parmerterTwo;
     }
 
     /**
      * 传入多个参数时 用 map 接收
-     * @param paramMap  map类型的参数
-     * @return  多参数 map 接收 测试结果
      *
+     * @param paramMap map类型的参数
+     * @return 多参数 map 接收 测试结果
+     * <p>
      * 注意 : 此种 方式 实际上 接收的 多参数 是 get (不能就收 post 方法请求的参数) 方法的 多参数,
-     *        如果前端 只能 使用 post 方法请求, 可以用 map 或实体类接收
+     * 如果前端 只能 使用 post 方法请求, 可以用 map 或实体类接收
      */
     @ResponseBody
     @PostMapping("mapPost")
@@ -212,6 +225,7 @@ public class TestController {
 
     /**
      * 多线程测试
+     *
      * @return 该线程执行时间 信息
      */
     @ResponseBody
@@ -248,12 +262,12 @@ public class TestController {
     /**
      * 耗时的 线程
      */
-    class TimeConsumingThread implements Runnable{
+    class TimeConsumingThread implements Runnable {
         @Override
         public void run() {
             System.out.println("耗时的 线程 执行开始 : " + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
             //消耗时间 大于 3 s , 大概 10s
-            for (int i = 0; i < 100000; i ++) {
+            for (int i = 0; i < 100000; i++) {
                 Student student = studentMapper.selectByPrimaryKey(1);
             }
             System.out.println("耗时的 线程 执行结束 : " + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));

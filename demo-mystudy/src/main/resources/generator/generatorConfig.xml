@@ -7,7 +7,7 @@
 <!--    mysql-->
     <classPathEntry  location="E:\java\javaSoftware\jar\mysql-connector-java-8.0.16.jar"/>
 <!--    orcal-->
-    <classPathEntry  location="E:\java\javaSoftware\jaR\ojdbc8.jar"/>
+<!--    <classPathEntry  location="E:\java\javaSoftware\jaR\ojdbc8.jar"/>-->
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -16,21 +16,21 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
 <!--        mysql-->
-<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-<!--                        connectionURL="jdbc:mysql://127.0.0.1:3306/my_study?serverTimezone=GMT"-->
-<!--                        userId="root"-->
-<!--                        password="111">-->
-<!--            -->
-<!--            <property name="nullCatalogMeansCurrent" value="true" />-->
-<!--        </jdbcConnection>-->
-<!--        orcal-->
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"
-                        userId="hr"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/my_study?serverTimezone=GMT"
+                        userId="root"
                         password="111">
 
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
+<!--        orcal-->
+<!--        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"-->
+<!--                        connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"-->
+<!--                        userId="hr"-->
+<!--                        password="111">-->
+
+<!--            <property name="nullCatalogMeansCurrent" value="true" />-->
+<!--        </jdbcConnection>-->
         <!--<jdbcConnection driverClass="${spring.datasource.druid.driver-class-name}"
                         connectionURL="${spring.datasource.druid.url}"
                         userId="${spring.datasource.druid.username}"
@@ -46,15 +46,15 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="mapping/secondary" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapping/primary" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.dao.secondary" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.dao.primary" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="EMPLOYEES" domainObjectName="Employees" enableCountByExample="false"
+        <table tableName="debit_credit_item" domainObjectName="DebitCreditItem" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>

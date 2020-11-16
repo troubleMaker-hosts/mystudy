@@ -19,6 +19,11 @@ public class StudyUser extends BaseEntity implements Serializable {
     private int testAttribute = 999;
 
     /**
+     * 测试共有属性
+     */
+    public int testPubAttribute;
+
+    /**
      * 主键id
      */
     private Integer userId;

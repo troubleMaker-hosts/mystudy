@@ -1,5 +1,6 @@
 package com.example.demo.study.testdemo.javabasic;
 
+import com.example.demo.config.I18nLanguageEnum;
 import com.example.demo.study.entity.WeekdayEnum;
 
 /**
@@ -42,6 +43,18 @@ public class EnumWeekdayTest {
 
         //通过 key 获取 label
         System.out.println("通过 key 获取 label : " + WeekdayEnum.getLabelByKey(2));
+        System.out.println("通过 key 获取 label : " + WeekdayEnum.getLabelByKey(null));
+
+        //通过 label 获取 key
+        System.out.println("通过 label 获取 key : " + WeekdayEnum.getKeyByLabel(WeekdayEnum.getLabelByKey(2)));
+        System.out.println("通过 label 获取 key : " + WeekdayEnum.getKeyByLabel(null));
+
+        //I18nLanguageEnum 测试
+        System.out.println("I18nLanguageEnum 测试 : ");
+        I18nLanguageEnum zh_cn = I18nLanguageEnum.LANGUAGE_ZH_CN;
+        System.out.println(zh_cn.getLanguage());
+        System.out.println(I18nLanguageEnum.getLanguageType(zh_cn.getLanguage()));
+        System.out.println(I18nLanguageEnum.getLanguageType(null));
     }
 
     /**

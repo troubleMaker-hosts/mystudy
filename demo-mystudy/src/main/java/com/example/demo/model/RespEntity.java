@@ -16,12 +16,12 @@ public class RespEntity<T> implements Serializable {
     /**
      * 成功状态码
      */
-    public static final int SUCCESS_CODE = 1;
+    public static final int SUCCESS_CODE = 1000;
 
     /**
      * 失败状态码
      */
-    public static final int FAIL_CODE = 0;
+    public static final int FAIL_CODE = 2000;
 
     /**
      * 返回状态码(1:成功; 0:失败)

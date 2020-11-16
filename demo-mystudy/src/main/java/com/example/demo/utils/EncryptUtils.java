@@ -649,6 +649,7 @@ public class EncryptUtils {
      * @param key       原始密钥
      * @param length    有效的密钥长度
      * @param algorithm 加密算法
+     * @param clz       算法类
      * @return 密钥(SecreKey)
      */
     private static SecretKey generateSecreKey(String key, Integer length, String algorithm, Class<?> clz) {

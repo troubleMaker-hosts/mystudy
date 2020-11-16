@@ -13,11 +13,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisOperationUtilImpl extends RedisOperationUtil {
     /**
+     * 默认的 redisKey
+     */
+    private String redisKey = "redisTestKey";
+
+    /**
      * 返回 默认 redis 的 key
      * @return 默认 redis 的 key
      */
     @Override
     protected String getRedisKey() {
-        return "redisTestKey";
+        return this.redisKey;
+    }
+
+    public void setRedisKey(String redisKey) {
+        this.redisKey = redisKey;
     }
 }

@@ -20,6 +20,7 @@ import java.util.List;
 public class ReflectTest {
     /**
      * 主函数 测试
+     *
      * @param args args
      */
     public static void main(String[] args) {
@@ -42,7 +43,7 @@ public class ReflectTest {
             System.out.println("默认构造器：" + studyUser.toString());
 
             //使用公共构造器
-            studyUser = (StudyUser) publicConstructor.newInstance(11122, "公共构造器name", "公共构造器password" , "公共构造器phone");
+            studyUser = (StudyUser) publicConstructor.newInstance(11122, "公共构造器name", "公共构造器password", "公共构造器phone");
             System.out.println("公共构造器：" + studyUser.toString());
 
             //使用私有构造器
@@ -62,7 +63,7 @@ public class ReflectTest {
             System.out.println("私有构造器：" + studyUserPrivate.toString());
 
             //反射私有 属性
-            List<Field> list = test.reflectPrivateField(classUrl, "serialVersionUID", "userId");
+            List<Field> list = test.reflectPrivateField(classUrl, "serialVersionUID", "userId", "testPubAttribute");
             for (Field field : list) {
                 //拿到属性对应值
                 System.out.println("拿到属性对应值 : " + field.getName() + " : " + field.get(studyUser));
@@ -104,9 +105,11 @@ public class ReflectTest {
      * 为了初始化成员属性，而不是初始化对象，初始化对象是通过new关键字实现的
      * 通过new调用构造方法初始化对象，编译时根据参数签名来检查构造函数，称为静态联编和编译多态（参数签名：参数的类型，参数个数和参数顺序）
      * 创建子类对象会调用父类构造方法但不会创建父类对象，只是调用父类构造方法初始化父类成员属性
-     *
+     * <p>
      * 根据 类路径 得到 类的构造器，默认构造器
+     *
      * @param classUrl 类路径
+     * @param classes  构造器 参数类型 (数组)
      * @return 所有构造器
      */
     public Constructor<?> getDefaultConstructorByClassUrl(String classUrl, Class<?>... classes) {
@@ -125,7 +128,7 @@ public class ReflectTest {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("class路径错误:" + classUrl);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("根据 类路径 得到 类的默认构造器 失败" + classUrl);
         }
@@ -137,8 +140,9 @@ public class ReflectTest {
      * 为了初始化成员属性，而不是初始化对象，初始化对象是通过new关键字实现的
      * 通过new调用构造方法初始化对象，编译时根据参数签名来检查构造函数，称为静态联编和编译多态（参数签名：参数的类型，参数个数和参数顺序）
      * 创建子类对象会调用父类构造方法但不会创建父类对象，只是调用父类构造方法初始化父类成员属性
-     *
+     * <p>
      * 根据 类路径 得到 类的构造器，所有构造器
+     *
      * @param classUrl 类路径
      * @return 所有构造器
      */
@@ -153,7 +157,7 @@ public class ReflectTest {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("class路径错误:" + classUrl);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("根据 类路径 得到 类的所有构造器 失败" + classUrl);
         }
@@ -165,8 +169,9 @@ public class ReflectTest {
      * 为了初始化成员属性，而不是初始化对象，初始化对象是通过new关键字实现的
      * 通过new调用构造方法初始化对象，编译时根据参数签名来检查构造函数，称为静态联编和编译多态（参数签名：参数的类型，参数个数和参数顺序）
      * 创建子类对象会调用父类构造方法但不会创建父类对象，只是调用父类构造方法初始化父类成员属性
-     *
+     * <p>
      * 反射私有的构造方法
+     *
      * @param classUrl 累路径
      * @return 私有构造器
      */
@@ -185,11 +190,16 @@ public class ReflectTest {
 
     /**
      * 反射私有属性
-     * @param classUrl 类路径
-     * @param strProvateAttribute  需要反射的 类的 属性名
+     *
+     * class.getFields() 获取类的属性（public），包括父类；
+     * class.getDeclaredFields()能获取所有属性（public、protected、default、private），但不包括父类属性
+     * apache commons包下的FieldUtils.getAllFields()可以获取类和父类的所有(public、protected、default、private)属性
+     *
+     * @param classUrl            类路径
+     * @param strProvateAttribute 需要反射的 类的 属性名
      */
-    public ArrayList<Field> reflectPrivateField(String classUrl, String... strProvateAttribute) {
-        ArrayList<Field> list = new ArrayList<>();
+    public List<Field> reflectPrivateField(String classUrl, String... strProvateAttribute) {
+        List<Field> list = new ArrayList<>();
         try {
             Class<?> clz = Class.forName(classUrl);
             for (String s : strProvateAttribute) {
@@ -206,12 +216,17 @@ public class ReflectTest {
 
     /**
      * 反射私有方法
-     * @param classUrl 类路径
-     * @param methodName 方方法名
+     *
+     * class.getDeclaredMethods() 获取类的所有方法（public、protected、default、private），但不包括继承的方法；
+     * class.getMethods() 获取当前类和父类的public方法。
+     * apache commons包提供了MethodUtils.getMethodsWithAnnotation(class,annotation),获取类及父类的注解为annotation的public方法；
+     *
+     * @param classUrl       类路径
+     * @param methodName     方方法名
      * @param parameterClass 参数类型
      * @return Method对象
      */
-    public Method reflectPrivateMethod(String classUrl, String methodName,  Class<?>... parameterClass) {
+    public Method reflectPrivateMethod(String classUrl, String methodName, Class<?>... parameterClass) {
         try {
             Class<?> classBook = Class.forName(classUrl);
             Method method = classBook.getDeclaredMethod(methodName, parameterClass);
@@ -224,7 +239,6 @@ public class ReflectTest {
         }
         return null;
     }
-
 
 
 }

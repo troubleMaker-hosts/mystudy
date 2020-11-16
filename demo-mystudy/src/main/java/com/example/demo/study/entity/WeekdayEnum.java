@@ -1,4 +1,7 @@
 package com.example.demo.study.entity;
+
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @ClassName: WeekdayEnum
  * @Description: 星期 的 枚举类(第几天, 星期几)
@@ -22,21 +25,12 @@ public enum WeekdayEnum {
 
     private String label;
 
-    WeekdayEnum(int key, String label) {
+    WeekdayEnum(Integer key, String label) {
         this.key = key;
         this.label = label;
     }
 
-    /**
-     * 设置 Label 的 值
-     * @param label 值
-     */
-    public void setLabel(String label) {
-        //TODO 此处使用了 set 方法  实际应用中 应该 谨慎 使用（最好不要使用set方法）
-        this.label = label;
-    }
-
-    public int getKey() {
+    public Integer getKey() {
         return key;
     }
 
@@ -48,9 +42,18 @@ public enum WeekdayEnum {
      * 设置 键 的 值
      * @param key 键
      */
-    public void setKey(int key) {
+    public void setKey(Integer key) {
         //TODO 此处使用了 set 方法  实际应用中 应该 谨慎 使用（最好不要使用set方法）
         this.key = key;
+    }
+
+    /**
+     * 设置 Label 的 值
+     * @param label 值
+     */
+    public void setLabel(String label) {
+        //TODO 此处使用了 set 方法  实际应用中 应该 谨慎 使用（最好不要使用set方法）
+        this.label = label;
     }
 
     @Override
@@ -60,12 +63,12 @@ public enum WeekdayEnum {
 
     /**
      * 通过 key 获取 label
-     * @param key 键
+     * @param num 键
      * @return 该key(键)对应的值(label)
      */
-    public static String getLabelByKey(int key) {
+    public static String getLabelByKey(Integer num) {
         for (WeekdayEnum weekdayEnum : WeekdayEnum.values()) {
-            if (weekdayEnum.getKey() == key) {
+            if (num.equals(weekdayEnum.getKey())) {
                 return weekdayEnum.getLabel();
             }
         }
@@ -74,13 +77,16 @@ public enum WeekdayEnum {
 
     /**
      * 通过 label 获取 key
-     * @param label 值
+     * @param str 值
      * @return 该label对应的key
      */
-    public static String getKeyByLabel(String label) {
+    public static Integer getKeyByLabel(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
         for (WeekdayEnum weekdayEnum : WeekdayEnum.values()) {
-            if (label.equalsIgnoreCase(weekdayEnum.getLabel())) {
-                return weekdayEnum.getLabel();
+            if (str.equalsIgnoreCase(weekdayEnum.getLabel())) {
+                return weekdayEnum.getKey();
             }
         }
         return null;

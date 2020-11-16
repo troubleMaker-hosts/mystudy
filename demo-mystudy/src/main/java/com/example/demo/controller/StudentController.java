@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.RespEntity;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
+import com.example.demo.utils.RespEntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +34,8 @@ public class StudentController {
      */
     @ResponseBody
     @PostMapping("insert")
-    public Integer insert(@RequestBody Student student) {
-        return studentService.insert(student);
+    public RespEntity insert(@RequestBody Student student) {
+        return RespEntityUtils.buildSuccResp(studentService.insert(student));
     }
 
     /**
@@ -58,7 +60,7 @@ public class StudentController {
      */
      @ResponseBody
     @PostMapping("delete")
-    public int delete(@RequestBody Map<String, Integer> idMap) {
-        return studentService.delete(idMap.get("id"));
+    public RespEntity delete(@RequestBody Map<String, Integer> idMap) {
+        return RespEntityUtils.buildSuccResp(studentService.delete(idMap.get("id")));
     }
 }

@@ -66,6 +66,8 @@ public class BasicTypeAndPackagingType {
         integer6 = 1280;
         System.out.println("i = " + i + " 时 比较: i == integer : " + (i == integer));
         System.out.println("i = " + i + " 时 比较: i == integer2 : " + (i == integer2));
+        System.out.println("i = " + i + " 时 比较: i == integer3 : " + (i == integer3));
+        System.out.println("i = " + i + " 时 比较: i == integer5 : " + (i == integer5));
         System.out.println("i = " + i + " 时 比较: integer == integer2 : " + (integer == integer2));
         System.out.println("i = " + i + " 时 比较: integer.equals(integer3)) : " + (integer.equals(integer3)));
         System.out.println("i = " + i + " 时 比较: integer3 == integer4) : " + (integer3 == integer3));

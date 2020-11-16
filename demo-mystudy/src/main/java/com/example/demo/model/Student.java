@@ -10,7 +10,7 @@ import java.util.Date;
  * @Date: 2019/11/18 04:06
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
-public class Student {
+public class Student extends BaseRequestEntity {
     /**
      * 主键id
      */

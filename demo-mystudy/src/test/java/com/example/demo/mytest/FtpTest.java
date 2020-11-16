@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * @ClassName: FtpTest
@@ -57,7 +58,7 @@ public class FtpTest {
         //System.out.println("ftpUtil11 : " + ftpUtil11);
         //System.out.println("ftpUtil12 : " + ftpUtil12);
         ftpUtil8.connect();
-        ftpUtil8.upload("testFileUpload.txt", new File(this.getClass().getClassLoader().getResource("static/testFile.txt").getPath()));
+        ftpUtil8.upload("testFileUpload.txt", new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("static/testFile.txt")).getPath()));
         ftpUtil8.disconnect();
     }
 

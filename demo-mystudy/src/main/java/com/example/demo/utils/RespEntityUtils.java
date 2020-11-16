@@ -71,20 +71,18 @@ public class RespEntityUtils {
 
     /**
      * 创建 状态码 为 1 (成功) 的 RespEntity
-     * @param <T> 结果数据类型
      * @return 状态码 为 1 (成功) 的 RespEntity
      */
-    public static <T> RespEntity buildSuccResp() {
+    public static RespEntity buildSuccResp() {
         return buildRespEntity(RespEntity.SUCCESS_CODE, null, null);
     }
 
     /**
      * 创建 状态码 为 1 (成功) 和 有 msg 的 RespEntity
      * @param msg   消息
-     * @param <T>   结果数据类型
      * @return  状态码 为 1 (成功) 和 有 msg 的 RespEntity
      */
-    public static <T> RespEntity buildSuccResp(String msg) {
+    public static RespEntity buildSuccResp(String msg) {
         return buildRespEntity(RespEntity.SUCCESS_CODE, msg, null);
     }
 
@@ -111,20 +109,18 @@ public class RespEntityUtils {
 
     /**
      * 创建 状态码 为 0 (失败) 的 RespEntity
-     * @param <T> 结果数据类型
      * @return 状态码 为 0 (失败) 的 RespEntity
      */
-    public static <T> RespEntity buildFailResp() {
+    public static RespEntity buildFailResp() {
         return buildRespEntity(RespEntity.FAIL_CODE, null, null);
     }
 
     /**
      * 创建 状态码 为 0 (失败) 和 有 msg 的 RespEntity
      * @param msg   消息
-     * @param <T>   结果数据类型
      * @return  状态码 为 0 (失败) 和 有 msg 的 RespEntity
      */
-    public static <T> RespEntity buildFailResp(String msg) {
+    public static RespEntity buildFailResp(String msg) {
         return buildRespEntity(RespEntity.FAIL_CODE, msg, null);
     }
 
