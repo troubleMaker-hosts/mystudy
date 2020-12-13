@@ -33,9 +33,14 @@
     select
     <include refid="Base_Column_List" />
     from student
-    where name like '%'||#{name}||'%'
-        and age = #{age}
-        and sex = #{sex}
+--     orcal 才支持 || 拼接字符串, mysql 只支持 concat(...)函数, orcal concat()函数只支持 两个参数, mysql不限参数
+    where name like concat('%', #{name}, '%')
+      <if test="age != null">
+          and age = #{age}
+      </if>
+      <if test="sex != null and sex != ''">
+          and sex = #{sex}
+       </if>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -134,4 +139,32 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <update id="updateByName">
+      update student
+      <set>
+        <if test="age != null">
+          age = #{age,jdbcType=INTEGER},
+        </if>
+        <if test="sex != null">
+          sex = #{sex,jdbcType=VARCHAR},
+        </if>
+        <if test="createTime != null">
+          create_time = #{createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="createUser != null">
+          create_user = #{createUser,jdbcType=VARCHAR},
+        </if>
+        <if test="updateTime != null">
+          update_time = #{updateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="updateUser != null">
+          update_user = #{updateUser,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null">
+          status = #{status,jdbcType=VARCHAR},
+        </if>
+      </set>
+        where name = #{name,jdbcType=VARCHAR}
+    </update>
 </mapper>

@@ -2,6 +2,8 @@ package com.example.demo.study.entity;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 /**
  * @ClassName: WeekdayEnum
  * @Description: 星期 的 枚举类(第几天, 星期几)
@@ -21,7 +23,7 @@ public enum WeekdayEnum {
     SAT(6,"sat"),
     SUN(0,"sun");
 
-    private int key;
+    private Integer key;
 
     private String label;
 
@@ -67,6 +69,9 @@ public enum WeekdayEnum {
      * @return 该key(键)对应的值(label)
      */
     public static String getLabelByKey(Integer num) {
+        if (Objects.isNull(num)) {
+            return null;
+        }
         for (WeekdayEnum weekdayEnum : WeekdayEnum.values()) {
             if (num.equals(weekdayEnum.getKey())) {
                 return weekdayEnum.getLabel();

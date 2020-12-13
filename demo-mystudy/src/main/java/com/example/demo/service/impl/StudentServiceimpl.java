@@ -54,4 +54,14 @@ public class StudentServiceimpl implements StudentService {
     public int delete(Integer id) {
         return studentMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     *  根据name 字段 修改 student
+     * @param student 记录的数据
+     * @return  修改是否成功(1: 成功, 0 失败)
+     */
+    @Override
+    public Integer updateByName(Student student) {
+        return studentMapper.updateByName(student);
+    }
 }

@@ -6,9 +6,12 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.concurrent.Future;
 
 /**
  * @ClassName: SynchronizationScheduleTest
@@ -46,8 +49,8 @@ public class SynAndAsynScheduleTest {
      * 方法B，使用了@Async来标注，  B中调用了C、D，C/D分别使用@Transactional做了标注，则可实现事务控制的目的。
      */
     @Async("threadPool")
-    @Scheduled(cron = "${schedule.synchronization.test1}")
-    public void synchronizationScheduleTest1() {
+    //@Scheduled(cron = "${schedule.synchronization.test1}")
+    public Future<String> synchronizationScheduleTest1() {
         System.out.println(scheduleSynchronizationTest1 +  " : schedule.synchronization.test1 : Thread.sleep(6000) 之前: "
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         System.out.println(Thread.currentThread().getName() + " ------schedule.synchronization.test1  正在使用");
@@ -90,17 +93,19 @@ public class SynAndAsynScheduleTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " ------schedule.synchronization.test1  使用完毕");
+        String entStr = Thread.currentThread().getName() + " ------schedule.synchronization.test1  使用完毕";
+        System.out.println(entStr);
         System.out.println(scheduleSynchronizationTest1 +  " : schedule.synchronization.test1 : Thread.sleep(6000) 之后: "
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        return new AsyncResult<>(entStr);
     }
 
     /**
      * synchronization 定时器测试 2 : 5s 一次
      */
     @Async("threadPool")
-    @Scheduled(cron = "${schedule.synchronization.test2}")
-    public void synchronizationScheduleTest2() {
+    //@Scheduled(cron = "${schedule.synchronization.test2}")
+    public Future<String> synchronizationScheduleTest2() {
         System.out.println(scheduleSynchronizationTest2 +  " : schedule.synchronization.test2 : 消耗时间 之前"
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         System.out.println(Thread.currentThread().getName() + " ------schedule.synchronization.test2  正在使用");
@@ -108,17 +113,21 @@ public class SynAndAsynScheduleTest {
         for (int i = 0; i < 100000; i ++) {
             Student student = studentMapper.selectByPrimaryKey(1);
         }
-        System.out.println(Thread.currentThread().getName() + " ------schedule.synchronization.test2  使用完毕");
+        String entStr = Thread.currentThread().getName() + " ------schedule.synchronization.test2  使用完毕";
+        System.out.println(entStr);
         System.out.println(scheduleSynchronizationTest2 +  " : schedule.synchronization.test2 : 消耗时间 之后"
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        return new AsyncResult(entStr);
     }
 
     /**
      * synchronization 定时器测试 3 : 8s 一次
      */
-    @Scheduled(cron = "${schedule.synchronization.test3}")
-    public void synchronizationScheduleTest3() {
-        System.out.println(scheduleSynchronizationTest3 +  " : schedule.synchronization.test3 : "
-                + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+    //@Scheduled(cron = "${schedule.synchronization.test3}")
+    public String synchronizationScheduleTest3() {
+        String synStr = scheduleSynchronizationTest3 +  " : schedule.synchronization.test3 : "
+                + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss");
+        System.out.println(synStr);
+        return synStr;
     }
 }

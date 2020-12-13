@@ -63,4 +63,11 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return  sutdents
      */
     List<Student> selectByNameTest(@Param("tableName") String tableName, @Param("name") String name);
+
+    /**
+     *  根据name 字段 修改 student
+     * @param student 记录的数据
+     * @return  修改是否成功(1: 成功, 0 失败)
+     */
+    Integer updateByName(Student student);
 }

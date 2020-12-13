@@ -2,8 +2,8 @@
 <Configuration status="OFF">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <!--此处 level = debug 才能 打印sql-->
-            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--控制台 :  此处 level = debug 才能 打印sql-->
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%highlight{%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %M() @%L - %msg%n}{FATAL=Bright Red, ERROR=Bright Magenta, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White}"/>
         </Console>
 <!--        处理info级别的日志，并把该日志放到logs/info.log文件中-->

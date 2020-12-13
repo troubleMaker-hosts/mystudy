@@ -35,4 +35,11 @@ public interface StudentService {
      * @return  删除是否成功(1: 成功, 0 失败)
      */
     int delete(Integer id);
+
+    /**
+     *  根据name 字段 修改 student
+     * @param student 记录的数据
+     * @return  修改是否成功(1: 成功, 0 失败)
+     */
+    Integer updateByName(Student student);
 }

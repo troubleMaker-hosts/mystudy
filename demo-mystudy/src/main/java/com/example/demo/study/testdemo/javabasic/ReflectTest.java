@@ -193,7 +193,7 @@ public class ReflectTest {
      *
      * class.getFields() 获取类的属性（public），包括父类；
      * class.getDeclaredFields()能获取所有属性（public、protected、default、private），但不包括父类属性
-     * apache commons包下的FieldUtils.getAllFields()可以获取类和父类的所有(public、protected、default、private)属性
+     * apache commons包下的 FieldUtils.getAllFields() 可以获取类和父类的所有(public、protected、default、private)属性
      *
      * @param classUrl            类路径
      * @param strProvateAttribute 需要反射的 类的 属性名
@@ -219,7 +219,7 @@ public class ReflectTest {
      *
      * class.getDeclaredMethods() 获取类的所有方法（public、protected、default、private），但不包括继承的方法；
      * class.getMethods() 获取当前类和父类的public方法。
-     * apache commons包提供了MethodUtils.getMethodsWithAnnotation(class,annotation),获取类及父类的注解为annotation的public方法；
+     * apache commons包提供了 MethodUtils.getMethodsWithAnnotation(class,annotation) ,获取类及父类的注解为annotation的public方法；
      *
      * @param classUrl       类路径
      * @param methodName     方方法名

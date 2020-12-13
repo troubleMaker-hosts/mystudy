@@ -4,6 +4,7 @@ import com.example.demo.model.RespEntity;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 import com.example.demo.utils.RespEntityUtils;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ import java.util.Map;
 @ApiIgnore
 @Controller
 @RequestMapping("student")
+@Log4j2
 public class StudentController {
     @Autowired
     private StudentService studentService;
@@ -35,7 +37,22 @@ public class StudentController {
     @ResponseBody
     @PostMapping("insert")
     public RespEntity insert(@RequestBody Student student) {
+        System.out.println(student.getName().length());
+        log.info("注解 -- 日志 --- test : student-----insert : {}", student.toString());
         return RespEntityUtils.buildSuccResp(studentService.insert(student));
+    }
+
+    /**
+     *  通过 name 修改 student
+     * @param student    记录的数据
+     * @return  修改数据结果
+     */
+    @ResponseBody
+    @PostMapping("updateByName")
+    public RespEntity updateByName(@RequestBody Student student) {
+        System.out.println(student.getName().length());
+        log.info("注解 -- 日志 --- test : student-----update : [{}]", student.toString());
+        return RespEntityUtils.buildSuccResp(studentService.updateByName(student));
     }
 
     /**

@@ -76,6 +76,16 @@ public class StudyUser extends BaseEntity implements Serializable {
         System.out.println("这是 StudyUser 的 构造器 : (String userName, String password) ------------");
     }
 
+    public int getTestAttribute() {
+        return testAttribute;
+    }
+
+    public void setTestAttribute(int testAttribute) {
+        this.testAttribute = testAttribute;
+    }
+
+
+
     public Integer getUserId() {
         return userId;
     }
@@ -111,7 +121,9 @@ public class StudyUser extends BaseEntity implements Serializable {
     @Override
     public String toString() {
         return "StudyUser{" +
-                "userId=" + userId +
+                "testAttribute=" + testAttribute +
+                ", testPubAttribute=" + testPubAttribute +
+                ", userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +

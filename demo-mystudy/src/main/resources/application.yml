@@ -16,7 +16,7 @@ spring:
         #druid相关配置
         druid:
           primary:
-            #监控统计拦截的filters
+            #监控统计拦截的filters （第一个stat很重要，没有的话会监控不到SQL）
             filters: stat
             driver-class-name: com.mysql.jdbc.Driver
             #基本属性

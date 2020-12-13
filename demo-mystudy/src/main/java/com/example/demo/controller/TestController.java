@@ -106,6 +106,21 @@ public class TestController {
 
 
     /**
+     * 看 前端 传回来的 entity 是否会 带有 默认值
+     *
+     * 测试结果 :  testAttribute = 999, 默认值 返回给了前端
+     *
+     * @param studyUser 前端传过来的 studyUser 参数
+     * @return  studyUser
+     */
+    @ResponseBody
+    @PostMapping("defaultvaluetest")
+    public RespEntity defaultValueTest(@RequestBody  StudyUser studyUser) {
+        System.out.println(studyUser.toString());
+        return RespEntityUtils.buildSuccResp(studyUser);
+    }
+
+    /**
      * 数据库 日志测试 接口
      *
      * @return user信息
