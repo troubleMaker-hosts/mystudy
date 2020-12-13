@@ -8,11 +8,13 @@ package com.example.demo.model;
  * @Date: 2020/11/14 02:58
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
-public class BaseRequestEntity {
+public class RequestEntity<T> {
     /**
      * 国际化语言
      */
     private String language;
+
+    private T data;
 
     public String getLanguage() {
         return language;
@@ -22,10 +24,19 @@ public class BaseRequestEntity {
         this.language = language;
     }
 
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
     @Override
     public String toString() {
         return "BaseRequestEntity{" +
                 "language='" + language + '\'' +
+                ", reqData=" + data +
                 '}';
     }
 }

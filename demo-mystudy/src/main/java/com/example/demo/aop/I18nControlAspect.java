@@ -68,8 +68,9 @@ public class I18nControlAspect {
 
     /**
      * 需要被过滤的 包名 (以此包名开头)
+     * demo : {"java.lang", "java.util"}
      */
-    private static final String[] FILTER_PACKAGE_NAMES = {"java.lang"};
+    private static final String[] FILTER_PACKAGE_NAMES = {"java"};
 
     /**
      * 定义国际化切入点 (只对 controller 层下 返回类型为 com.example.demo.model.RespEntity 的方法 进行aop)
@@ -87,7 +88,6 @@ public class I18nControlAspect {
     @Around(value = "I18nAspect()")
     public RespEntity doAroundGameData(ProceedingJoinPoint pjp) {
         Class<?> targetCls = pjp.getTarget().getClass();
-        System.out.println(" class : " + targetCls.getName());
         MethodSignature ms = (MethodSignature) pjp.getSignature();
         //拿到 language
         String language = null;
@@ -107,7 +107,7 @@ public class I18nControlAspect {
         try {
             respEntity = (RespEntity) pjp.proceed();
         } catch (Throwable throwable) {
-            System.out.println("执行切入点方法 异常, method : " + targetCls.getName() + "." + ms.getName());
+            LOGGER.error("执行切入点方法 异常, method : {}.{}", targetCls.getName(), ms.getName());
             throwable.printStackTrace();
         }
         //切入点后 执行 操作
@@ -140,13 +140,17 @@ public class I18nControlAspect {
             return null;
         }
         for (Object object : objects) {
-            if (ObjectUtils.isEmpty(object) || !filterByPackageName(object, FILTER_PACKAGE_NAMES)) {
-                continue;
-            }
+            Field[] fields;
             //class.getFields() 获取类的属性（public），包括父类；
             //class.getDeclaredFields()能获取所有属性（public、protected、default、private），但不包括父类属性
             //apache commons包下的FieldUtils.getAllFields()可以获取类和父类的所有(public、protected、default、private)属性
-            Field[] fields = FieldUtils.getAllFields(object.getClass());
+            //Field[] fields = FieldUtils.getAllFields(object.getClass());
+            if (ObjectUtils.isEmpty(object) || !filterByPackageName(object, FILTER_PACKAGE_NAMES)) {
+                fields = object.getClass().getDeclaredFields();
+            } else {
+                fields = FieldUtils.getAllFields(object.getClass());
+            }
+
             for (Field field : fields) {
                 field.setAccessible(true);
                 try {

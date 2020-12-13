@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.RequestEntity;
 import com.example.demo.model.RespEntity;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
@@ -36,10 +37,10 @@ public class StudentController {
      */
     @ResponseBody
     @PostMapping("insert")
-    public RespEntity insert(@RequestBody Student student) {
-        System.out.println(student.getName().length());
+    public RespEntity insert(@RequestBody RequestEntity<Student> student) {
+        System.out.println(student.getData().getName().length());
         log.info("注解 -- 日志 --- test : student-----insert : {}", student.toString());
-        return RespEntityUtils.buildSuccResp(studentService.insert(student));
+        return RespEntityUtils.buildSuccResp(studentService.insert(student.getData()));
     }
 
     /**
@@ -49,10 +50,10 @@ public class StudentController {
      */
     @ResponseBody
     @PostMapping("updateByName")
-    public RespEntity updateByName(@RequestBody Student student) {
-        System.out.println(student.getName().length());
+    public RespEntity updateByName(@RequestBody RequestEntity<Student> student) {
+        System.out.println(student.getData().getName().length());
         log.info("注解 -- 日志 --- test : student-----update : [{}]", student.toString());
-        return RespEntityUtils.buildSuccResp(studentService.updateByName(student));
+        return RespEntityUtils.buildSuccResp(studentService.updateByName(student.getData()));
     }
 
     /**

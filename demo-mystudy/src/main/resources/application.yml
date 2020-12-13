@@ -69,7 +69,44 @@ spring:
             pool-prepared-statements: false
             max-pool-prepared-statement-per-connection-size: 20
 
-#    REDIS (RedisProperties)
+          #WebStatFilter配置
+          web-stat-filter:
+            #启用StatFilter
+            enabled: true
+            #添加监控规则
+            url-pattern: /*
+            #排除一些不需要统计的url (*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*)
+            exclusions: /druid/*
+            #开启session统计功能
+            session-stat-enable: true
+            #缺省sessionStatMaxCount是1000个
+            session-stat-max-count: 1000
+            #配置principalSessionName，使得druid能够知道当前的session的用户是谁
+            principal-session-name:
+            #如果你的user信息保存在cookie中，你可以配置principalCookieName，使得druid知道当前的user是谁
+            principal-cookie-name:
+            #配置profileEnable能够监控单个url调用的sql列表
+            profile-enable:
+          #StatViewServlet配置
+          stat-view-servlet:
+            #启用内置的监控页面
+            enabled: true
+            #内置监控页面的地址
+            url-pattern: /druid/*
+            #关闭 Reset All(清空统计数据) 功能
+            reset-enable: false
+            #设置登录用户名
+            login-username: admin
+            #设置登录密码
+            login-password: 111
+            #白名单（如果allow没有配置或者为空，则允许所有访问）
+            allow: 127.0.0.1
+            #黑名单（deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝）
+            deny:
+
+
+
+  #    REDIS (RedisProperties)
     redis:
         database: 0
         host: 127.0.0.1
