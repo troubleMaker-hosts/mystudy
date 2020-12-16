@@ -1,10 +1,10 @@
 package com.example.demo.study.testdemo.javabasic;
 
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -18,6 +18,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MapTest {
     public static void main(String[] args) {
         MapTest test = new MapTest();
+        //MultiValueMap test
+        test.multiValueMapTest();
+
         ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
 
         //treeMap : 自然排序(升序)
@@ -60,7 +63,26 @@ public class MapTest {
 
     }
 
-
+    /**
+     * MultiValueMap test
+     * MultiValueMap可以让一个key对应多个value
+     * add() 是在 给 同一个键 添加 value
+     * put() 会 覆盖 之前的 键 的values
+     */
+    public void multiValueMapTest() {
+        MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>();
+        multiValueMap.add("multi_1", "multi_1");
+        multiValueMap.add("multi_2", "multi_2");
+        multiValueMap.add("multi_3", "multi_3");
+        List<String> list = new ArrayList<>();
+        list.add("replace");
+        multiValueMap.put("multi_1", list);
+        for (Map.Entry<String, List<String>> stringListEntry : multiValueMap.entrySet()) {
+            System.out.println(stringListEntry.getKey() + " : ");
+            System.out.println(stringListEntry.getValue());
+            stringListEntry.getValue().forEach(s -> System.out.println(s));
+        }
+    }
 
     /**
      * 初始化 map

@@ -84,11 +84,13 @@
 		</dependency>-->
 
 		<!-- alibaba的druid数据库连接池  springboot 2.0  要求该版本高-->
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.18</version>
+			<version>1.2.4</version>
 		</dependency>
+
 		<!--redis-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

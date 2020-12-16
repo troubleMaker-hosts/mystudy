@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * @ClassName: EasyexcelTest
- * @Description:    Easyexcel 测试类
+ * @Description: Easyexcel 测试类
  * @Author: kk
  * @version: 1.0.0
  * @Date: 2020/06/17 17:04
@@ -54,8 +54,8 @@ public class EasyexcelTest {
         ExcelWriter excelWriter = null;
         try {
             excelWriter = EasyExcel.write(pathName, Employees.class).build();
-            excelWriter.write(employeesList, EasyExcel.write(pathName, Employees.class).sheet(0,"员工列表").build());
-            excelWriter.write(employeesList.subList(0, 10), EasyExcel.write(pathName, Employees.class).sheet(1,"员工列表2").build());
+            excelWriter.write(employeesList, EasyExcel.write(pathName, Employees.class).sheet(0, "员工列表").build());
+            excelWriter.write(employeesList.subList(0, 10), EasyExcel.write(pathName, Employees.class).sheet(1, "员工列表2").build());
         } catch (Exception e) {
             throw new RuntimeException("easyExcel 导出数据失败 : " + Employees.class + ", pathName : " + pathName + " exceptionInfo : " + e.getMessage());
         } finally {
@@ -74,7 +74,7 @@ public class EasyexcelTest {
         String pathName = getDefaultPath("employees", 1);
         ExcelReader excelReader = null;
         try {
-            excelReader = EasyExcel.read(pathName,Employees.class, new EasyExcelListener(employeesMapper)).build();
+            excelReader = EasyExcel.read(pathName, Employees.class, new EasyExcelListener(employeesMapper)).build();
             //不会读 excel 的 第一行
             excelReader.read(EasyExcel.readSheet(1).build());
         } catch (Exception e) {
@@ -89,13 +89,14 @@ public class EasyexcelTest {
 
     /**
      * 获取 List Employees (记录数为 size * 2^i ; i = 10, size = 100 为 10W 级别)
-     * @return  List<Employees>
+     *
+     * @return List<Employees>
      */
     public List<Employees> getEmployees() {
         List<Employees> employeesList = employeesMapper.selectByCondition(new Employees());
         System.out.println(employeesList.size());
         //记录数为 size * 2^i ; i = 10, size = 100 为 10W 级别
-        for (int i = 0; i < 10; i ++) {
+        for (int i = 0; i < 10; i++) {
             employeesList.addAll(employeesList);
         }
         System.out.println(employeesList.size());
@@ -104,20 +105,21 @@ public class EasyexcelTest {
 
     /**
      * 获取 默认路径(桌面路径), 并判断 该文件是否存在, 直到生成 不存在的文件名 为止
+     *
      * @param fileName 文件名
-     * @param type  类型(0 : 导出, 1 : 导入)
-     * @return  包含文件名 的 路径
+     * @param type     类型(0 : 导出, 1 : 导入)
+     * @return 包含文件名 的 路径
      */
     public String getDefaultPath(String fileName, int type) {
         //获取 本地 桌面路径
         FileSystemView fsv = FileSystemView.getFileSystemView();
         File home = fsv.getHomeDirectory();
-        String deskTopPath =  home.getPath();
+        String deskTopPath = home.getPath();
         //后缀名
         String suffix = ".xlsx";
         String pathName = deskTopPath + "/" + fileName + suffix;
         if (type == 0) {
-            for (int i = 1; ; i ++) {
+            for (int i = 1; ; i++) {
                 if (FileOperateUtils.isExist(pathName)) {
                     pathName = deskTopPath + "/" + fileName + i + suffix;
                 } else {

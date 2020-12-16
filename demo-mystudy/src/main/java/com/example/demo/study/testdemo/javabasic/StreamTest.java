@@ -2,9 +2,7 @@ package com.example.demo.study.testdemo.javabasic;
 
 import com.example.demo.model.StudyUser;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,6 +16,9 @@ import java.util.stream.Stream;
  */
 public class StreamTest {
     public static void main(String[] args) {
+        StreamTest test = new StreamTest();
+        test.test();
+
         List<StudyUser> list = ComparatorTest.getListStudyUser();
         Stream<StudyUser> stream = list.stream();
         list.forEach((StudyUser tuser) -> System.out.println(tuser.getUserId()));
@@ -53,6 +54,7 @@ public class StreamTest {
 
         //结合 map 方法,使用 collect 方法 来 将 结果集 放到一个 字符串,一个 Set 或一个TreeSet中
         System.out.println("用map方法 结合 collect");
+        sortList.forEach(studyUser -> System.out.println(studyUser.toString()));
         String myName = sortList.stream()
                 .map(StudyUser::getUserName)
                 .collect(Collectors.joining(";"));
@@ -83,5 +85,43 @@ public class StreamTest {
                 .filter(str -> str == 400)
                 .count();
         System.out.println(count);
+    }
+
+    /**
+     * 内容相同，时间不同，我要去重 保留时间最小的那条
+     */
+    private void test() {
+        StudyUser studyUser = new StudyUser();
+        StudyUser studyUser4 = new StudyUser();
+        StudyUser studyUser2 = new StudyUser();
+        StudyUser studyUser3 = new StudyUser();
+        StudyUser studyUser5 = new StudyUser();
+        StudyUser studyUser6 = new StudyUser();
+        studyUser.setUserName("快件已在【布吉珠宝营业部C】17304412633被揽件,揽件员是【雷代军】");
+        studyUser2.setUserName("快件已到达【深圳快运分拨】,会尽快安排中转,请耐心等待");
+        studyUser6.setUserName("快件已到达【深圳快运分拨】,会尽快安排中转,请耐心等待");
+        studyUser3.setUserName("快件已从【深圳快运分拨】出发,下一站是【东莞快运分拨】,货物正在运输中");
+        studyUser4.setUserName("快件已从【深圳快运分拨】出发,下一站是【东莞快运分拨】,货物正在运输中");
+        studyUser5.setUserName("快件已从【深圳快运分拨】出发,下一站是【东莞快运分拨】,货物正在运输中");
+        studyUser.setPassword("2020-12-13 11:59:49");
+        studyUser2.setPassword("2020-12-13 12:01:17");
+        studyUser6.setPassword("2020-12-13 12:01:16");
+        studyUser3.setPassword("2020-12-13 12:01:21");
+        studyUser4.setPassword("2020-12-13 13:22:22");
+        studyUser5.setPassword("2020-12-13 13:22:22");
+        List<StudyUser> list = new ArrayList<>();
+        list.add(studyUser);
+        list.add(studyUser4);
+        list.add(studyUser2);
+        list.add(studyUser3);
+        list.add(studyUser5);
+        list.add(studyUser6);
+        list.stream().sorted((StudyUser user1, StudyUser user2) -> (user2.getPassword().compareTo(user1.getPassword()))).forEach(stu -> System.out.println(stu.toString()));
+        //去重
+        List list1 = list.stream().sorted((StudyUser user1, StudyUser user2) -> (user2.getPassword().compareTo(user1.getPassword()))).collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(StudyUser::getUserName))), ArrayList<StudyUser> :: new
+        ));
+        list1.forEach(stu -> System.out.println(stu.toString()));
+
     }
 }

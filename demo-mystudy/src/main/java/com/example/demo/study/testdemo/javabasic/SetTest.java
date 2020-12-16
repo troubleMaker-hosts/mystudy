@@ -14,13 +14,13 @@ import com.example.demo.model.Student;
 public class SetTest {
     public static void main(String[] args) {
         SetTest test = new SetTest();
-        ArrayList<String> arrayList = test.initArrayList();
+        List<String> arrayList = test.initArrayList();
         //通过 set 给 list 去重
-        //test.removeRepetitiveBySet(arrayList);
+        test.removeRepetitiveBySet(arrayList);
 
         //重写 Student 的 比较器(Comparator)
 
-        TreeSet<Student> treeSet = new TreeSet<>(new Comparator<Student>() {
+        Set<Student> treeSet = new TreeSet<>(new Comparator<Student>() {
             //return -1; //-1表示放在红黑树的左边,即逆序输出
             //return 1;  //1表示放在红黑树的右边，即顺序输出
             //return 0;  //表示元素相同，仅存放第一个元素
@@ -39,7 +39,7 @@ public class SetTest {
             System.out.println("重写 Student 的 比较器(Comparator) : " + student);
         }
         //重写 String 的 Comparator
-        TreeSet<String> stringTreeSet = new TreeSet<>(new Comparator<String>() {
+        Set<String> stringTreeSet = new TreeSet<>(new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
                 return o2.compareTo(o1);
@@ -56,7 +56,7 @@ public class SetTest {
         }
 
         //普通的 treeSet
-        TreeSet<String> generalTreeSet = new TreeSet<>();
+        Set<String> generalTreeSet = new TreeSet<>();
         test.initTreeSet(generalTreeSet, 10);
         for (String s : generalTreeSet) {
             System.out.println("普通的 treeSet : " + s);
@@ -69,10 +69,11 @@ public class SetTest {
 
     /**
      * 通过 set 给 list 去重
+     * set 去重保留的是 第一个 add() 到 set 中的 value
      * @param arrayList 被去重的list
      */
-    public void removeRepetitiveBySet(ArrayList<String> arrayList) {
-        HashSet<String> hashSet = new HashSet() ;
+    public void removeRepetitiveBySet(List<String> arrayList) {
+        Set<String> hashSet = new HashSet() ;
         hashSet.addAll(arrayList);
         System.out.println("list遍历");
         for (Object item : arrayList) {
@@ -91,7 +92,7 @@ public class SetTest {
         //}
 
         //利用set的add方法  给 list 去重  并保持list中的顺序不变
-        ArrayList<String> newList = new ArrayList() ;
+        List<String> newList = new ArrayList() ;
         hashSet.clear();
         for (Object item : arrayList) {
             if(hashSet.add(item.toString())){
@@ -108,8 +109,8 @@ public class SetTest {
      * 初始化 arrayList(Sting)
      * @return  初始化 arrayList(Sting) 之后的 arrayList
      */
-    public ArrayList<String> initArrayList() {
-        ArrayList<String> arrayList = new ArrayList();
+    public List<String> initArrayList() {
+        List<String> arrayList = new ArrayList();
         arrayList.add("1111");
         arrayList.add("2222");
         arrayList.add("333");
@@ -124,7 +125,7 @@ public class SetTest {
      * @param treeSet   有序set
      * @param initNum   初始化 TreeSet 的 大小
      */
-    public void initTreeSetStudent(TreeSet<Student> treeSet, int initNum) {
+    public void initTreeSetStudent(Set<Student> treeSet, int initNum) {
         for (int i = 0; i < initNum; i++) {
             Student student = new Student();
             student.setId(i);
@@ -145,7 +146,7 @@ public class SetTest {
      * @param treeSet   有序set
      * @param initNum   初始化 TreeSet 的 大小
      */
-    public void initTreeSet(TreeSet<String> treeSet, int initNum) {
+    public void initTreeSet(Set<String> treeSet, int initNum) {
         for (int i = 0; i < initNum; i++) {
             String str = "test" + i;
             treeSet.add(str);
