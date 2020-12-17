@@ -26,21 +26,27 @@
     <include refid="Base_Column_List" />
 --     表名 只能使用 $
     from ${tableName}
-    where name like '%'||#{name}||'%'
+    where name like  concat('%', #{name}, '%')
   </select>
 
   <select id="findStudentByCondition" resultType="com.example.demo.model.Student">
     select
     <include refid="Base_Column_List" />
+
     from student
---     orcal 才支持 || 拼接字符串, mysql 只支持 concat(...)函数, orcal concat()函数只支持 两个参数, mysql不限参数
-    where name like concat('%', #{name}, '%')
+    <where>
+      <if test="name != null">
+      --    orcal 才支持 || 拼接字符串, mysql 只支持 concat(...)函数, orcal concat()函数只支持 两个参数,
+      --    mysql不限参数 (mybatis 中 sql 注释 中 不能有占位符)
+        name like  concat('%', #{name}, '%')
+      </if>
       <if test="age != null">
-          and age = #{age}
+        and age = #{age}
       </if>
       <if test="sex != null and sex != ''">
-          and sex = #{sex}
-       </if>
+        and sex = #{sex}
+      </if>
+    </where>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

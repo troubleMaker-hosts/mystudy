@@ -30,7 +30,7 @@ public class ScheduleTaskUtils {
     /**
      * 定时任务 线程池
      */
-    private static ThreadPoolTaskScheduler threadPoolTaskScheduler = ThreadPoolConfig.getTaskScheduleThreadPool();
+    private static ThreadPoolTaskScheduler threadPoolTaskScheduler = ThreadPoolConfig.getThreadPoolTaskScheduler();
 
     /**
      * 存放 所有 定时器 任务

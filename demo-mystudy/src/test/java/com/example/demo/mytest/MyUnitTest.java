@@ -24,7 +24,8 @@ public class MyUnitTest {
 
     @Test
     public void test() {
-        System.out.println(studentMapper.selectByNameTest("student", "test12"));
+        //mysql 不支持 || 拼接字符串, 只支持 concat()
+        studentMapper.selectByNameTest("student", "test12").forEach(student -> System.out.println(student.toString()));
     }
 
 }

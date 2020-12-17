@@ -1,5 +1,6 @@
 package com.example.demo.study.testdemo.javabasic;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.model.StudyUser;
 
 import java.util.*;
@@ -42,6 +43,8 @@ public class StreamTest {
                 .limit(3)
                 .collect(Collectors.toList());
         sortList.forEach(user -> System.out.println(user.getUserId()));
+        System.out.println(JSONObject.toJSONString(sortList.stream().map(StudyUser::getUserName).collect(Collectors.toList())));
+        System.out.println(sortList.stream().map(StudyUser::getUserName).collect(Collectors.joining(",")));
         System.out.println("id最小的user");
         StudyUser user = sortList
                 .stream()

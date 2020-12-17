@@ -49,7 +49,7 @@ public class StudentController {
      * @return  修改数据结果
      */
     @ResponseBody
-    @PostMapping("updateByName")
+    @PutMapping("updateByName")
     public RespEntity updateByName(@RequestBody RequestEntity<Student> student) {
         System.out.println(student.getData().getName().length());
         log.info("注解 -- 日志 --- test : student-----update : [{}]", student.toString());
@@ -64,10 +64,11 @@ public class StudentController {
      * @return  sutdents
      */
     @ResponseBody
-    @PostMapping("findStudent")
-    public List<Student> findStudent(@RequestParam("name") String name,
-                                     @RequestParam("age") Integer age,
-                                     @RequestParam("sex") String sex) {
+    @GetMapping("findStudent")
+    public List<Student> findStudent(String name,
+                                     Integer age,
+                                     String sex) {
+        log.info("name : [{}], age : [{}], sex : [{}]", name, age, sex);
         return studentService.findStudentByCondition(name, age, sex);
     }
 
@@ -76,8 +77,8 @@ public class StudentController {
      * @param idMap 主键id
      * @return  删除是否成功(1: 成功, 0 失败)
      */
-     @ResponseBody
-    @PostMapping("delete")
+    @ResponseBody
+    @DeleteMapping("delete")
     public RespEntity delete(@RequestBody Map<String, Integer> idMap) {
         return RespEntityUtils.buildSuccResp(studentService.delete(idMap.get("id")));
     }

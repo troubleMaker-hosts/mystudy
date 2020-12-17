@@ -19,10 +19,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 /**
  * @ClassName: TestController
@@ -161,29 +158,42 @@ public class TestController {
      * @return 测试标志
      */
     @ResponseBody
-    @GetMapping("test")
-    public String test() {
+    @GetMapping("threadTest")
+    public String threadTest() {
         logger.error("error日志测试");
         logger.info("info日志测试");
 
         //多线程 测试
         //无 返回结果线程
-        ThreadPoolConfig.execute(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("无 返回结果线程 ------  进入");
-            }
-        }));
+        ThreadPoolExecutor executor = ThreadPoolConfig.getThreadPoolExecutor();
+        //等待队列
+        System.out.println("executor.getQueue().size() : " + executor.getQueue().size());
+        //注意 线程数量 以及 线程池处理 异常的 规则(自己设置的)
+        for (int i = 0; i < executor.getMaximumPoolSize(); i++) {
+            System.out.println("executor.getActiveCount() : " + executor.getActiveCount() + " executor.getTaskCount() : " + executor.getTaskCount());
+            ThreadPoolConfig.execute(new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getName() + " : executor.getTaskCount() : " + executor.getTaskCount());
+                    System.out.println(Thread.currentThread().getName() + " : executor.getActiveCount() : " + executor.getActiveCount());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("无 返回结果线程 ------  进入 : " + Thread.currentThread().getName());
+                }
+            }));
+        }
         Future<String> callableThreadTest = ThreadPoolConfig.submit(new ThreadCallableTest());
         String reslut = null;
         try {
+            System.out.println(Thread.currentThread().getName());
             System.out.println("------");
-            reslut = callableThreadTest.get(6, TimeUnit.SECONDS);
+            reslut = callableThreadTest.get(7, TimeUnit.SECONDS);
             System.out.println(reslut);
             System.out.println("+++++++");
-        } catch (InterruptedException | TimeoutException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | TimeoutException | ExecutionException e) {
             e.printStackTrace();
         }
         if (reslut != null) {

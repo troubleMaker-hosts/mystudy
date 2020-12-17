@@ -75,7 +75,7 @@ public class ThreadPoolConfig {
      * @return ThreadPoolExecutor 普通綫程池
      */
     @Bean(name = "threadPool")
-    public static ThreadPoolExecutor getThreadPool() {
+    public static ThreadPoolExecutor getThreadPoolExecutor() {
         if (threadPool != null) {
             return threadPool;
         } else {
@@ -94,24 +94,24 @@ public class ThreadPoolConfig {
      * @return threadPoolTaskScheduler 定时器 线程池
      */
     @Bean(name = "taskThreadPool")
-    public static ThreadPoolTaskScheduler getTaskScheduleThreadPool() {
+    public static ThreadPoolTaskScheduler getThreadPoolTaskScheduler() {
         if (threadPoolTaskScheduler != null) {
             return threadPoolTaskScheduler;
         } else {
             synchronized (ThreadPoolConfig.class) {
                 if (threadPoolTaskScheduler == null) {
                     threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
-                    ThreadPoolConfig.threadPoolTaskScheduler.setPoolSize(20);
-                    ThreadPoolConfig.threadPoolTaskScheduler.setThreadNamePrefix("taskSchedule-");
+                    threadPoolTaskScheduler.setPoolSize(20);
+                    threadPoolTaskScheduler.setThreadNamePrefix("taskSchedule-");
                     //用来设置线程池关闭的时候等待所有任务都完成再继续销毁其他的Bean
-                    ThreadPoolConfig.threadPoolTaskScheduler.setWaitForTasksToCompleteOnShutdown(true);
+                    threadPoolTaskScheduler.setWaitForTasksToCompleteOnShutdown(true);
                     //该方法用来设置线程池中任务的等待时间，
                     // 如果超过这个时候还没有销毁就强制销毁，以确保应用最后能够被关闭，而不是阻塞住。
-                    ThreadPoolConfig.threadPoolTaskScheduler.setAwaitTerminationSeconds(300);
+                    threadPoolTaskScheduler.setAwaitTerminationSeconds(300);
                     //线程池对拒绝任务的处理策略：这里采用了CallerRunsPolicy策略，
                     // 当线程池没有处理能力的时候，该策略会直接在 execute 方法的调用线程中运行被拒绝的任务；
                     // 如果执行程序已关闭，则会丢弃该任务
-                    ThreadPoolConfig.threadPoolTaskScheduler.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+                    threadPoolTaskScheduler.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
                 }
                 return threadPoolTaskScheduler;
             }
@@ -125,7 +125,7 @@ public class ThreadPoolConfig {
      * @param runnable Runnable 类型的 线程
      */
     public static void execute(Runnable runnable) {
-        getThreadPool().execute(runnable);
+        getThreadPoolExecutor().execute(runnable);
     }
 
     /**
@@ -134,7 +134,7 @@ public class ThreadPoolConfig {
      * @param callable Callable 类型的 线程
      */
     public static <T> Future<T> submit(Callable<T> callable) {
-        return getThreadPool().submit(callable);
+        return getThreadPoolExecutor().submit(callable);
     }
 
     /**
@@ -143,7 +143,7 @@ public class ThreadPoolConfig {
      */
     public static void cancel(Runnable r) {
         if (r != null) {
-            getThreadPool().getQueue().remove(r);
+            getThreadPoolExecutor().getQueue().remove(r);
         }
     }
 
