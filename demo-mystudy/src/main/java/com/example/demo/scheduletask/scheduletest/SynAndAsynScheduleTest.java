@@ -5,10 +5,8 @@ import com.example.demo.model.Student;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.concurrent.Future;
@@ -48,8 +46,8 @@ public class SynAndAsynScheduleTest {
      *         例如：  方法A，使用了@Async/@Transactional来标注，但是无法产生事务控制的目的。
      * 方法B，使用了@Async来标注，  B中调用了C、D，C/D分别使用@Transactional做了标注，则可实现事务控制的目的。
      */
-    @Async("threadPool")
-    //@Scheduled(cron = "${schedule.synchronization.test1}")
+    //@Async("threadPool")
+    @Scheduled(cron = "${schedule.synchronization.test1}")
     public Future<String> synchronizationScheduleTest1() {
         System.out.println(scheduleSynchronizationTest1 +  " : schedule.synchronization.test1 : Thread.sleep(6000) 之前: "
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
@@ -103,8 +101,8 @@ public class SynAndAsynScheduleTest {
     /**
      * synchronization 定时器测试 2 : 5s 一次
      */
-    @Async("threadPool")
-    //@Scheduled(cron = "${schedule.synchronization.test2}")
+    //@Async("threadPool")
+    @Scheduled(cron = "${schedule.synchronization.test2}")
     public Future<String> synchronizationScheduleTest2() {
         System.out.println(scheduleSynchronizationTest2 +  " : schedule.synchronization.test2 : 消耗时间 之前"
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
@@ -123,7 +121,7 @@ public class SynAndAsynScheduleTest {
     /**
      * synchronization 定时器测试 3 : 8s 一次
      */
-    //@Scheduled(cron = "${schedule.synchronization.test3}")
+    @Scheduled(cron = "${schedule.synchronization.test3}")
     public String synchronizationScheduleTest3() {
         String synStr = scheduleSynchronizationTest3 +  " : schedule.synchronization.test3 : "
                 + DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss");

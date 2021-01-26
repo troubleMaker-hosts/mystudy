@@ -84,7 +84,7 @@ public class FtpClientPoolFactory extends BasePooledObjectFactory<FtpUtil> {
     @Deprecated
     @Override
     public FtpUtil create() {
-        return FtpUtil.createFtpClient(hostname, port, username, password, defaultCharset, ftpBasePath);
+        return FtpUtil.createFtpClient(hostname, port, username, password, ftpBasePath, defaultCharset);
     }
 
     /**
@@ -126,6 +126,8 @@ public class FtpClientPoolFactory extends BasePooledObjectFactory<FtpUtil> {
                 if (ftpClientPoolConfig == null) {
                     GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
                     //获取连接超时时间
+                    //genericObjectPoolConfig.setMaxWaitMillis(defaultTimeout);
+                    //测试
                     genericObjectPoolConfig.setMaxWaitMillis(1000);
                     ftpClientPoolConfig = new FtpClientPoolConfig(factory, genericObjectPoolConfig);
                 }

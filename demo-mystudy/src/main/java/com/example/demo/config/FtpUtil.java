@@ -128,11 +128,11 @@ public class FtpUtil {
      * @param port        端口号
      * @param username    用户名
      * @param password    密码
-     * @param charset     字符编码
      * @param ftpBasePath 初始化时ftp服务器路径(根目录)
+     * @param charset     字符编码
      * @return FtpUtil
      */
-    public static FtpUtil createFtpClient(String host, int port, String username, String password, String charset, String ftpBasePath) {
+    public static FtpUtil createFtpClient(String host, int port, String username, String password, String ftpBasePath, String charset) {
         return new FtpUtil(host, port, username, password, charset, ftpBasePath);
     }
 

@@ -32,26 +32,11 @@
     from personal_info
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from personal_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.model.PersonalInfo">
-    insert into personal_info (id, c_name, e_name, 
-      sex, birthday, certificate_type, 
-      id_number, phone_number, nation, 
-      education, email, address, 
-      create_user, create_time, update_user, 
-      update_time, is_valid, remarks
-      )
-    values (#{id,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{eName,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{certificateType,jdbcType=INTEGER}, 
-      #{idNumber,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
-      #{education,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{isValid,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="com.example.demo.model.PersonalInfo">
     insert into personal_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -224,25 +209,15 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.PersonalInfo">
-    update personal_info
-    set c_name = #{cName,jdbcType=VARCHAR},
-      e_name = #{eName,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      birthday = #{birthday,jdbcType=DATE},
-      certificate_type = #{certificateType,jdbcType=INTEGER},
-      id_number = #{idNumber,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      nation = #{nation,jdbcType=VARCHAR},
-      education = #{education,jdbcType=INTEGER},
-      email = #{email,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_user = #{updateUser,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      is_valid = #{isValid,jdbcType=INTEGER},
-      remarks = #{remarks,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
+  <select id="findAllByIsValid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from personal_info
+    <where>
+      <if test="isValid != null">
+        is_valid = #{isValid}
+      </if>
+    </where>
+  </select>
 </mapper>

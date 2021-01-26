@@ -1,6 +1,5 @@
 package com.example.demo.config;
 
-import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.AbandonedConfig;
 import org.apache.commons.pool2.impl.GenericObjectPool;

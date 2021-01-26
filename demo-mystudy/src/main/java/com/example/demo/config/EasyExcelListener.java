@@ -56,6 +56,10 @@ public class EasyExcelListener<T> extends AnalysisEventListener<T> {
         }
     }
 
+    /**
+     * 全部解析完 后执行
+     * @param context    A context is the main anchorage point of a excel reader.{@link AnalysisContext}
+     */
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
         batchInsertData();

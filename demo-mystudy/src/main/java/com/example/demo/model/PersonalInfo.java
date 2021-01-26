@@ -1,185 +1,123 @@
 package com.example.demo.model;
 
+import lombok.Data;
+import org.apache.commons.lang3.time.DateFormatUtils;
+
 import java.util.Date;
 
+@Data
 public class PersonalInfo {
+    /**
+     * 主键id
+     */
     private Integer id;
 
+    /**
+     * 中文姓名
+     */
     private String cName;
 
+    /**
+     * 英文姓名
+     */
     private String eName;
 
+    /**
+     * 性别(1:男; 2:女)
+     */
     private Integer sex;
 
+    /**
+     * 生日
+     */
     private Date birthday;
 
+    /**
+     * 证件类型(1:身份证; 2:护照; 3: 驾驶证; 0:其他)
+     */
     private Integer certificateType;
 
+    /**
+     * 证件号
+     */
     private String idNumber;
 
+    /**
+     * 电话(手机)号码
+     */
     private String phoneNumber;
 
+    /**
+     * 民族
+     */
     private String nation;
 
+    /**
+     * 学历(1:高中; 2:大专; 3:本科; 4:硕士; 5:博士; 6:博士后; 0:其他)
+     */
     private Integer education;
 
+    /**
+     * 电子邮箱
+     */
     private String email;
 
+    /**
+     * 住址
+     */
     private String address;
 
+    /**
+     * 创建人
+     */
     private String createUser;
 
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
+    /**
+     * 修改人
+     */
     private String updateUser;
 
+    /**
+     * 修改时间
+     */
     private Date updateTime;
 
+    /**
+     * 是否有效(1:有效; 0:无效)
+     */
     private Integer isValid;
 
+    /**
+     * 备注
+     */
     private String remarks;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getcName() {
-        return cName;
-    }
-
-    public void setcName(String cName) {
-        this.cName = cName == null ? null : cName.trim();
-    }
-
-    public String geteName() {
-        return eName;
-    }
-
-    public void seteName(String eName) {
-        this.eName = eName == null ? null : eName.trim();
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Integer getCertificateType() {
-        return certificateType;
-    }
-
-    public void setCertificateType(Integer certificateType) {
-        this.certificateType = certificateType;
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
-    }
-
-    public String getNation() {
-        return nation;
-    }
-
-    public void setNation(String nation) {
-        this.nation = nation == null ? null : nation.trim();
-    }
-
-    public Integer getEducation() {
-        return education;
-    }
-
-    public void setEducation(Integer education) {
-        this.education = education;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getIsValid() {
-        return isValid;
-    }
-
-    public void setIsValid(Integer isValid) {
-        this.isValid = isValid;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks == null ? null : remarks.trim();
+    @Override
+    public String toString() {
+        return "PersonalInfo{" +
+                "id=" + id +
+                ", cName='" + cName + '\'' +
+                ", eName='" + eName + '\'' +
+                ", sex=" + sex +
+                ", birthday=" + DateFormatUtils.format(birthday, "yyyy-MM-dd") +
+                ", certificateType=" + certificateType +
+                ", idNumber='" + idNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", nation='" + nation + '\'' +
+                ", education=" + education +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", createUser='" + createUser + '\'' +
+                ", createTime=" + createTime +
+                ", updateUser='" + updateUser + '\'' +
+                ", updateTime=" + updateTime +
+                ", isValid=" + isValid +
+                ", remarks='" + remarks + '\'' +
+                '}';
     }
 }

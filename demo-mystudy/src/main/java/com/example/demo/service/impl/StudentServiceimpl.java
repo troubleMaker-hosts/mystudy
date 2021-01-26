@@ -3,10 +3,13 @@ package com.example.demo.service.impl;
 import com.example.demo.dao.primary.StudentMapper;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * @ClassName: StudentServiceimpl service层实现
@@ -20,6 +23,11 @@ import java.util.List;
 public class StudentServiceimpl implements StudentService {
     @Autowired
     private StudentMapper studentMapper;
+
+    /**
+     * 局部变量 测试
+     */
+    private List<Integer> integers;
 
     /**
      *  插入数据
@@ -42,6 +50,16 @@ public class StudentServiceimpl implements StudentService {
      */
     @Override
     public List<Student> findStudentByCondition(String name, Integer age, String sex) {
+        //初始化 放在 方法里, 否则 并发情况下 integers 会有 多个请求的值
+        integers = new ArrayList<>();
+        try {
+            integers.add(age);
+            System.out.println("integers 局部变量测试 : " + integers);
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        integers.clear();
         return studentMapper.findStudentByCondition(name, age, sex);
     }
 

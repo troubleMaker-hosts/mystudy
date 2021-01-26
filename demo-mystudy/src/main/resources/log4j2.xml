@@ -50,12 +50,12 @@
         <!--打印sql-->
         <!--额外配置的logger-->
         <!--打印druid连接池的sql语句打印-->
-        <logger name="druid.sql.Statement" level = "debug" additivity = "false">
+        <logger name="druid.sql.Statement" level="debug" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
 
         <!--记录druid-sql的记录-->
-        <logger name="druid.sql.Statement" level="debug" additivity="false">
+        <logger name="druid.sql.Statement" level="debug" additivity="true">
             <appender-ref ref="druidSqlRollingFile"/>
         </logger>
 

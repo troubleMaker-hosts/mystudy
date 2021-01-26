@@ -1,3 +1,144 @@
+spring:
+    datasource:
+        name: my_study
+        type: com.alibaba.druid.pool.DruidDataSource
+        #druid相关配置
+        druid:
+          primary:
+            #监控统计拦截的filters （第一个stat很重要，没有的话会监控不到SQL）;
+            #防御sql注入的 filter:wall (增减 wall 之后 一些特殊字符会报错, 比如 select 中 '(英文上引号))
+#            filters: stat, wall
+            filters: stat
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            #基本属性
+            #此处应设置useSSL=false， 否则会有警告（MySQL 5.5.45+ 需要设置）
+            # HikariPool : jdbc-url, druidPool : url
+            url: jdbc:mysql://127.0.0.1:3306/my_study?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+            username: root
+            password: 111
+            #配置初始化大小/最小/最大
+            initial-size: 1
+            min-idle: 1
+            max-active: 20
+            #获取连接等待超时时间
+            max-wait: 60000
+            #间隔多久进行一次检测，检测需要关闭的空闲连接
+            time-between-eviction-runs-millis: 60000
+            #一个连接在池中最小生存的时间
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 'x'
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+            pool-prepared-statements: false
+            max-pool-prepared-statement-per-connection-size: 20
+          secondary:
+            #监控统计拦截的filters （第一个stat很重要，没有的话会监控不到SQL）; 防御sql注入的filter:wall
+            filters: stat
+            driver-class-name: oracle.jdbc.OracleDriver
+            #基本属性
+            # HikariPool : jdbc-url, druidPool : url
+            url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+            username: hr
+            password: 111
+            #配置初始化大小/最小/最大
+            initial-size: 1
+            min-idle: 1
+            max-active: 20
+            #获取连接等待超时时间
+            max-wait: 60000
+            #间隔多久进行一次检测，检测需要关闭的空闲连接
+            time-between-eviction-runs-millis: 60000
+            #一个连接在池中最小生存的时间
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+            pool-prepared-statements: false
+            max-pool-prepared-statement-per-connection-size: 20
+
+#          分库分表 测试
+          seg0:
+            #监控统计拦截的filters （第一个stat很重要，没有的话会监控不到SQL）; 防御sql注入的filter:wall
+            filters: stat
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            #基本属性
+            #此处应设置useSSL=false， 否则会有警告（MySQL 5.5.45+ 需要设置）
+            # HikariPool : jdbc-url, druidPool : url
+            url: jdbc:mysql://127.0.0.1:3306/seg_db_0?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+            username: root
+            password: 111
+
+          seg1:
+             #监控统计拦截的filters （第一个stat很重要，没有的话会监控不到SQL）; 防御sql注入的filter:wall
+             filters: stat
+             driver-class-name: com.mysql.cj.jdbc.Driver
+             #基本属性
+             #此处应设置useSSL=false， 否则会有警告（MySQL 5.5.45+ 需要设置）
+             # HikariPool : jdbc-url, druidPool : url
+             url: jdbc:mysql://127.0.0.1:3306/seg_db_1?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+             username: root
+             password: 111
+
+          #WebStatFilter配置
+          web-stat-filter:
+            #启用StatFilter
+            enabled: true
+            #添加监控规则
+            url-pattern: /*
+            #排除一些不需要统计的url (*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*)
+            exclusions: /druid/*
+            #开启session统计功能
+            session-stat-enable: true
+            #缺省sessionStatMaxCount是1000个
+            session-stat-max-count: 1000
+            #配置principalSessionName，使得druid能够知道当前的session的用户是谁
+            principal-session-name:
+            #如果你的user信息保存在cookie中，你可以配置principalCookieName，使得druid知道当前的user是谁
+            principal-cookie-name:
+            #配置profileEnable能够监控单个url调用的sql列表
+            profile-enable:
+
+          #StatViewServlet配置
+          stat-view-servlet:
+            #启用内置的监控页面
+            enabled: true
+            #内置监控页面的地址
+            url-pattern: /druid/*
+            #关闭 Reset All(清空统计数据) 功能
+            reset-enable: false
+            #设置登录用户名
+            login-username: admin
+            #设置登录密码
+            login-password: 111
+            #白名单（如果allow没有配置或者为空，则允许所有访问）
+            allow: 127.0.0.1
+            #黑名单（deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝）
+            deny:
+
+
+
+#   REDIS (RedisProperties)
+    redis:
+        database: 0
+        host: 127.0.0.1
+        port: 6379
+        password: 123456
+        timeout: 5000
+        pool:
+            maxTotal: 8
+            maxWaitMillis: -1
+
+        lettuce:
+            pool:
+                max-idle: 8
+                min-idle: 0
+
+
+
 ftp:
   default-charset: UTF-8
 #  毫秒(millisecond) (second * 1000)

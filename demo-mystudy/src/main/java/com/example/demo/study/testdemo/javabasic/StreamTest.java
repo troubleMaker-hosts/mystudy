@@ -17,12 +17,13 @@ import java.util.stream.Stream;
  */
 public class StreamTest {
     public static void main(String[] args) {
-        StreamTest test = new StreamTest();
-        test.test();
-
+        //StreamTest test = new StreamTest();
+        //内容相同，时间不同，我要去重 保留时间最小的那条
+        //test.test();
         List<StudyUser> list = ComparatorTest.getListStudyUser();
+        list.forEach(studyUser -> studyUser.setPassword("pedTest"));
         Stream<StudyUser> stream = list.stream();
-        list.forEach((StudyUser tuser) -> System.out.println(tuser.getUserId()));
+        list.forEach((StudyUser tuser) -> System.out.println(tuser.toString()));
         System.out.println("过滤之后");
         stream.filter(user -> user.getUserId() > 20)
                 .forEach((StudyUser user) -> System.out.println(user.getUserId()));

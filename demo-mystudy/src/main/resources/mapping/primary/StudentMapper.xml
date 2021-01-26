@@ -114,6 +114,34 @@
         #{status,jdbcType=VARCHAR},
       </if>
     </trim>
+    on duplicate key
+    update
+    <trim suffixOverrides=",">
+      <if test="name != null">
+        name = values(name),
+      </if>
+      <if test="age != null">
+        age = values(age),
+      </if>
+      <if test="sex != null">
+        sex = values(sex),
+      </if>
+      <if test="createTime != null">
+        createTime = values(createTime),
+      </if>
+      <if test="createUser != null">
+        createUser = values(createUser),
+      </if>
+      <if test="updateTime != null">
+        updateTime = values(updateTime),
+      </if>
+      <if test="updateUser != null">
+        updateUser = values(updateUser),
+      </if>
+      <if test="status != null">
+        status = values(status),
+      </if>
+     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Student">
     update student

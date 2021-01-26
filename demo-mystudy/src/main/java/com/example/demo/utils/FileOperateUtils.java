@@ -77,7 +77,7 @@ public class FileOperateUtils extends FileUtils {
 
     public static void main(String[] args) {
         //绝对路径
-        System.out.println(FileOperateUtils.class.getResource(""));
+        System.out.println("绝对路径 : " + FileOperateUtils.class.getResource(""));
         //当前的classpath的绝对URI路径
         System.out.println(FileOperateUtils.class.getResource("/"));
         //绝对路径 从 项目所在盘符开始(windows) (linux : /)

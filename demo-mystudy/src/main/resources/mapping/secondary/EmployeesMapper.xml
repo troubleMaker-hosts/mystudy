@@ -20,39 +20,41 @@
   </sql>
 
   <sql id="search">
-    <if test="employeeId != null">
-      and EMPLOYEE_ID = #{employeeId},
-    </if>
-    <if test="email != null and email != ''">
-      and EMAIL = #{email},
-    </if>
-    <if test="phoneNumber != null and phoneNumber != ''">
-      and PHONE_NUMBER = #{phoneNumber},
-    </if>
-    <if test="hireDate != null">
-      and HIRE_DATE = #{hireDate},
-    </if>
-    <if test="jobId != null and jobId != ''">
-      and JOB_ID = #{jobId},
-    </if>
-    <if test="salary != null">
-      and SALARY = #{salary},
-    </if>
-    <if test="commissionPct != null">
-      and COMMISSION_PCT = #{commissionPct},
-    </if>
-    <if test="managerId != null">
-      and MANAGER_ID = #{managerId},
-    </if>
-    <if test="departmentId != null">
-      and DEPARTMENT_ID = #{departmentId},
-    </if>
-    <if test="firstName != null and firstName != ''">
-      and FIRST_NAME like concat('%', #{firstName}, '%'),
-    </if>
-    <if test="lastName != null and lastName != ''">
-      and LAST_NAME like concat('%', #{lastName}, '%'),
-    </if>
+    <trim suffixOverrides=",">
+      <if test="employeeId != null">
+        and EMPLOYEE_ID = #{employeeId},
+      </if>
+      <if test="email != null and email != ''">
+        and EMAIL = #{email},
+      </if>
+      <if test="phoneNumber != null and phoneNumber != ''">
+        and PHONE_NUMBER = #{phoneNumber},
+      </if>
+      <if test="hireDate != null">
+        and HIRE_DATE = #{hireDate},
+      </if>
+      <if test="jobId != null and jobId != ''">
+        and JOB_ID = #{jobId},
+      </if>
+      <if test="salary != null">
+        and SALARY = #{salary},
+      </if>
+      <if test="commissionPct != null">
+        and COMMISSION_PCT = #{commissionPct},
+      </if>
+      <if test="managerId != null">
+        and MANAGER_ID = #{managerId},
+      </if>
+      <if test="departmentId != null">
+        and DEPARTMENT_ID = #{departmentId},
+      </if>
+      <if test="firstName != null and firstName != ''">
+        and FIRST_NAME like concat('%', #{firstName}, '%'),
+      </if>
+      <if test="lastName != null and lastName != ''">
+        and LAST_NAME like concat('%', #{lastName}, '%'),
+      </if>
+    </trim>
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -150,30 +152,6 @@
     </trim>
   </insert>
 
-<!--  批量插入 orcal 写法-->
-  <insert id="batchInsert">
-    INSERT INTO EMPLOYEES(
-        EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY,
-        COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID)
-        <foreach collection="list" item="item" index="index" separator="union all" >
-          (
-            select
-              #{item.employeeId,jdbcType=NUMERIC},
-              #{item.firstName,jdbcType=VARCHAR},
-              #{item.lastName,jdbcType=VARCHAR},
-              #{item.email,jdbcType=VARCHAR},
-              #{item.phoneNumber,jdbcType=VARCHAR},
-              #{item.hireDate,jdbcType=TIMESTAMP},
-              #{item.jobId,jdbcType=VARCHAR},
-              #{item.salary,jdbcType=NUMERIC},
-              #{item.commissionPct,jdbcType=NUMERIC},
-              #{item.managerId,jdbcType=NUMERIC},
-              #{item.departmentId,jdbcType=NUMERIC}
-            from dual
-          )
-        </foreach>
-  </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Employees">
     update EMPLOYEES
     <set>
@@ -210,4 +188,94 @@
     </set>
     where EMPLOYEE_ID = #{employeeId,jdbcType=NUMERIC}
   </update>
+
+  <!--  批量插入 orcal 写法-->
+  <insert id="batchInsert">
+    INSERT INTO EMPLOYEES(
+        EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY,
+        COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID)
+        <foreach collection="list" item="item" index="index" separator="union all" >
+          (
+            select
+              #{item.employeeId,jdbcType=NUMERIC},
+              #{item.firstName,jdbcType=VARCHAR},
+              #{item.lastName,jdbcType=VARCHAR},
+              #{item.email,jdbcType=VARCHAR},
+              #{item.phoneNumber,jdbcType=VARCHAR},
+              #{item.hireDate,jdbcType=TIMESTAMP},
+              #{item.jobId,jdbcType=VARCHAR},
+              #{item.salary,jdbcType=NUMERIC},
+              #{item.commissionPct,jdbcType=NUMERIC},
+              #{item.managerId,jdbcType=NUMERIC},
+              #{item.departmentId,jdbcType=NUMERIC}
+            from dual
+          )
+        </foreach>
+  </insert>
+
+  <insert id="mergeInto">
+    merge into EMPLOYEES_1 t
+    using
+    (
+        <!--  字段名 必须设置 别名, 否则 temp 拿不到(点(.)不出) -->
+        <foreach collection="list" item="item" index="index" separator="union all" >
+            select
+              #{item.employeeId,jdbcType=NUMERIC} as employeeId,
+              #{item.firstName,jdbcType=VARCHAR} as firstName,
+              #{item.lastName,jdbcType=VARCHAR} as lastName,
+              #{item.email,jdbcType=VARCHAR} as email,
+              #{item.phoneNumber,jdbcType=VARCHAR} as phoneNumber,
+              #{item.hireDate,jdbcType=TIMESTAMP} as hireDate,
+              #{item.jobId,jdbcType=VARCHAR} as jobId,
+              #{item.salary,jdbcType=NUMERIC} as salary,
+              #{item.commissionPct,jdbcType=NUMERIC} as commissionPct,
+              #{item.managerId,jdbcType=NUMERIC} as managerId,
+              #{item.departmentId,jdbcType=NUMERIC} as departmentId
+            from dual
+        </foreach>
+    ) temp
+    <!--  一般为主键，修改条件 -->
+    on (t.EMPLOYEE_ID = temp.employeeId)
+    <!--  满足条件 修改 -->
+    when matched then
+      update set
+        t.FIRST_NAME = temp.firstName,
+        t.LAST_NAME = temp.lastName,
+        t.EMAIL = temp.email,
+        t.PHONE_NUMBER = temp.phoneNumber,
+        t.HIRE_DATE = temp.hireDate,
+        t.JOB_ID = temp.jobId,
+        t.SALARY = temp.salary,
+        t.COMMISSION_PCT = temp.commissionPct,
+        t.MANAGER_ID = temp.managerId,
+        t.DEPARTMENT_ID = temp.departmentId
+    <!--  不满足条件 insert -->
+    when not matched then
+        insert (
+            t.EMPLOYEE_ID,
+            t.FIRST_NAME,
+            t.LAST_NAME,
+            t.EMAIL,
+            t.PHONE_NUMBER,
+            t.HIRE_DATE,
+            t.JOB_ID,
+            t.SALARY,
+            t.COMMISSION_PCT,
+            t.MANAGER_ID,
+            t.DEPARTMENT_ID
+        )
+        values (
+            temp.employeeId,
+            temp.firstName,
+            temp.lastName,
+            temp.email,
+            temp.phoneNumber,
+            temp.hireDate,
+            temp.jobId,
+            temp.salary,
+            temp.commissionPct,
+            temp.managerId,
+            temp.departmentId
+        )
+  </insert>
 </mapper>

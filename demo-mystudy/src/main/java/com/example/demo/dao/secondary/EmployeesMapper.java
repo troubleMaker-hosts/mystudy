@@ -14,7 +14,6 @@ import java.util.List;
  * @Date: 2020/06/07 20:14
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
-@Mapper
 public interface EmployeesMapper extends BaseMapper<Employees> {
     /**
      *  根据主键删除 记录
@@ -50,4 +49,11 @@ public interface EmployeesMapper extends BaseMapper<Employees> {
      * @return  更新是否成功
      */
     int updateByPrimaryKeySelective(Employees record);
+
+    /**
+     * merge into Employees (有就更新, 无则添加)
+     * @param employeesList List<Employees>
+     * @return 变更记录数
+     */
+    int mergeInto(List<Employees> employeesList);
 }

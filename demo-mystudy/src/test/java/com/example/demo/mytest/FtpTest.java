@@ -70,7 +70,12 @@ public class FtpTest {
         ftpClient.connect("192.168.1.107",21);
         ftpClient.login("kaifatest","777777");
         ftpClient.logout();
+        System.out.println("ftpClient : " + ftpClient.isConnected());
+        ftpClient.disconnect();
 
-
+        FtpUtil ftpUtil = FtpUtil.createFtpClient("192.168.1.107", 21, "kaifatest", "777777", "/");
+        ftpUtil.connect();
+        System.out.println("ftpUtil : " + ftpUtil.isConnected());
+        ftpUtil.disconnect();
     }
 }
