@@ -48,7 +48,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("myStudyApi文档")
                 .description("myStudyApi文档--展示--测试")
-                .contact(new Contact("willie", "http://www.baidu.com", "2689137906@qq.com"))
+                .contact(new Contact("gerry", "http://www.baidu.com", "2689137906@qq.com"))
                 .version("1.0")
                 .license("springfox-swagger-ui")
                 .licenseUrl("https://swagger.io")

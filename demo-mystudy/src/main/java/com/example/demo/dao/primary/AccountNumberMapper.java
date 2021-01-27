@@ -57,4 +57,11 @@ public interface AccountNumberMapper extends BaseMapper<AccountNumber> {
      * @return  更新是否成功
      */
     int updateByPrimaryKeySelective(AccountNumber record);
+
+    /**
+     * 批量插入 AccountNumber
+     * @param accountNumbers    List<AccountNumber>
+     * @return  插入记录数
+     */
+    Integer batchInsert(List<AccountNumber> accountNumbers);
 }

@@ -186,4 +186,31 @@
   </update>
 
 
+  <insert id="batchInsert">
+    insert into account_number (
+        systematic_name, account_number,
+        user_name, user_pwd, email,
+        phone_number, create_user, create_time,
+        update_user, update_time, is_valid,
+        remarks
+    )
+    values
+    <foreach collection="accountNumbers" item="item" index="index" separator=",">
+      (
+        #{item.systematicName},
+        #{item.accountNumber},
+        #{item.userName},
+        #{item.userPwd},
+        #{item.email},
+        #{item.phoneNumber},
+        #{item.createUser},
+        #{item.createTime},
+        #{item.updateUser},
+        #{item.updateTime},
+        #{item.isValid},
+        #{item.remarks}
+        )
+    </foreach>
+  </insert>
+
 </mapper>

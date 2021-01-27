@@ -23,15 +23,7 @@
     delete from worker_node
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.baidu.fsg.uid.worker.entity.WorkerNode">
-    insert into worker_node (ID, HOST_NAME, PORT, 
-      TYPE, LAUNCH_DATE, MODIFIED, 
-      CREATED)
-    values (#{id,jdbcType=BIGINT}, #{hostName,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{launchDate,jdbcType=DATE}, #{modified,jdbcType=TIMESTAMP}, 
-      #{created,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.baidu.fsg.uid.worker.entity.WorkerNode">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id">
     insert into worker_node
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -102,16 +94,6 @@
         CREATED = #{created,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where ID = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.baidu.fsg.uid.worker.entity.WorkerNode">
-    update worker_node
-    set HOST_NAME = #{hostName,jdbcType=VARCHAR},
-      PORT = #{port,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=INTEGER},
-      LAUNCH_DATE = #{launchDate,jdbcType=DATE},
-      MODIFIED = #{modified,jdbcType=TIMESTAMP},
-      CREATED = #{created,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
