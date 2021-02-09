@@ -10,6 +10,12 @@ spring:
         #多个 用逗号(,)隔离 : dev, default
         active: dev
 
+    #配置文件上传大小,这里必须配置,因为默认为1MB,超过上传大小会抛一个异常,可以进行全局异常处理
+    servlet:
+        multipart:
+          max-file-size: 50MB
+          max-request-size: 50MB
+
 # uid 主键生成配置
 uid:
   generator:

@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import com.baidu.fsg.uid.impl.DefaultUidGenerator;
+import com.example.demo.config.FtpClientPoolFactory;
+import com.example.demo.config.FtpUtil;
 import com.example.demo.config.ThreadPoolConfig;
 import com.example.demo.dao.primary.StudentMapper;
 import com.example.demo.dao.primary.StudyUserMapper;
@@ -10,14 +13,19 @@ import com.example.demo.model.StudyUser;
 import com.example.demo.study.entity.ThreadCallableTest;
 import com.example.demo.utils.RedisOperationUtilImpl;
 import com.example.demo.utils.RespEntityUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
+import javax.servlet.annotation.MultipartConfig;
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -48,6 +56,12 @@ public class TestController {
 
     @Resource
     private EmployeesMapper employeesMapper;
+
+    @Resource
+    private DefaultUidGenerator uidGenerator;
+
+    @Autowired
+    private FtpClientPoolFactory ftpClientPoolFactory;
 
     /**
      * 添加用户 测试接口
@@ -246,6 +260,39 @@ public class TestController {
             return RespEntityUtils.buildSuccResp("成功");
         }
         return RespEntityUtils.buildFailResp("失敗");
+    }
+
+    /**
+     * 文件上传
+     * @param multipartFile multipartFile(被上传文件信息)
+     * @return  RespEntity
+     */
+    @ResponseBody
+    @PostMapping("fileUpload")
+    public RespEntity fileUpload(@RequestParam("file") MultipartFile multipartFile) {
+        String originalFileName = multipartFile.getOriginalFilename();
+        String fileName = uidGenerator.getUID() + originalFileName.substring(originalFileName.lastIndexOf("."));
+        System.out.println("fileName : " + fileName);
+        System.out.println(multipartFile.getContentType());
+        FtpUtil ftpUtil = null;
+        //生成临时文件
+        String tempFilePath = Objects.requireNonNull(this.getClass().getClassLoader().getResource("static/temp/")).getPath();
+        File tempFile = new File(tempFilePath + fileName);
+        try {
+            FileUtils.writeByteArrayToFile(tempFile, multipartFile.getBytes());
+            System.out.println("tempFilePath : " + tempFilePath);
+            ftpUtil = ftpClientPoolFactory.createByGenericObjectPool();
+            ftpUtil.connect();
+            System.out.println(ftpUtil.printWorkingDirectory());
+            ftpUtil.upload(fileName, tempFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return RespEntityUtils.buildFailResp("上传文件失败");
+        } finally {
+            FileUtils.deleteQuietly(tempFile);
+            Objects.requireNonNull(ftpUtil).disconnect();
+        }
+        return RespEntityUtils.buildSuccResp("上传文件成功");
     }
 
     /**

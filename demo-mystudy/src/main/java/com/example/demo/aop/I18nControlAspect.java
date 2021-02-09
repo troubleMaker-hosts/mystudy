@@ -140,12 +140,15 @@ public class I18nControlAspect {
             return null;
         }
         for (Object object : objects) {
+            if (ObjectUtils.isEmpty(object)) {
+                continue;
+            }
             Field[] fields;
             //class.getFields() 获取类的属性（public），包括父类；
             //class.getDeclaredFields()能获取所有属性（public、protected、default、private），但不包括父类属性
             //apache commons包下的FieldUtils.getAllFields()可以获取类和父类的所有(public、protected、default、private)属性
             //Field[] fields = FieldUtils.getAllFields(object.getClass());
-            if (ObjectUtils.isEmpty(object) || !filterByPackageName(object, FILTER_PACKAGE_NAMES)) {
+            if (!filterByPackageName(object, FILTER_PACKAGE_NAMES)) {
                 fields = object.getClass().getDeclaredFields();
             } else {
                 fields = FieldUtils.getAllFields(object.getClass());
@@ -173,7 +176,7 @@ public class I18nControlAspect {
     }
 
     /**
-     * 过滤掉 不要遍历的 包(以此包名开头)
+     * 过滤掉 不要遍历的 包(以此包名开头的 返回 false)
      *
      * @param object  被检查的object
      * @param filters 需要被过滤的 包名 (以此包名开头)

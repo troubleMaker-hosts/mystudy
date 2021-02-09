@@ -126,9 +126,7 @@ public class FtpClientPoolFactory extends BasePooledObjectFactory<FtpUtil> {
                 if (ftpClientPoolConfig == null) {
                     GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
                     //获取连接超时时间
-                    //genericObjectPoolConfig.setMaxWaitMillis(defaultTimeout);
-                    //测试
-                    genericObjectPoolConfig.setMaxWaitMillis(1000);
+                    genericObjectPoolConfig.setMaxWaitMillis(defaultTimeout);
                     ftpClientPoolConfig = new FtpClientPoolConfig(factory, genericObjectPoolConfig);
                 }
             }

@@ -103,7 +103,7 @@ public class FtpUtil {
         this.port = (port <= 0) ? 21 : port;
         this.username = StringUtils.isEmpty(username) ? "anonymous" : username;
         this.password = password;
-        this.ftpBasePath = Strings.isEmpty(ftpBasePath) ? DEFAULT_CHARSET : ftpBasePath;
+        this.ftpBasePath = Strings.isEmpty(ftpBasePath) ? FTP_BASE_PATH : ftpBasePath;
         setTimeout(DEFAULT_TIMEOUT, DEFAULT_TIMEOUT, DEFAULT_TIMEOUT);
     }
 
@@ -184,6 +184,7 @@ public class FtpUtil {
         ftpClient.enterLocalPassiveMode();
 
         initFtpBasePath();
+        ftpClient.changeWorkingDirectory(ftpBasePath);
     }
 
     /**
@@ -519,7 +520,7 @@ public class FtpUtil {
         for (String each : pathnameArray) {
             if (StringUtils.isNotEmpty(each)) {
                 ftpClient.makeDirectory(each);
-                ftpClient.changeWorkingDirectory(each);
+                //ftpClient.changeWorkingDirectory(each);
             }
         }
     }

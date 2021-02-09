@@ -185,6 +185,13 @@
 			<version>12.1.0.2.0</version>
 		</dependency>
 
+		<!-- spring-boot-starter-data-mongodb -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+
 
 		<!-- swagger -->
 
@@ -250,6 +257,26 @@
 			<artifactId>sharding-jdbc-core</artifactId>
 			<version>4.1.1</version>
 		</dependency>
+
+		<!-- webmagic -->
+		<dependency>
+			<groupId>us.codecraft</groupId>
+			<artifactId>webmagic-core</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+		<dependency>
+			<groupId>us.codecraft</groupId>
+			<artifactId>webmagic-extension</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+
+
 
 		<!-- 百度 uid-generator-->
 		<dependency>

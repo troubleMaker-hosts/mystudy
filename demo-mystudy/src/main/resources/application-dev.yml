@@ -123,31 +123,39 @@ spring:
 
 #   REDIS (RedisProperties)
     redis:
-        database: 0
-        host: 127.0.0.1
-        port: 6379
-        password: 123456
-        timeout: 5000
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+      password: 123456
+      timeout: 5000
+      pool:
+        maxActive: 8
+        maxWait: -1
+
+      lettuce:
         pool:
-            maxTotal: 8
-            maxWaitMillis: -1
+          max-idle: 8
+          min-idle: 0
 
-        lettuce:
-            pool:
-                max-idle: 8
-                min-idle: 0
-
-
+#   mongodb
+    data:
+      mongodb:
+        uri: mongodb://127.0.0.1:27017
+        username: studyOwner
+        password: 111
+        database: my_study
 
 ftp:
   default-charset: UTF-8
 #  毫秒(millisecond) (second * 1000)
   default-timeout: 60000
+ #WorkingDirectory 是以 虚拟用户的home目录为根目录
   ftpBasePath: /
-  hostname: 192.168.1.107
+#  hostname: 192.168.1.107
+  hostname: 192.168.1.105
   port: 21
-#  username: root
-  username: kaifatest
+#  username: devFtp
+  username: devftp
   password: 777777
 
 schedule:
