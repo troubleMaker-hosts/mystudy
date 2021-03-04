@@ -30,14 +30,15 @@ public class WebCaptureTest {
 
     @Test
     public void webMagicBaiduTest() {
-        String url = "http://www.baidu.com/s?ie=utf-8&medium=0&rtt=1&bsst=1&rsv_dl=news_t_sk&cl=2&wd=特斯拉";
+        //String url = "http://www.baidu.com/s?ie=utf-8&medium=0&rtt=1&bsst=1&rsv_dl=news_b_pn&cl=2&wd=特斯拉&pn=0";
+        String url = "http://www.baidu.com/s?ie=utf-8&medium=0&rtt=1&bsst=1&rsv_dl=news_b_pn&cl=2&wd=特斯拉";
         captureNewsTask.start(url);
 
     }
 
     @Test
     public void jsoupBaiduTest() throws Exception {
-        String url = "https://www.baidu.com/s?ie=utf-8&medium=0&rtt=1&bsst=1&rsv_dl=news_t_sk&cl=2&wd=特斯拉";
+        String url = "http://www.baidu.com/s?ie=utf-8&medium=0&rtt=1&bsst=1&rsv_dl=news_t_sk&cl=2&wd=特斯拉";
         Document doc = Jsoup.connect(url).userAgent("Mozilla").get();//模拟火狐浏览器
         System.out.println(doc.body());
     }
@@ -51,9 +52,9 @@ public class WebCaptureTest {
         System.out.println(allNewsLi.size());
         for (int i = 0; i < allNewsLi.size(); i ++) {
             Element element = allNewsLi.get(i);
-            System.out.println(element.selectFirst("h3").selectFirst("a").text());
-            System.out.println(element.selectFirst("h3").selectFirst("a").attr("href"));
-            System.out.println(element.selectFirst("p").text());
+            //System.out.println(element.selectFirst("h3").selectFirst("a").text());
+            //System.out.println(element.selectFirst("h3").selectFirst("a").attr("href"));
+            //System.out.println(element.selectFirst("p").text());
             System.out.println(element.getElementsByClass("account").text());
             String timeScript = element.getElementsByClass("s-p").select("span").select("script").get(0).childNode(0).toString();
             System.out.println(timeScript);

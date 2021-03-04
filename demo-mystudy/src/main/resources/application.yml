@@ -7,8 +7,8 @@ spring:
         prefix: classpath:/templates/
 
     profiles:
-        #多个 用逗号(,)隔离 : dev, default
-        active: dev
+        #多个 用逗号(,)隔离 : dev, default, individual
+        active: individual
 
     #配置文件上传大小,这里必须配置,因为默认为1MB,超过上传大小会抛一个异常,可以进行全局异常处理
     servlet:

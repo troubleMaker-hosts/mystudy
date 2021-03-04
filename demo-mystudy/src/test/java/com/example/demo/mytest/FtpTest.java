@@ -23,7 +23,6 @@ import java.util.Objects;
  * @Date: 2020/09/07 03:55
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
-@ResourceAnnotation("resourceAnnotationType")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {DemoMystudyApplication.class})
 public class FtpTest {

@@ -102,7 +102,6 @@ public class ScheduleTaskUtils {
                 //反射
                 Class<?> targetClass = Class.forName(taskInfo.getScheduleTaskPackageName() + "." + taskInfo.getScheduleTaskClassname());
                 Method targetMethod = targetClass.getMethod(taskInfo.getScheduleTaskMethodName(), HashMap.class);
-                System.out.println(SpringUtils.getBean(targetClass));
                 targetMethod.setAccessible(true);
                 runnable = () -> {
                     try {

@@ -77,6 +77,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- jasypt 配置文件加密 -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+
 <!--		aop 需要-->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -191,6 +199,17 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 
+		<!-- spring-boot-starter-data-elasticsearch -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency>
+
+		<!-- spring-boot-starter-mail -->
+		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 
 
 		<!-- swagger -->
@@ -270,11 +289,11 @@
 			<version>0.7.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.13.1</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.jsoup</groupId>-->
+<!--			<artifactId>jsoup</artifactId>-->
+<!--			<version>1.13.1</version>-->
+<!--		</dependency>-->
 
 
 
