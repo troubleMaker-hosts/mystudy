@@ -15,7 +15,7 @@ spring:
             # HikariPool : jdbc-url, druidPool : url
             url: jdbc:mysql://127.0.0.1:3306/my_study?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
             username: root
-            password: xxx
+            password: 111
             #配置初始化大小/最小/最大
             initial-size: 1
             min-idle: 1
@@ -41,7 +41,7 @@ spring:
             # HikariPool : jdbc-url, druidPool : url
             url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
             username: hr
-            password: xxx
+            password: 111
             #配置初始化大小/最小/最大
             initial-size: 1
             min-idle: 1
@@ -70,7 +70,7 @@ spring:
             # HikariPool : jdbc-url, druidPool : url
             url: jdbc:mysql://127.0.0.1:3306/seg_db_0?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
             username: root
-            password: xxx
+            password: 111
 
           seg1:
              #监控统计拦截的filters （第一个stat很重要，没有的话会监控不到SQL）; 防御sql注入的filter:wall
@@ -81,7 +81,7 @@ spring:
              # HikariPool : jdbc-url, druidPool : url
              url: jdbc:mysql://127.0.0.1:3306/seg_db_1?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
              username: root
-             password: xxx
+             password: 111
 
           #WebStatFilter配置
           web-stat-filter:
@@ -113,7 +113,7 @@ spring:
             #设置登录用户名
             login-username: admin
             #设置登录密码
-            login-password: xxx
+            login-password: 111
             #白名单（如果allow没有配置或者为空，则允许所有访问）
             allow: 127.0.0.1
             #黑名单（deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝）
@@ -124,7 +124,7 @@ spring:
       database: 0
       host: 127.0.0.1
       port: 6379
-      password: xxx
+      password: 123456
       timeout: 5000
       pool:
         maxActive: 8
@@ -141,7 +141,7 @@ spring:
         host: 127.0.0.1
         port: 27017
         username: studyOwner
-        password: 'xxx'
+        password: '111'
         database: my_study
 
 #  email
@@ -150,9 +150,21 @@ spring:
       default-encoding: utf-8
       host: smtp.qq.com
 #      阿里云 服务 禁用了 25 端口
-      port: 4655
+      port: 465
+#      465 对应 smtps; 25 对应 smtp(默认 smtp)
+      protocol: smtps
       username: 2689137906@qq.com
-      password: ENC(xxx)
+#     使用qq邮箱服务, 此处的是 邮箱授权码
+      password: ENC(tpp2WpHsl8Tf0/J7REuZ9txKnbkRpp4BRveXQxP+TbKE32wdcVs18MhBgTCiaCSN3v1aC42jFjkwOtGv5a7I+w==)
+      properties:
+        mail:
+          smtp:
+#            设置是否需要认证，如果为true,那么用户名和密码就必须的
+            auth: true
+#             是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信
+            starttls:
+              enable: true
+              required: true
 
 
 ftp:
@@ -171,12 +183,13 @@ ftp:
 jasypt:
   encryptor:
     #properties 加密 密钥(salt)
-    password: xxx
+    password: YUII6IR68XGFKFEA
 #    加密算法
     algorithm: PBEWithHmacSHA512AndAES_128
 
 schedule:
     synchronization:
-        test1: 0/3 * * * * ?
+#        test1: 0/3 * * * * ?
+        test1: ENC(q3v+KVPGnWHPml1GPBmavSkhjscG+nQZuJD40yRcOkxqQMQkHevn/o423LLyBLqI)
         test2: 0/5 * * * * ?
         test3: 0/8 * * * * ?
