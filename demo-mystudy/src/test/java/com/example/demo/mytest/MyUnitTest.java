@@ -1,6 +1,7 @@
 package com.example.demo.mytest;
 
 import com.example.demo.DemoMystudyApplication;
+import com.example.demo.convert.StudentConverter;
 import com.example.demo.dao.primary.StudentMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,10 +23,18 @@ public class MyUnitTest {
     @Autowired
     private StudentMapper studentMapper;
 
+    @Autowired
+    private StudentConverter studentConverter;
+
     @Test
     public void test() {
         //mysql 不支持 || 拼接字符串, 只支持 concat()
         studentMapper.selectByNameTest("student", "test12").forEach(student -> System.out.println(student.toString()));
+    }
+
+    @Test
+    public void converterTest() {
+
     }
 
 }
