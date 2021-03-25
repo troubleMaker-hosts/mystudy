@@ -61,8 +61,8 @@
 
         <!--log4j2 自带过滤日志-->
         <Logger name="org.hibernate" level="error" />
-                <logger name="org.springframework" level="WARN"/>
-                <logger name="io.netty" level="info"/>
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="io.netty" level="info"/>
         <logger name="reactor.util" level="info"/>
         <logger name="org.mybatis" level="info"/>
 
