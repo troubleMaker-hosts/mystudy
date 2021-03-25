@@ -3,6 +3,7 @@ package com.example.demo.convert;
 import com.example.demo.model.Student;
 import com.example.demo.model.StudyUser;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -18,6 +19,10 @@ import java.util.List;
 @Mapper
 public interface StudentConverter {
     StudentConverter INSTANCE = Mappers.getMapper(StudentConverter.class);
+
+    @Mapping(target = "sex", source = "sex")
+    @Mapping(target = "userId", source = "id")
+    @Mapping(target = "userName", source = "name")
 
     /**
      * student 转 StudyUser

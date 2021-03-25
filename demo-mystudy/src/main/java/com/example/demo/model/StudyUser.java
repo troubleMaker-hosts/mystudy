@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.io.Serializable;
 
 /**
@@ -10,6 +13,8 @@ import java.io.Serializable;
  * @Date: 2019/11/18 04:06
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class StudyUser extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -32,6 +37,11 @@ public class StudyUser extends BaseEntity implements Serializable {
      * 用户名
      */
     private String userName;
+
+    /**
+     * 性别
+     */
+    private String sex;
 
     /**
      * 密码
@@ -76,48 +86,6 @@ public class StudyUser extends BaseEntity implements Serializable {
         System.out.println("这是 StudyUser 的 构造器 : (String userName, String password) ------------");
     }
 
-    public int getTestAttribute() {
-        return testAttribute;
-    }
-
-    public void setTestAttribute(int testAttribute) {
-        this.testAttribute = testAttribute;
-    }
-
-
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
-
     @Override
     public String toString() {
         return "StudyUser{" +
@@ -125,6 +93,7 @@ public class StudyUser extends BaseEntity implements Serializable {
                 ", testPubAttribute=" + testPubAttribute +
                 ", userId=" + userId +
                 ", userName='" + userName + '\'' +
+                ", sex='" + sex + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
