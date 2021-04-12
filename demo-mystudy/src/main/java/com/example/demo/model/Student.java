@@ -1,6 +1,11 @@
 package com.example.demo.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName: Student
@@ -10,7 +15,15 @@ import java.util.Date;
  * @Date: 2019/11/18 04:06
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
+@ToString(callSuper = true)
 public class Student extends RequestEntity {
+    /**
+     * mapstruct 泛型 转换 测试
+     */
+    private List<String> testGen;
+
     /**
      * 主键id
      */
@@ -55,91 +68,4 @@ public class Student extends RequestEntity {
      * 状态(Y: 有效, N: 无效)
      */
     private String status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", createTime=" + createTime +
-                ", createUser='" + createUser + '\'' +
-                ", updateTime=" + updateTime +
-                ", updateUser='" + updateUser + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
 }

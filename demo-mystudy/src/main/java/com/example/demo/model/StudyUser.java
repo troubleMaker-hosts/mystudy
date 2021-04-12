@@ -2,8 +2,10 @@ package com.example.demo.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @ClassName: StudyUser
@@ -15,7 +17,8 @@ import java.io.Serializable;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class StudyUser extends BaseEntity implements Serializable {
+@ToString(callSuper = true)
+public class StudyUser<T> extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -27,6 +30,11 @@ public class StudyUser extends BaseEntity implements Serializable {
      * 测试共有属性
      */
     public int testPubAttribute;
+
+    /**
+     * 泛型测试
+     */
+    private List<T> testGen;
 
     /**
      * 主键id
@@ -84,19 +92,6 @@ public class StudyUser extends BaseEntity implements Serializable {
         this.userName = userName;
         this.password = password;
         System.out.println("这是 StudyUser 的 构造器 : (String userName, String password) ------------");
-    }
-
-    @Override
-    public String toString() {
-        return "StudyUser{" +
-                "testAttribute=" + testAttribute +
-                ", testPubAttribute=" + testPubAttribute +
-                ", userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", sex='" + sex + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
     }
 
     /**

@@ -3,10 +3,15 @@ package com.example.demo.study.entity;
 import java.util.Arrays;
 
 /**
- * Created by dell on 2018/6/28.
+ * @ClassName: MyGenericity
+ * @Description: 泛型测试
+ * @Author: kk
+ * @version: 1.0.0
+ * @Date: 2018/10/15 01:41
+ * @Copyright: Copyright(c)2018 kk All Rights Reserved
  */
-public class MyGenericity<T>  {
-    private T data  ;
+public class MyGenericity<T> {
+    private T data;
 
     public MyGenericity() {
     }
@@ -23,8 +28,8 @@ public class MyGenericity<T>  {
         this.data = data;
     }
 
-    public  static void main(String[] args){
-        String[] ints = {"sd","fsd","sdfsk" ,"erw"} ;
+    public static void main(String[] args) {
+        String[] ints = {"sd", "fsd", "sdfsk", "erw"};
         Arrays.sort(ints);
         System.out.println(Arrays.toString(ints));
     }

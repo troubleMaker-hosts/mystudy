@@ -16,13 +16,14 @@ import java.util.List;
  * @Date: 2021/03/25 15:40
  * @Copyright: Copyright(c)2021 willie All Rights Reserved
  */
-@Mapper
+@Mapper(componentModel="spring")
 public interface StudentConverter {
     StudentConverter INSTANCE = Mappers.getMapper(StudentConverter.class);
 
-    @Mapping(target = "sex", source = "sex")
-    @Mapping(target = "userId", source = "id")
-    @Mapping(target = "userName", source = "name")
+    //target 和 source 字段名如果一样, 可以不用写(会自动映射)
+    //@Mapping(target = "sex", source = "sex")
+    //@Mapping(target = "userId", source = "id")
+    //@Mapping(target = "userName", source = "name")
 
     /**
      * student 转 StudyUser
@@ -38,5 +39,19 @@ public interface StudentConverter {
      */
     List<StudyUser> studentListToStudyUserList(List<Student> studentList);
 
+
+    /**
+     * StudyUser 转 student
+     * @param studyUser   studyUser
+     * @return  Student
+     */
+    Student studyUserToStudent(StudyUser studyUser);
+
+    /**
+     * List<StudyUser> 转 List<Student>
+     * @param studentList   List<StudyUser>
+     * @return  List<Student>
+     */
+    List<Student> studyUserListToStudentList(List<StudyUser> studentList);
 
 }

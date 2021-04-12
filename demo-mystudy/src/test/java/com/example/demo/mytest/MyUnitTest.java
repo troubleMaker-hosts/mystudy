@@ -4,12 +4,14 @@ import com.example.demo.DemoMystudyApplication;
 import com.example.demo.convert.StudentConverter;
 import com.example.demo.dao.primary.StudentMapper;
 import com.example.demo.model.Student;
+import com.example.demo.model.StudyUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +28,9 @@ public class MyUnitTest {
     @Autowired
     private StudentMapper studentMapper;
 
+    @Autowired
+    private StudentConverter studentConverter;
+
     @Test
     public void test() {
         //mysql 不支持 || 拼接字符串, 只支持 concat()
@@ -38,9 +43,23 @@ public class MyUnitTest {
     @Test
     public void converterTest() {
         List<Student> students = studentMapper.findStudentByCondition("admin", null, null);
-        students.forEach(System.out::println);
+
+
+        List<String> stringList = new ArrayList<>();
+        students.forEach(student -> {
+            stringList.add(student.getName());
+            student.setTestGen(stringList);
+            System.out.println(student);
+        });
         System.out.println("---------------------------");
-        StudentConverter.INSTANCE.studentListToStudyUserList(students).forEach(studyUser -> System.out.println(studyUser));
+        //studentListToStudyUserList
+        //StudentConverter.INSTANCE.studentListToStudyUserList(students).forEach(studyUser -> System.out.println(studyUser));
+        List<StudyUser> studyUsers = studentConverter.studentListToStudyUserList(students);
+        studyUsers.forEach(System.out::println);
+
+        //studyUserListToStudentList
+        studentConverter.studyUserListToStudentList(studyUsers).forEach(System.out::println);
+
     }
 
 }

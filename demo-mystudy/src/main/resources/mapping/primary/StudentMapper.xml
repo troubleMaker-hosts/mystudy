@@ -29,7 +29,7 @@
     where name like  concat('%', #{name}, '%')
   </select>
 
-  <select id="findStudentByCondition" resultType="com.example.demo.model.Student">
+  <select id="findStudentByCondition" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
 
