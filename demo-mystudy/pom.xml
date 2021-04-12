@@ -355,6 +355,8 @@
 				<executions>
 					<execution>
 						<id>Generate MyBatis Artifacts</id>
+						<!-- 此处 添加 <phase>deploy</phase>, 防止 maven 打包时 执行 mybatis-generator-->
+						<phase>deploy</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
