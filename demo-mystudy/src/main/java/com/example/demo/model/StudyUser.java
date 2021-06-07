@@ -18,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-public class StudyUser<T> extends BaseEntity implements Serializable {
+public class StudyUser<T> extends BaseEntity implements Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -115,5 +115,10 @@ public class StudyUser<T> extends BaseEntity implements Serializable {
      */
     public void publicMethodTest() {
         System.out.println("反射 的 共有方法 测试  重载的 无参数 公共方法 ------ 重载 无参数" + this.testAttribute);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

@@ -18,7 +18,13 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString(callSuper = true)
-public class Student extends RequestEntity {
+public class Student extends RequestEntity implements Cloneable {
+
+    /**
+     * clone(深拷贝 和 浅拷贝) Test
+     */
+    private StudyUser studyUser;
+
     /**
      * mapstruct 泛型 转换 测试
      */
@@ -68,4 +74,21 @@ public class Student extends RequestEntity {
      * 状态(Y: 有效, N: 无效)
      */
     private String status;
+
+    /**
+     * 深拷贝 和 浅拷贝
+     * @return  拷贝后的值
+     * @throws CloneNotSupportedException   异常
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Student student = (Student) super.clone();
+        student.studyUser = (StudyUser) studyUser.clone();
+
+        //深拷贝
+        return student;
+
+        //浅拷贝
+        //return super.clone();
+    }
 }
