@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.model.StudyUser;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -17,9 +18,9 @@ import java.util.stream.Stream;
  */
 public class StreamTest {
     public static void main(String[] args) {
-        //StreamTest test = new StreamTest();
+        StreamTest test = new StreamTest();
         //内容相同，时间不同，我要去重 保留时间最小的那条
-        //test.test();
+        test.test();
         List<StudyUser> list = ComparatorTest.getListStudyUser();
         list.forEach(studyUser -> studyUser.setPassword("pedTest"));
         Stream<StudyUser> stream = list.stream();
@@ -122,10 +123,21 @@ public class StreamTest {
         list.add(studyUser6);
         list.stream().sorted((StudyUser user1, StudyUser user2) -> (user2.getPassword().compareTo(user1.getPassword()))).forEach(stu -> System.out.println(stu.toString()));
         //去重
-        List list1 = list.stream().sorted((StudyUser user1, StudyUser user2) -> (user2.getPassword().compareTo(user1.getPassword()))).collect(Collectors.collectingAndThen(
+        List list1 = list.stream().collect(Collectors.collectingAndThen(
                 Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(StudyUser::getUserName))), ArrayList<StudyUser> :: new
         ));
         list1.forEach(stu -> System.out.println(stu.toString()));
+
+        System.out.println("----------分组 取最值---表达式 1------");
+        Map<String, StudyUser> studyUserMap = list.stream().collect(Collectors.toMap(StudyUser::getUserName, Function.identity(), (s1, s2) -> s1.getPassword().compareTo(s2.getPassword()) > 0 ? s1 : s2));
+
+        studyUserMap.values().forEach(study -> System.out.println(study.toString()));
+
+        System.out.println("----------分组 取最值-- 表达式 2-------");
+        studyUserMap = list.stream().collect(Collectors.groupingBy(StudyUser::getUserName,
+                Collectors.collectingAndThen(Collectors.reducing((s1, s2) -> s1.getPassword().compareTo(s2.getPassword()) > 0 ? s1 : s2), Optional :: get)));
+
+        studyUserMap.values().forEach(study -> System.out.println(study.toString()));
 
     }
 }
