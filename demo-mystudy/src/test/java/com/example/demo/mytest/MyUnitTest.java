@@ -2,10 +2,13 @@ package com.example.demo.mytest;
 
 import com.example.demo.DemoMystudyApplication;
 import com.example.demo.convert.StudentConverter;
+import com.example.demo.dao.primary.PictureMapper;
 import com.example.demo.dao.primary.StudentMapper;
+import com.example.demo.model.Picture;
 import com.example.demo.model.Student;
 import com.example.demo.model.StudyUser;
 import com.google.common.collect.Lists;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +27,7 @@ import java.util.List;
  * @Date: 2019/09/17 01:31
  * @Copyright: Copyright(c)2019 kk All Rights Reserved
  */
+@Log4j2
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {DemoMystudyApplication.class})
 public class MyUnitTest {
@@ -33,8 +37,12 @@ public class MyUnitTest {
     @Autowired
     private StudentConverter studentConverter;
 
+    @Autowired
+    private PictureMapper pictureMapper;
+
     @Test
     public void test() {
+        log.info("-----------mysql 不支持 || 拼接字符串, 只支持 concat()---------");
         //mysql 不支持 || 拼接字符串, 只支持 concat()
         studentMapper.selectByNameTest("student", "test12").forEach(student -> System.out.println(student.toString()));
     }
@@ -61,13 +69,21 @@ public class MyUnitTest {
      */
     @Test
     public void beanUtilsCopyProperties() {
-        List<Student> students = getStudentByName("admin");
+        List<Student> students = getStudentByName("admin11111111111");
         StudyUser<String> studyUser = new StudyUser<>();
         students.forEach(student -> {
             BeanUtils.copyProperties(student, studyUser);
             System.out.println(studyUser);
         });
 
+    }
+
+    @Test
+    public void truncateTableTest() {
+        Picture picture = pictureMapper.selectByPrimaryKey(1);
+        System.out.println(picture.toString());
+        String tableName = "picture";
+        pictureMapper.truncateTable(tableName);
     }
 
     /**
@@ -95,6 +111,7 @@ public class MyUnitTest {
      */
     private List<Student> getStudentByName(String name) {
         List<Student> students = studentMapper.findStudentByCondition(name, null, null);
+        System.out.println(students);
         //泛型 测试
         List<String> stringList = new ArrayList<>();
         students.forEach(student -> {

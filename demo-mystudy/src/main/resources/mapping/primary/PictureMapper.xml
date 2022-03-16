@@ -195,4 +195,8 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <update id="truncateTable">
+      truncate ${tableName}
+    </update>
 </mapper>

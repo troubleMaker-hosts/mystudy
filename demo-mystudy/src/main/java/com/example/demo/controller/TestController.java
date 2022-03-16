@@ -204,6 +204,7 @@ public class TestController {
         try {
             System.out.println(Thread.currentThread().getName());
             System.out.println("------");
+            System.out.println("callableThreadTest.isDone() : " + callableThreadTest.isDone());
             reslut = callableThreadTest.get(7, TimeUnit.SECONDS);
             System.out.println(reslut);
             System.out.println("+++++++");

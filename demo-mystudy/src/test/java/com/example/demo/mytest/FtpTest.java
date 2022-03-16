@@ -5,12 +5,14 @@ import com.example.demo.DemoMystudyApplication;
 import com.example.demo.annotation.ResourceAnnotation;
 import com.example.demo.config.FtpClientPoolFactory;
 import com.example.demo.config.FtpUtil;
+import lombok.SneakyThrows;
 import org.apache.commons.net.ftp.FTPClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.util.Objects;
@@ -84,5 +86,13 @@ public class FtpTest {
         ftpUtil.upload("testFileUpload.txt", new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("static/testFile.txt")).getPath()));
         System.out.println("ftpUtil : " + ftpUtil.isConnected());
         ftpUtil.disconnect();
+    }
+
+    @Test
+    @SneakyThrows
+    public void jsonTest() {
+        File file = ResourceUtils.getFile("classpath:order.add.sync.json");
+        System.out.println(file.getName());
+        System.out.println(file.getAbsolutePath());
     }
 }

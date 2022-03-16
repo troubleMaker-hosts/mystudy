@@ -33,6 +33,14 @@ uid:
 #  mapper-locations: classpath:mapping/**/*.xml
 #  type-aliases-package: com.example.demo.model
 
+mybatis-plus:
+  configuration:
+    #开启sql日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 该配置就是将带有下划线的表字段映射为驼峰格式的实体类属性
+    map-underscore-to-camel-case: true
+
+
 #pagehelper
 pagehelper:
     reasonable: true

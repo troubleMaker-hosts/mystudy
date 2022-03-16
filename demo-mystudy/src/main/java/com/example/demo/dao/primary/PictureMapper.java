@@ -16,4 +16,6 @@ public interface PictureMapper {
     int updateByPrimaryKeyWithBLOBs(Picture record);
 
     int updateByPrimaryKey(Picture record);
+
+    void truncateTable(String tableName);
 }

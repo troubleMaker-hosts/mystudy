@@ -286,6 +286,13 @@
 			<artifactId>sharding-jdbc-core</artifactId>
 			<version>4.1.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-core -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-core</artifactId>
+			<version>3.4.3.4</version>
+		</dependency>
+
 
 		<!-- webmagic -->
 		<dependency>
@@ -341,6 +348,26 @@
 
 
 	<build>
+		<resources>
+<!--			<resource>-->
+<!--				<directory>src/main/resources</directory>-->
+<!--				<includes>-->
+<!--					<include>**/**</include>-->
+<!--				</includes>-->
+<!--				&lt;!&ndash;开启filtering功能  &ndash;&gt;-->
+<!--				<filtering>true</filtering>-->
+<!--			</resource>-->
+<!--			<resource>-->
+<!--				<directory>src/main/resources</directory>-->
+<!--				&lt;!&ndash;打包时排除掉资源文件&ndash;&gt;-->
+<!--				<excludes>-->
+<!--					<exclude>**/*.yml</exclude>-->
+<!--					<exclude>*.xml</exclude>-->
+<!--&lt;!&ndash;					<exclude>**/*.xml</exclude>&ndash;&gt;-->
+<!--				</excludes>-->
+<!--				<filtering>true</filtering>-->
+<!--			</resource>-->
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
