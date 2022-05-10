@@ -19,7 +19,7 @@ import static java.util.regex.Pattern.*;
  * @Date: 2020/04/18 03:54
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
-public class 字符串最后一个单词的长度 {
+public class LastWordLength {
     public static void main(String[] args) {
         //System.out.println("Enter a String : ");
         //从控制台 输入字符串

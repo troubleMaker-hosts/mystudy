@@ -45,7 +45,7 @@ import java.io.InputStreamReader;
  * @Date: 2020/04/19 02:59
  * @Copyright: Copyright(c)2020 kk All Rights Reserved
  */
-public class Redraiment的走法 {
+public class RedraimentStep {
     public static void main(String[] args) throws IOException {
         //Scanner scanner = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
