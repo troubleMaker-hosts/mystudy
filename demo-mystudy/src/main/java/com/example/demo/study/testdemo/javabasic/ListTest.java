@@ -36,6 +36,19 @@ public class ListTest {
         test.listSortTest(arrayList);
         test.subListMethodTest(arrayList, 2, 4);
 
+        System.out.println("---------测试 遍历 中 remove--------");
+        arrayList.forEach(System.out::println);
+        System.out.println("-----------------");
+        //遍历中 remove 会报错
+        arrayList.forEach(t -> {
+            if (t == 24) {
+                arrayList.remove(t);
+            }
+            System.out.println(t);
+        });
+        System.out.println("-----------------");
+        arrayList.forEach(System.out::println);
+
 
     }
 
