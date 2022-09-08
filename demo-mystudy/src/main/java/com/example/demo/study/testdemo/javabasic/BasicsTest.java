@@ -1,5 +1,7 @@
 package com.example.demo.study.testdemo.javabasic;
 
+import java.math.BigDecimal;
+
 /**
  * @ClassName: BasicsTest
  * @Description: java基础 测试类
@@ -55,6 +57,15 @@ public class BasicsTest {
         System.out.println("Double.valueOf(" + numStr + ") == 0) : " + (Double.valueOf(numStr) == 0));
         System.out.println("Double.valueOf(" + numStr + ").equals(0) : " + (Double.valueOf(numStr).equals(0)));
         System.out.println("Double.valueOf(" + numStr + ").equals(0.0) : " + (Double.valueOf(numStr).equals(0.0)));
+
+        test.bigDecimalTest();
+    }
+
+    private void bigDecimalTest() {
+        BigDecimal a = new BigDecimal("12");
+        BigDecimal b = new BigDecimal("12.00");
+        System.out.println(a.equals(b));
+        System.out.println(a.compareTo(b));
     }
 
     /**
