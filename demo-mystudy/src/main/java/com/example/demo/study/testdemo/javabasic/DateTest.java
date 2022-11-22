@@ -26,9 +26,13 @@ public class DateTest {
         System.out.println(DateFormatUtils.format(truncateDate, "yyyy-MM-dd HH:mm:ss"));
 
 
-        stringThreadLocal.set("12345");
+        stringThreadLocal.set("111111");
         System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
-        Thread thread = new Thread(() -> System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName()));
+        Thread thread = new Thread(() -> {
+            System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
+            stringThreadLocal.set("2222222");
+            System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
+        });
         thread.start();
         Thread.sleep(1000);
         System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
