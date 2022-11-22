@@ -32,9 +32,13 @@ public class DateTest {
             System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
             stringThreadLocal.set("2222222");
             System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
+            stringThreadLocal.remove();
         });
         thread.start();
         Thread.sleep(1000);
         System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
+        stringThreadLocal.remove();
+        System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
+
     }
 }
