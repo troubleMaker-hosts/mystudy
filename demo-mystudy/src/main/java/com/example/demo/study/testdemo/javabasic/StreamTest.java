@@ -90,6 +90,10 @@ public class StreamTest {
                 .filter(str -> str == 400)
                 .count();
         System.out.println(count);
+
+        System.out.println("Stream.iterate ---------- test --- start");
+        Stream.iterate(1, i -> ++ i).limit(5).parallel().forEach(System.out::println);
+        System.out.println("Stream.iterate ---------- test --- end");
     }
 
     /**

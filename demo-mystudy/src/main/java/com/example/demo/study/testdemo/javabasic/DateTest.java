@@ -16,6 +16,7 @@ import java.util.Date;
  */
 public class DateTest {
     private static final ThreadLocal<String> stringThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<String> stringThreadLocalTwo = new ThreadLocal<>();
 
     @SneakyThrows
     public static void main(String[] args) {
@@ -36,6 +37,10 @@ public class DateTest {
         });
         thread.start();
         Thread.sleep(1000);
+        stringThreadLocalTwo.set("333333");
+        System.out.println(stringThreadLocalTwo.get() + " : " + Thread.currentThread().getName() + " : stringThreadLocalTwo");
+        System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
+        stringThreadLocal.set("333333");
         System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
         stringThreadLocal.remove();
         System.out.println(stringThreadLocal.get() + " : " + Thread.currentThread().getName());
